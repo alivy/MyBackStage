@@ -13,5 +13,13 @@ namespace MyBackStage.Controllers
         {
             return View();
         }
+
+        
+
+        // GET: ShowBoard
+        public ActionResult layoutsNormal()
+        {
+            return View();
+        }
     }
 }
