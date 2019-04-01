@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DBModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,11 +15,14 @@ namespace MyBackStage.Controllers
             return View();
         }
 
-        
+
 
         // GET: ShowBoard
         public ActionResult layoutsNormal()
         {
+            var db = DBContext.CreateContext();
+            var sql = db.Sys_OrganzieRoleMap.AsQueryable().Where(x => x.Sys_Organize.ParentCode == "");
+            var map = sql.FirstOrDefault();
             return View();
         }
     }

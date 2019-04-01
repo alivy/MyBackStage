@@ -8,15 +8,21 @@ namespace DBModel
 
     public partial class Sys_UserRoleMap
     {
+        /// <summary>
+        /// Id#编号自增
+        /// </summary>
         [Key]
-        [Column("Id#编号自增")]
         public int Id { get; set; }
+        /// <summary>
+        /// 用户id
+        /// </summary>
 
-        [Column("UserId#用户id")]
         [StringLength(50)]
         public string UserId { get; set; }
 
-        [Column("RoleId#角色Id")]
+        /// <summary>
+        /// 角色id
+        /// </summary>
         [StringLength(50)]
         public string RoleId { get; set; }
 

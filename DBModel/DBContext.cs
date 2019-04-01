@@ -1,16 +1,30 @@
 ﻿namespace DBModel
 {
-    using System;
     using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
+    using System.Runtime.Remoting.Messaging;
 
-    public partial class Models : DbContext
+    public partial class DBContext : DbContext
     {
-        public Models(): base("name=Models")
+        public DBContext(): base("name=Models")
         {
         }
-
+        #region 创建DBContext
+        /// <summary>
+        /// 创建DBContext
+        /// </summary>
+        /// <returns></returns>
+        public static DBContext CreateContext()
+        {
+            DBContext db = CallContext.GetData("DbContext") as DBContext;
+            if (db == null)
+            {
+                db = new DBContext();
+                CallContext.SetData("DbContext", db);
+            }
+            return db;
+            //return new DBContext();
+        }
+        #endregion
         public virtual DbSet<Sys_button> Sys_button { get; set; }
         public virtual DbSet<Sys_MenuButttonMap> Sys_MenuButttonMap { get; set; }
         public virtual DbSet<Sys_MenuRoleMap> Sys_MenuRoleMap { get; set; }

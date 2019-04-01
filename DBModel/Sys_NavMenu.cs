@@ -26,6 +26,8 @@ namespace DBModel
         [StringLength(50)]
         public string ParentMenId { get; set; }
 
+        public int Level { get; set; }
+
         [StringLength(300)]
         public string Url { get; set; }
 
