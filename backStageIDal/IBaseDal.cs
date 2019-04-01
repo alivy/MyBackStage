@@ -295,6 +295,8 @@ namespace backStageIDal
         /// <param name="tableName">本地数据库表的表名</param>
         void BulkInsert(string tableName, DataTable dt);
 
+        
+
         #endregion
     }
 }

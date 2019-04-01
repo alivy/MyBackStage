@@ -69,7 +69,7 @@ namespace BackStageIBLL
         /// </summary>
         /// <param name="entity">实体对象</param>
         /// <returns></returns>
-        int AddEntity(T entity);
+        bool AddEntity(T entity);
 
         #endregion
 
@@ -79,7 +79,7 @@ namespace BackStageIBLL
         /// </summary>
         /// <param name="entity">要更新的实体对象</param>
         /// <returns></returns>
-        int UpdateEntity(T entity);
+        bool UpdateEntity(T entity);
 
         #endregion
 
@@ -89,7 +89,7 @@ namespace BackStageIBLL
         /// </summary>
         /// <param name="model">模型</param>
         /// <param name="propertys">属性</param>
-        int UpdateEntity(T model, string[] propertys);
+        bool UpdateEntity(T model, string[] propertys);
         #endregion
 
         #region 删除实体
@@ -99,7 +99,7 @@ namespace BackStageIBLL
         /// <param name="entity">要删除实体的对象，我们一般只需给
         /// 该实体的Id字段赋值即可，其他字段不用赋值</param>
         /// <returns></returns>
-        int DeleteEntity(T entity);
+        bool DeleteEntity(T entity);
 
         #endregion
 

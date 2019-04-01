@@ -31,10 +31,10 @@ namespace BackStageBLL
         /// <summary>
         /// 构造函数
         /// </summary>
-        public BaseBLL(IBaseDal<T> baseDal)
+        public BaseBLL()
         {
             //SetDal();
-            _baseDal = baseDal;
+            //_baseDal = baseDal;
         }
 
         #region 获取符合条件的实体个数
@@ -308,6 +308,51 @@ namespace BackStageBLL
             where S : class, new()
         {
             return _baseDal.GetEntityPageList(where, order, selector, out total, isAsc, pageSize, pageIndex);
+        }
+        #endregion
+
+        #region 批量插入list集合
+        public void BulkInsert<T>(string tableName, List<T> list)
+        {
+            _baseDal.BulkInsert(tableName, list);
+        }
+        #endregion
+
+        #region 批量插入表
+        public void BulkInsert(string tableName, DataTable dt)
+        {
+            _baseDal.BulkInsert(tableName, dt);
+        }
+        #endregion
+
+
+        #region bll层不开放sql直接代入
+        public List<S> ExecuteSql<S>(string sql, params SqlParameter[] parameters) where S : class
+        {
+            throw new System.NotImplementedException("bll层不开放sql直接代入");
+            return _baseDal.ExecuteSql<S>(sql, parameters);
+        }
+
+        public int Executesql(string sql)
+        {
+            throw new System.NotImplementedException("bll层不开放sql直接代入");
+            return _baseDal.Executesql(sql);
+        }
+
+
+
+        public DataSet GetDataSet(string sql, CommandType cmdType, params SqlParameter[] sqlParams)
+        {
+            throw new System.NotImplementedException("bll层不开放sql直接代入");
+            return _baseDal.GetDataSet(sql, cmdType, sqlParams);
+        }
+
+        #endregion
+
+        #region 获取编号
+        public int GetPulse(string name)
+        {
+            return _baseDal.GetPulse(name);
         }
         #endregion
 

@@ -48,13 +48,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ISys_buttonBLL.cs" />
+    <Compile Include="ISys_UserBLL.cs" />
+    <Compile Include="ISys_ButtonBLL.cs" />
     <Compile Include="IBaseBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DBModel\DBModel.csproj">
+      <Project>{F6FE6F02-0F56-4FEB-B595-A8F0C8F7B007}</Project>
+      <Name>DBModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

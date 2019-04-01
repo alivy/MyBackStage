@@ -4,12 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using backStageIDal;
 
-namespace BackStageDAL
+namespace BackStageIBLL
 {
-    public class Sys_buttonDal : BaseDal<Sys_button>,ISys_ButtonDal<Sys_button>
+    public interface ISys_UserBLL<T> : IBaseBLL<T> where T : class, new()
     {
-
+        
     }
 }

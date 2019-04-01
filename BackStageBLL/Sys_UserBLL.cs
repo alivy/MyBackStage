@@ -8,14 +8,13 @@ using DBModel;
 
 namespace BackStageBLL
 {
-    public class Sys_buttonBLL : BaseBLL<Sys_button>, ISys_ButtonBLL<Sys_button>
+    public class Sys_UserBLL : BaseBLL<Sys_User>, ISys_UserBLL<Sys_User>
     {
 
-        private ISys_ButtonDal<Sys_User> _user;
-        public Sys_buttonBLL()
+      
+        public Sys_UserBLL()
         {
-            _baseDal = new Sys_buttonDal();
-            _user = new Sys_UserDal();
+            _baseDal = new Sys_UserDal();
         }
 
 
@@ -30,10 +29,6 @@ namespace BackStageBLL
         //}
         #endregion
 
-        public int GetButtonCount()
-        {
-            var userCount = _user.GetCount(x => x.OrganizeName.Equals(""));
-            return _baseDal.GetCount(x => x.ButtonName.Equals(""));
-        }
+      
     }
 }

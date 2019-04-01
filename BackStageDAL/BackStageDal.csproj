@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseDal.cs" />
+    <Compile Include="Sys_User.cs" />
     <Compile Include="Sys_buttonDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

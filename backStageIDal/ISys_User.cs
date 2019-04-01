@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace backStageIDal
 {
-    public interface ISys_ButtonDal<T> : IBaseDal<T> where T : class, new()
+    public interface ISys_User<T> : IBaseDal<T> where T : class, new()
     {
     }
 }

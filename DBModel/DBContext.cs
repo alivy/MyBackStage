@@ -15,14 +15,14 @@
         /// <returns></returns>
         public static DBContext CreateContext()
         {
-            DBContext db = CallContext.GetData("DbContext") as DBContext;
-            if (db == null)
-            {
-                db = new DBContext();
-                CallContext.SetData("DbContext", db);
-            }
-            return db;
-            //return new DBContext();
+            //DBContext db = CallContext.GetData("DbContext") as DBContext;
+            //if (db == null)
+            //{
+            //    db = new DBContext();
+            //    CallContext.SetData("DbContext", db);
+            //}
+            //return db;
+            return new DBContext();
         }
         #endregion
         public virtual DbSet<Sys_button> Sys_button { get; set; }
