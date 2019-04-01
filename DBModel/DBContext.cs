@@ -5,7 +5,7 @@
 
     public partial class DBContext : DbContext
     {
-        public DBContext(): base("name=Models")
+        public DBContext(): base("name=DbContext")
         {
         }
         #region 创建DBContext

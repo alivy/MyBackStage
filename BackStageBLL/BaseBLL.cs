@@ -15,22 +15,26 @@ namespace BackStageBLL
     /// BLL基类
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public  abstract class BaseBLL<T>
+    public abstract class BaseBLL<T>
        where T : class, new()
     {
-        protected IBaseDal<T> _baseDal ;
+        protected IBaseDal<T> _baseDal;
 
-        /// <summary>
-        /// 抽象方法，在该方法的实现中，设置_baseDal的值
-        /// </summary>
+        ///// <summary>
+        ///// 抽象方法，在该方法的实现中，设置_baseDal的值
+        ///// </summary>
         //public abstract void SetDal();
+
+
+
 
         /// <summary>
         /// 构造函数
         /// </summary>
-        public BaseBLL()
+        public BaseBLL(IBaseDal<T> baseDal)
         {
             //SetDal();
+            _baseDal = baseDal;
         }
 
         #region 获取符合条件的实体个数
@@ -307,7 +311,7 @@ namespace BackStageBLL
         }
         #endregion
 
-        
+
 
     }
 }

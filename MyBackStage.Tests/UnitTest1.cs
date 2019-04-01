@@ -1,6 +1,8 @@
 ﻿using System;
 using BackStageBLL;
 using BackStageIBLL;
+using backStageIDal;
+using DBModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MyBackStage.Tests
@@ -11,8 +13,9 @@ namespace MyBackStage.Tests
         [TestMethod]
         public void TestMethod1()
         {
-           var ss =  new Sys_buttonBLL().GetCount(x => x.ButtonName != "");
-            ISys_buttonBLL bll = new Sys_buttonBLL() ;
+           
+            var ss = new Sys_buttonBLL().GetCount(x => x.ButtonName != "");
+            ISys_buttonBLL bll = new Sys_buttonBLL();
             var count = bll.GetButtonCount();
         }
     }

@@ -17,8 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackStageBLL", "BackStageBL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackStageIBLL", "BackStageIBLL\BackStageIBLL.csproj", "{FFA1060D-1FF0-43E7-8B69-D74E0AE0B7FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDB", "TestDB\TestDB.csproj", "{AC714D71-74D7-4543-A8D4-5503F79602AB}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,10 +51,6 @@ Global
 		{FFA1060D-1FF0-43E7-8B69-D74E0AE0B7FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFA1060D-1FF0-43E7-8B69-D74E0AE0B7FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFA1060D-1FF0-43E7-8B69-D74E0AE0B7FC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AC714D71-74D7-4543-A8D4-5503F79602AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AC714D71-74D7-4543-A8D4-5503F79602AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AC714D71-74D7-4543-A8D4-5503F79602AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AC714D71-74D7-4543-A8D4-5503F79602AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

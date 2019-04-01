@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseDal.cs" />
+    <Compile Include="Sys_buttonDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -56,9 +57,9 @@
       <Project>{8be57177-5507-435e-b554-0dd7cc4ced05}</Project>
       <Name>BackStageIDal</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TestDB\TestDB.csproj">
-      <Project>{ac714d71-74d7-4543-a8d4-5503f79602ab}</Project>
-      <Name>TestDB</Name>
+    <ProjectReference Include="..\DBModel\DBModel.csproj">
+      <Project>{f6fe6f02-0f56-4feb-b595-a8f0c8f7b007}</Project>
+      <Name>DBModel</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

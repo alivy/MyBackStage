@@ -57,6 +57,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BackStageDAL\BackStageDal.csproj">
+      <Project>{D99B2F99-1845-4662-909B-B9CE105BDA47}</Project>
+      <Name>BackStageDal</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BackStageIBLL\BackStageIBLL.csproj">
       <Project>{FFA1060D-1FF0-43E7-8B69-D74E0AE0B7FC}</Project>
       <Name>BackStageIBLL</Name>
@@ -65,9 +69,9 @@
       <Project>{8be57177-5507-435e-b554-0dd7cc4ced05}</Project>
       <Name>BackStageIDal</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TestDB\TestDB.csproj">
-      <Project>{AC714D71-74D7-4543-A8D4-5503F79602AB}</Project>
-      <Name>TestDB</Name>
+    <ProjectReference Include="..\DBModel\DBModel.csproj">
+      <Project>{f6fe6f02-0f56-4feb-b595-a8f0c8f7b007}</Project>
+      <Name>DBModel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

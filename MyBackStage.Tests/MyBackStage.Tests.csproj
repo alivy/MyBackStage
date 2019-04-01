@@ -117,13 +117,17 @@
       <Project>{ffa1060d-1ff0-43e7-8b69-d74e0ae0b7fc}</Project>
       <Name>BackStageIBLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\backStageIDal\BackStageIDal.csproj">
+      <Project>{8BE57177-5507-435E-B554-0DD7CC4CED05}</Project>
+      <Name>BackStageIDal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DBModel\DBModel.csproj">
+      <Project>{F6FE6F02-0F56-4FEB-B595-A8F0C8F7B007}</Project>
+      <Name>DBModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MyBackStage\MyBackStage.csproj">
       <Project>{B4936216-CF85-4331-8FD3-A0D60585D12C}</Project>
       <Name>MyBackStage</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TestDB\TestDB.csproj">
-      <Project>{AC714D71-74D7-4543-A8D4-5503F79602AB}</Project>
-      <Name>TestDB</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
