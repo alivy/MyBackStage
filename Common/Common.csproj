@@ -34,6 +34,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,9 +44,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Cache\ConstString.cs" />
+    <Compile Include="Cache\CookiesManager.cs" />
+    <Compile Include="Cache\SessionManager.cs" />
+    <Compile Include="Encrypt\DESEncrypt.cs" />
+    <Compile Include="Encrypt\EncryptHelper.cs" />
     <Compile Include="MEFContainer\MEFBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Share\MailHelper.cs" />
+    <Compile Include="Share\MessageSend.cs" />
+    <Compile Include="Share\NetworkHelper.cs" />
+    <Compile Include="TypeConvert\HtmlHelperExtends.cs" />
+    <Compile Include="TypeConvert\ImageHelper.cs" />
+    <Compile Include="TypeConvert\IOHelper.cs" />
+    <Compile Include="TypeConvert\RegExpStr.cs" />
+    <Compile Include="TypeConvert\StringHelp.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
