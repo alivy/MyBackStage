@@ -5,10 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using backStageIDal;
+using System.ComponentModel.Composition;
 
 namespace BackStageDAL
 {
-    public class Sys_UserDal : BaseDal<Sys_User>,ISys_ButtonDal<Sys_User>
+    [Export(typeof(ISys_UserDAL<Sys_User>))]
+    public class Sys_UserDal : BaseDal<Sys_User>, ISys_UserDAL<Sys_User>
     {
 
     }

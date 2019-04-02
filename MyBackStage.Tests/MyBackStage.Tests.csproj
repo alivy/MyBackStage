@@ -50,6 +50,7 @@
       <HintPath>..\packages\MSTest.TestFramework.1.2.0\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -117,9 +118,9 @@
       <Project>{ffa1060d-1ff0-43e7-8b69-d74e0ae0b7fc}</Project>
       <Name>BackStageIBLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\backStageIDal\BackStageIDal.csproj">
-      <Project>{8BE57177-5507-435E-B554-0DD7CC4CED05}</Project>
-      <Name>BackStageIDal</Name>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{0c08e018-3115-4108-b0bf-08b2d1056a5d}</Project>
+      <Name>Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\DBModel\DBModel.csproj">
       <Project>{F6FE6F02-0F56-4FEB-B595-A8F0C8F7B007}</Project>

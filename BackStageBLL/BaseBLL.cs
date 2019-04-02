@@ -1,5 +1,6 @@
 ﻿using BackStageIBLL;
 using backStageIDal;
+using Common;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,7 +16,7 @@ namespace BackStageBLL
     /// BLL基类
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class BaseBLL<T>
+    public abstract class BaseBLL<T>: MEFBase
        where T : class, new()
     {
         protected IBaseDal<T> _baseDal;

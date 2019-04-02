@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace backStageIDal
+namespace Common
 {
-    public interface ISys_UserDAL<T> : IBaseDal<T> where T : class, new()
+    public class Class1
     {
     }
 }

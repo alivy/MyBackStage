@@ -38,6 +38,7 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -69,6 +70,10 @@
     <ProjectReference Include="..\backStageIDal\BackStageIDal.csproj">
       <Project>{8be57177-5507-435e-b554-0dd7cc4ced05}</Project>
       <Name>BackStageIDal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{0C08E018-3115-4108-B0BF-08B2D1056A5D}</Project>
+      <Name>Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\DBModel\DBModel.csproj">
       <Project>{f6fe6f02-0f56-4feb-b595-a8f0c8f7b007}</Project>

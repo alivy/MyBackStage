@@ -1,21 +1,24 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Data;
 using System.Data.SqlClient;
 using BackStageDAL;
 using BackStageIBLL;
 using backStageIDal;
+using Common;
 using DBModel;
 
 namespace BackStageBLL
 {
+    [Export(typeof(ISys_ButtonBLL<Sys_button>))]
     public class Sys_buttonBLL : BaseBLL<Sys_button>, ISys_ButtonBLL<Sys_button>
     {
-
-        private ISys_ButtonDal<Sys_User> _user;
+       [Import(typeof(ISys_UserDAL<Sys_User>))]
+        private ISys_UserDAL<Sys_User> _user;
         public Sys_buttonBLL()
         {
+            Compose(this);
             _baseDal = new Sys_buttonDal();
-            _user = new Sys_UserDal();
         }
 
 
