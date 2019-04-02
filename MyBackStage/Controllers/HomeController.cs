@@ -1,21 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using BackStageIBLL;
+using DBModel;
+using MyBackStage.Controllers.HomeAciton;
+using System.ComponentModel.Composition;
 using System.Web.Mvc;
 
 namespace MyBackStage.Controllers
 {
     public class HomeController : Controller
     {
+       
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult Logion()
+        public ActionResult Logion(string userName, string pwd)
         {
-            return View();
+            return new LogionAction().Action();
         }
         public ActionResult About()
         {

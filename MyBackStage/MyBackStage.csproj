@@ -54,6 +54,7 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
@@ -169,6 +170,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\sys\sysAreaRegistration.cs" />
+    <Compile Include="Controllers\BaseAciton\BaseAction.cs" />
+    <Compile Include="Controllers\BaseAciton\RequestActionResult.cs" />
+    <Compile Include="Controllers\HomeAciton\LogionAction.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ShowBoardController.cs" />
     <Compile Include="Global.asax.cs">
@@ -289,6 +293,7 @@
     <Folder Include="Areas\sys\Controllers\" />
     <Folder Include="Areas\sys\Models\" />
     <Folder Include="Areas\sys\Views\Shared\" />
+    <Folder Include="Controllers\ShowBordAction\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -305,6 +310,14 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BackStageIBLL\BackStageIBLL.csproj">
+      <Project>{FFA1060D-1FF0-43E7-8B69-D74E0AE0B7FC}</Project>
+      <Name>BackStageIBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{0C08E018-3115-4108-B0BF-08B2D1056A5D}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DBModel\DBModel.csproj">
       <Project>{f6fe6f02-0f56-4feb-b595-a8f0c8f7b007}</Project>
       <Name>DBModel</Name>
