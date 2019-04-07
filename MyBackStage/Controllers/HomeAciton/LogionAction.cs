@@ -13,6 +13,11 @@ namespace MyBackStage.Controllers.HomeAciton
         [Import(typeof(ISys_UserBLL<Sys_User>))]
         private ISys_UserBLL<Sys_User> userBLL;
 
+        /// <summary>
+        /// 用户登录功能
+        /// </summary>
+        /// <param name="viewUser"></param>
+        /// <returns></returns>
         public ActionResult Action(ViewUserLogin viewUser)
         {
             MEFBase.Compose(this);

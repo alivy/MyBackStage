@@ -1,6 +1,7 @@
 ﻿using BackStageIBLL;
 using DBModel;
 using MyBackStage.Controllers.HomeAciton;
+using MyBackStage.Models.HomeModel;
 using System.ComponentModel.Composition;
 using System.Web.Mvc;
 
@@ -14,9 +15,10 @@ namespace MyBackStage.Controllers
             return View();
         }
 
-        public ActionResult Logion(string userName, string pwd)
+        public ActionResult Logion(ViewUserLogin user)
         {
-            return new LogionAction().Action();
+             
+            return new LogionAction().Action(user);
         }
         public ActionResult About()
         {
