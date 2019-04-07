@@ -175,6 +175,9 @@
     <Compile Include="Controllers\HomeAciton\LogionAction.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ShowBoardController.cs" />
+    <Compile Include="Filter\ExceptionHandleAttribute.cs" />
+    <Compile Include="Filter\HttpsToHttpAttribute.cs" />
+    <Compile Include="Filter\UserAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using MyBackStage.Controllers.Filter;
+using System.Web;
 using System.Web.Mvc;
 
 namespace MyBackStage
@@ -8,6 +9,7 @@ namespace MyBackStage
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new ExceptionHandleAttribute());
         }
     }
 }
