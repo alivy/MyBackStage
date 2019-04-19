@@ -9,6 +9,7 @@
         /// 后台登录验证码
         /// </summary>
         public const string SysUserLoginValidateCode = "SysUserLoginValidateCode_";
+
         /// <summary>
         /// 后台用户登录Id
         /// </summary>
@@ -18,6 +19,7 @@
         /// 前台登录验证码
         /// </summary>
         public const string UserLoginValidateCode = "UserLoginValidateCode_";
+
         /// <summary>
         /// 前台用户登录Id
         /// </summary>
@@ -27,6 +29,7 @@
         /// 前台用户登录Guid
         /// </summary>
         public const string UserLoginGuid = "UserLoginGuid_";
+
         /// <summary>
         /// 后台用户登录Guid
         /// </summary>

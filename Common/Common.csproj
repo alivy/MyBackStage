@@ -39,8 +39,9 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,8 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cache\CacheManager.cs" />
     <Compile Include="Cache\ConstString.cs" />
     <Compile Include="Cache\CookiesManager.cs" />
+    <Compile Include="Cache\CustomerCache.cs" />
+    <Compile Include="Cache\ICache.cs" />
+    <Compile Include="Cache\MemoryCacheCache.cs" />
     <Compile Include="Cache\SessionManager.cs" />
     <Compile Include="Encrypt\DESEncrypt.cs" />
     <Compile Include="Encrypt\EncryptHelper.cs" />

@@ -25,8 +25,7 @@ namespace MyBackStage.Controllers.HomeAciton
             {
                 return View("UserLogin", viewUser);
             }
-            string m_code = SessionManager.Get(ConstString.SysUserLoginValidateCode) as string;
-            if (m_code == null)
+            if (!(SessionManager.Get(ConstString.SysUserLoginValidateCode) is string m_code))
             {
                 ModelState.AddModelError("ValidateCode", "验证码超时，请重新获取");
                 return View("UserLogin", viewUser);
@@ -37,6 +36,9 @@ namespace MyBackStage.Controllers.HomeAciton
             //    ModelState.AddModelError("ValidateCode", "验证码错误");
             //    return View("UserLogin", viewUser);
             //}
+
+
+          
             viewUser.UserPwd = viewUser.UserPwd.GetMD5FromString();
 
 

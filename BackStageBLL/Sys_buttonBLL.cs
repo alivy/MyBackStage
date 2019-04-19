@@ -18,7 +18,6 @@ namespace BackStageBLL
         public Sys_buttonBLL()
         {
             Compose(this);
-            _baseDal = new Sys_buttonDal();
         }
 
 
@@ -35,8 +34,7 @@ namespace BackStageBLL
 
         public int GetButtonCount()
         {
-            var userCount = _user.GetCount(x => x.OrganizeName.Equals(""));
-            return _baseDal.GetCount(x => x.ButtonName.Equals(""));
+            return _user.GetCount(x => x.OrganizeName.Equals(""));
         }
     }
 }
