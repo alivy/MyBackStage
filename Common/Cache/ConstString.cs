@@ -16,6 +16,12 @@
         public const string SysUserLoginId = "SysUserLoginId_";
 
         /// <summary>
+        /// 后台用户信息
+        /// </summary>
+        public const string SysUserInfo = "SysUserInfo_";
+
+
+        /// <summary>
         /// 前台登录验证码
         /// </summary>
         public const string UserLoginValidateCode = "UserLoginValidateCode_";

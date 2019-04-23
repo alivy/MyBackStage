@@ -4,14 +4,19 @@ using DBModel;
 using MyBackStage.Models.HomeModel;
 using System;
 using System.ComponentModel.Composition;
+using System.ComponentModel.Composition.Hosting;
+using System.Reflection;
 using System.Web.Mvc;
 
 namespace MyBackStage.Controllers.HomeAciton
 {
     public class LogionAction : BaseAction
     {
-        [Import(typeof(ISys_UserBLL<Sys_User>))]
-        private ISys_UserBLL<Sys_User> userBLL;
+        [Import("Sys_ButtonBLL")]
+        private ISys_ButtonBLL<Sys_button> buttonBll { get; set; }
+
+        [Import("Sys_UserBLL")]
+        private ISys_UserBLL<Sys_User> userBll { get; set; }
 
         /// <summary>
         /// 用户登录功能
@@ -20,7 +25,10 @@ namespace MyBackStage.Controllers.HomeAciton
         /// <returns></returns>
         public ActionResult Action(ViewUserLogin viewUser)
         {
-            MEFBase.Compose(this);
+            Compose();
+
+            int buttonCount = buttonBll.GetButtonCount();
+            int userCount = userBll.GetCount();
             if (!ModelState.IsValid)
             {
                 return View("UserLogin", viewUser);
@@ -38,7 +46,7 @@ namespace MyBackStage.Controllers.HomeAciton
             //}
 
 
-          
+
             viewUser.UserPwd = viewUser.UserPwd.GetMD5FromString();
 
 
@@ -70,7 +78,7 @@ namespace MyBackStage.Controllers.HomeAciton
             //防止注入
             userName = StringHelp.FilterSql(userName);
             password = StringHelp.FilterSql(password);
-            var user = userBLL.FirstOrDefault<Sys_User>(x => x.UserNickName.Equals(userName) && x.Password.Equals(password));
+            var user = userBll.FirstOrDefault<Sys_User>(x => x.UserNickName.Equals(userName) && x.Password.Equals(password));
             if (user != null)
             {
                 //登录成功，添加Session
@@ -88,6 +96,14 @@ namespace MyBackStage.Controllers.HomeAciton
                 validate = true;
             }
             return validate;
+        }
+
+
+        public void Compose()
+        {
+            var catalog = new AssemblyCatalog(Assembly.GetEntryAssembly());
+            CompositionContainer container = new CompositionContainer(catalog);
+            container.ComposeParts(this);
         }
     }
 }

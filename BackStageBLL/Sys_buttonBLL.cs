@@ -10,14 +10,14 @@ using DBModel;
 
 namespace BackStageBLL
 {
-    [Export(typeof(ISys_ButtonBLL<Sys_button>))]
+    [Export("Sys_ButtonBLL", typeof(ISys_ButtonBLL<Sys_button>))]
     public class Sys_buttonBLL : BaseBLL<Sys_button>, ISys_ButtonBLL<Sys_button>
     {
-       [Import(typeof(ISys_UserDAL<Sys_User>))]
-        private ISys_UserDAL<Sys_User> _user;
+        [Import("Sys_UserDAL")]
+        private ISys_UserDAL<Sys_User> _user { get; set; }
         public Sys_buttonBLL()
         {
-            Compose(this);
+            //Compose(this);
         }
 
 

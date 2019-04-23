@@ -331,13 +331,13 @@ namespace BackStageBLL
         public List<S> ExecuteSql<S>(string sql, params SqlParameter[] parameters) where S : class
         {
             throw new System.NotImplementedException("bll层不开放sql直接代入");
-            return _baseDal.ExecuteSql<S>(sql, parameters);
+            //return _baseDal.ExecuteSql<S>(sql, parameters);
         }
 
         public int Executesql(string sql)
         {
             throw new System.NotImplementedException("bll层不开放sql直接代入");
-            return _baseDal.Executesql(sql);
+            //return _baseDal.Executesql(sql);
         }
 
 
@@ -345,7 +345,7 @@ namespace BackStageBLL
         public DataSet GetDataSet(string sql, CommandType cmdType, params SqlParameter[] sqlParams)
         {
             throw new System.NotImplementedException("bll层不开放sql直接代入");
-            return _baseDal.GetDataSet(sql, cmdType, sqlParams);
+            //return _baseDal.GetDataSet(sql, cmdType, sqlParams);
         }
 
         #endregion

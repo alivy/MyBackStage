@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Data;
 using System.Data.SqlClient;
 using BackStageDAL;
@@ -8,6 +9,7 @@ using DBModel;
 
 namespace BackStageBLL
 {
+    [Export("Sys_UserBLL",typeof(ISys_UserBLL<Sys_User>))]
     public class Sys_UserBLL : BaseBLL<Sys_User>, ISys_UserBLL<Sys_User>
     {
 

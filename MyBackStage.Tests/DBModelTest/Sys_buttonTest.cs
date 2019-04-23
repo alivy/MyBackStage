@@ -13,8 +13,11 @@ namespace MyBackStage.Tests
     public class Sys_buttonTest
     {
 
-        [Import(typeof(ISys_ButtonBLL<Sys_button>))]
-        private ISys_ButtonBLL<Sys_button> buttonBll;
+        [Import("Sys_ButtonBLL")]
+        private ISys_ButtonBLL<Sys_button> buttonBll { get; set; }
+
+        [Import("Sys_UserBLL")]
+        private ISys_UserBLL<Sys_User> userBll { get; set; }
         /// <summary>
         /// 测试MEF依赖注入
         /// </summary>
@@ -26,10 +29,7 @@ namespace MyBackStage.Tests
             if (buttonBll != null)
             {
                 getCount = buttonBll.GetButtonCount();
-                buttonBll.AddEntity(new Sys_button()
-                {
-
-                });
+                getCount = userBll.GetCount();
             }
             Assert.AreEqual(getCount, 0);
         }

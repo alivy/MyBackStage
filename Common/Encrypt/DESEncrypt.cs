@@ -185,7 +185,7 @@ namespace Common
                     return str;
                 }
             }
-            catch (Exception e)
+            catch (Exception )
             {
                 return "";
             }
