@@ -41,7 +41,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Mvc, Version=3.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -61,6 +61,13 @@
     <Compile Include="Encrypt\EncryptHelper.cs" />
     <Compile Include="MEFContainer\MEFBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Share\Http\AddFile.cs" />
+    <Compile Include="Share\Http\Client.cs" />
+    <Compile Include="Share\Http\ContentType.cs" />
+    <Compile Include="Share\Http\HttpMethod.cs" />
+    <Compile Include="Share\Http\Other.cs" />
+    <Compile Include="Share\Http\Path.cs" />
+    <Compile Include="Share\Http\Server.cs" />
     <Compile Include="Share\Log.cs" />
     <Compile Include="Share\Logger.cs" />
     <Compile Include="Share\MailHelper.cs" />

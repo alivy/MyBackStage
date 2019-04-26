@@ -17,10 +17,12 @@ namespace Common
         /// 实现注入
         /// 此方法重点优化
         /// </summary>
-        public static void Compose<T>(T t)
+        public static void Compose<T>(T t, AssemblyType type = AssemblyType.ApplicationBase)
         {
             ////获取bin文件程序集元素
             string path = AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
+            if (type == AssemblyType.GetEntryAssembly)
+                path = AppDomain.CurrentDomain.SetupInformation.PrivateBinPath;
             var catalog = new DirectoryCatalog(path);
             //获取当前执行的程序集中所有的标有特性标签的代码段  
             //var catalog = new AssemblyCatalog(Assembly.GetEntryAssembly());

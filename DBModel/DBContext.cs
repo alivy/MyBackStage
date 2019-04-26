@@ -25,6 +25,8 @@
             return new DBContext();
         }
         #endregion
+
+      
         public virtual DbSet<Sys_button> Sys_button { get; set; }
         public virtual DbSet<Sys_MenuButttonMap> Sys_MenuButttonMap { get; set; }
         public virtual DbSet<Sys_MenuRoleMap> Sys_MenuRoleMap { get; set; }
@@ -36,7 +38,7 @@
         public virtual DbSet<Sys_User> Sys_User { get; set; }
         public virtual DbSet<Sys_UserRoleMap> Sys_UserRoleMap { get; set; }
         public virtual DbSet<Sys_UserOrganizeMap> Sys_UserOrganizeMap { get; set; }
-
+        public virtual DbSet<Sys_LoginHistory> Sys_LoginHistory { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Sys_button>()

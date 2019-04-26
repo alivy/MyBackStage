@@ -1,4 +1,5 @@
 ﻿using BackStageIBLL;
+using Common;
 using DBModel;
 using System;
 using System.Collections.Generic;
@@ -20,18 +21,19 @@ namespace WebSite.Controllers
         [Import("Sys_UserBLL")]
         public ISys_UserBLL<Sys_User> userBll { get; set; }
 
-
+        [Import("Sys_LoginHistoryBLL")]
+        public ISys_LoginHistoryBLL<Sys_LoginHistory> loginHistoryBll { get; set; }
         public ActionResult Index()
         {
-            var count = userBll.GetCount();
             return View();
         }
         /// <summary>
         /// web登陆
         /// </summary>
         /// <returns></returns>
-        public ActionResult WebLogion()
+        public ActionResult WebLogin()
         {
+            Session.Clear();
             return View();
         }
         public ActionResult Logion()
@@ -40,16 +42,18 @@ namespace WebSite.Controllers
         }
 
         [HttpPost]
-        public ActionResult LogionValid(ViewUserLogin user)
+        public ActionResult WebUserLogin(ViewUserLogin user)
         {
-            var action = new LogionAction(userBll);
+            loginHistoryBll.GetCount();
+            loginHistoryBll.GetUserCountTest();
+            userBll.GetCount();
+            var action = new LogionAction(userBll,loginHistoryBll);
             return action.Action(user);
         }
 
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
             return View();
         }
 

@@ -23,6 +23,11 @@ namespace WebSite.Models.HomeModel
         public string UserPwd { get; set; }
 
         /// <summary>
+        /// 登陆城市
+        /// </summary>
+        public string City { get; set; }
+
+        /// <summary>
         /// 地址
         /// </summary>
         public string BackUrl { get; set; }

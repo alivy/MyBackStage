@@ -62,6 +62,7 @@
     <Compile Include="Sys_OrganzieRoleMap.cs" />
     <Compile Include="Sys_Role.cs" />
     <Compile Include="Sys_RoleMenuButttonMap.cs" />
+    <Compile Include="Sys_LoginHistory.cs" />
     <Compile Include="Sys_User.cs" />
     <Compile Include="Sys_UserOrganizeMap.cs" />
     <Compile Include="Sys_UserRoleMap.cs" />

@@ -13,6 +13,7 @@ namespace DBModel
         {
             Sys_UserOrganizeMap = new HashSet<Sys_UserOrganizeMap>();
             Sys_UserRoleMap = new HashSet<Sys_UserRoleMap>();
+            Sys_LoginHistory = new HashSet<Sys_LoginHistory>();
         }
 
         [Key]
@@ -48,5 +49,8 @@ namespace DBModel
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sys_UserRoleMap> Sys_UserRoleMap { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Sys_LoginHistory> Sys_LoginHistory { get; set; }
     }
 }

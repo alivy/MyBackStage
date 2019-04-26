@@ -65,6 +65,10 @@
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
@@ -81,10 +85,6 @@
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Mvc, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Optimization">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
@@ -156,7 +156,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseAction\BaseAction.cs" />
     <Compile Include="Controllers\BaseAction\RequestActionResult.cs" />
-    <Compile Include="Controllers\HomeAction\LogionAction.cs" />
+    <Compile Include="Controllers\HomeAction\LoginAction.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ShowBoardController.cs" />
     <Compile Include="Filter\ExceptionHandleAttribute.cs" />
@@ -191,7 +191,7 @@
     <Content Include="Content\css\simple-line-icons\css\simple-line-icons.css" />
     <Content Include="Content\css\simple-line-icons\fonts\Simple-Line-Icons.svg" />
     <Content Include="Content\css\styles.css" />
-    <Content Include="Content\css\webLogion\style.css" />
+    <Content Include="Content\css\webLogin\style.css" />
     <Content Include="Content\imgs\avatar-1.png" />
     <Content Include="Content\imgs\logo.png" />
     <Content Include="Content\js\bootstrap\js\bootstrap.min.js" />
@@ -202,7 +202,7 @@
     <Content Include="Content\js\jquery\jquery.js" />
     <Content Include="Content\js\jquery\jquery.min.js" />
     <Content Include="Content\js\popper.js\popper.min.js" />
-    <Content Include="Content\js\webLogion\vector.js" />
+    <Content Include="Content\js\webLogin\vector.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -273,7 +273,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\WebLogion.cshtml" />
+    <Content Include="Views\Home\WebLogin.cshtml" />
     <Content Include="Views\Home\Logion.cshtml" />
     <Content Include="Views\Shared\_LayoutBootStrap.cshtml" />
     <Content Include="Views\Shared\_LayoutBootStrapContent.cshtml" />
@@ -301,9 +301,17 @@
       <Project>{7335ae54-d769-4f5f-9f4b-41aae1631ae3}</Project>
       <Name>BackStageBLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BackStageDAL\BackStageDal.csproj">
+      <Project>{d99b2f99-1845-4662-909b-b9ce105bda47}</Project>
+      <Name>BackStageDal</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BackStageIBLL\BackStageIBLL.csproj">
       <Project>{ffa1060d-1ff0-43e7-8b69-d74e0ae0b7fc}</Project>
       <Name>BackStageIBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\backStageIDal\BackStageIDal.csproj">
+      <Project>{8be57177-5507-435e-b554-0dd7cc4ced05}</Project>
+      <Name>BackStageIDal</Name>
     </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{0c08e018-3115-4108-b0bf-08b2d1056a5d}</Project>

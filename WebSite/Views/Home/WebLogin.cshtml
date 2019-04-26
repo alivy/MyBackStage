@@ -9,12 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta http-equiv="content-type" content="text/html;charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>HTML5棱形动态背景登录框代码</title>
+    <title>登陆</title>
 
 
-    <link href="~/Content/css/webLogion/style.css" rel="stylesheet" />
+    <link href="~/Content/css/WebLogin/style.css" rel="stylesheet" />
     <script src="~/Content/js/jquery/jquery.min.js"></script>
-    <script src="~/Content/js/webLogion/vector.js"></script>
+    <script src="~/Content/js/WebLogin/vector.js"></script>
 
 </head>
 <body>
@@ -25,7 +25,7 @@
                 <h1>用户登录</h1>
                 <form class="form" id="entry_form">
                     <input type="text" placeholder="用户名" id="entry_name" value="admin">
-                    <input type="password" placeholder="密码" id="entry_password" value="">
+                    <input type="password" placeholder="密码" id="entry_password" value="123456">
                     <button type="button" id="entry_btn">登录</button>
                     <div id="prompt" class="prompt"></div>
                 </form>
@@ -37,6 +37,7 @@
 
         var userNmae = $("#entry_name");
         var passWord = $("#entry_password");
+        var city = "";
         $(function () {
             Victor("container", "output");   //登陆背景函数
             $("#entry_name").focus();
@@ -45,22 +46,30 @@
                     $("#entry_btn").click();
                 }
             });
+
+
+            $.getJSON("http://api.map.baidu.com/location/ip?ak=F454f8a5efe5e577997931cc01de3974&callback=?", function (d) {
+                city = d.content.address;
+            });
         });
+   
+
+       
 
         $("#entry_btn").click(function () {
             $.ajax({
-                url: "/Home/LogionValid",
+                url: "/Home/WebUserLogin",
                 type: 'post',
                 data: {
                     UserName: userNmae.val(), //you 参数
                     UserPwd: passWord.val(),
-                    BackUrl:""
+                    City: city,
+                    BackUrl: ""
                 },
                 dataType: 'json',
                 success: function (data) {
                     status = data.status;
-                    if (status == 200)
-                    {
+                    if (status == 200) {
 
                     } else {
                         console.log('数据加载失败');

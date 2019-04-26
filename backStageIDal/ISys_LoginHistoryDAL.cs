@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClassLibrary1
+namespace backStageIDal
 {
-    public class Class1
+    public interface ISys_LoginHistoryDAL<T> : IBaseDal<T> where T : class, new()
     {
     }
 }

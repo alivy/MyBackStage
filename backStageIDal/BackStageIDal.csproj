@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IBaseDal.cs" />
+    <Compile Include="ISys_LoginHistoryDAL.cs" />
     <Compile Include="ISys_User.cs" />
     <Compile Include="ISys_ButtonDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

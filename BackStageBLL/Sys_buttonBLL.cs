@@ -15,11 +15,17 @@ namespace BackStageBLL
     {
         [Import("Sys_UserDAL")]
         private ISys_UserDAL<Sys_User> _user { get; set; }
+
+        [Import("Sys_LoginHistoryDAL")]
+        private ISys_LoginHistoryDAL<Sys_LoginHistory> _loginHistory { get; set; }
         public Sys_buttonBLL()
         {
-            //Compose(this);
-        }
 
+        }
+        public override void SetDal()
+        {
+            //_baseDal = _user ?? new Sys_buttonDal();
+        }
 
 
         #region 实现抽象类
@@ -34,6 +40,7 @@ namespace BackStageBLL
 
         public int GetButtonCount()
         {
+            var hcount = _loginHistory.GetCount();
             return _user.GetCount(x => x.OrganizeName.Equals(""));
         }
     }

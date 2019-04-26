@@ -3,6 +3,7 @@ using DBModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.Composition;
 using System.Data;
 using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
@@ -12,6 +13,7 @@ using System.Linq.Expressions;
 
 namespace BackStageDAL
 {
+    //[Export("BaseDal")]
     public class BaseDal<T> : IBaseDal<T>
         where T : class, new()
     {

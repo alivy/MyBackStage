@@ -1,6 +1,11 @@
 ﻿@{
     Layout = "~/Views/Shared/_LayoutBootStrap.cshtml";
+    var loginId = Session[Common.ConstString.UserLoginId];
+    var user = Common.CacheManager.GetData<DBModel.Sys_User>(Common.ConstString.SysUserInfo + loginId) ?? new DBModel.Sys_User();
 }
+
+
+
 @*<-- 头部导航模块 /-->*@
 <nav class="navbar page-header">
     <a href="#" class="btn btn-link sidebar-mobile-toggle d-md-none mr-auto">
@@ -8,7 +13,7 @@
     </a>
 
     <a class="navbar-brand" href="#">
-        <img src="./imgs/logo.png" alt="logo">
+        <img src="../Content/imgs/logo.png" alt="logo">
     </a>
 
     <a href="#" class="btn btn-link sidebar-toggle d-md-down-none">
@@ -32,12 +37,13 @@
 
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img src="./imgs/avatar-1.png" class="avatar avatar-sm" alt="logo">
-                <span class="small ml-1 d-md-down-none">约翰·史密斯</span>
+               
+                <img src="~/Content/imgs/avatar-1.png" class="avatar avatar-sm" alt="logo">
+                <span class="small ml-1 d-md-down-none">@user.UserRoleName</span>
             </a>
 
             <div class="dropdown-menu dropdown-menu-right">
-                <div class="dropdown-header">帐户</div>
+                <div class="dropdown-header">@user.UserNickName</div>
 
                 <a href="#" class="dropdown-item">
                     <i class="fa fa-user"></i> 轮廓

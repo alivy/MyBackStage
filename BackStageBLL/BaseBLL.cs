@@ -24,7 +24,7 @@ namespace BackStageBLL
         ///// <summary>
         ///// 抽象方法，在该方法的实现中，设置_baseDal的值
         ///// </summary>
-        //public abstract void SetDal();
+        public abstract void SetDal();
 
 
 
@@ -34,7 +34,7 @@ namespace BackStageBLL
         /// </summary>
         public BaseBLL()
         {
-            //SetDal();
+            SetDal();
             //_baseDal = baseDal;
         }
 

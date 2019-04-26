@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ISys_LoginHistoryBLL.cs" />
     <Compile Include="ISys_UserBLL.cs" />
     <Compile Include="ISys_ButtonBLL.cs" />
     <Compile Include="IBaseBLL.cs" />
