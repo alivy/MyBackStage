@@ -16,6 +16,28 @@ namespace DBModel
             Sys_RoleMenuButttonMap = new HashSet<Sys_RoleMenuButttonMap>();
         }
 
+
+        private const string _key = "NavMenu_{0}";
+       
+        /// <summary>
+        ///  KeyFormat 格式
+        /// </summary>
+        public string KeyFormat
+        {
+            get { return _key; }
+        }
+
+        /// <summary>
+        ///  获得缓存的Key
+        /// </summary>
+        /// <returns></returns>
+        public static string GetKey(string  userId)
+        {
+            return string.Format(_key, userId);
+        }
+
+
+
         [Key]
         [StringLength(50)]
         public string MenuId { get; set; }

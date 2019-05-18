@@ -100,7 +100,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\CacheTest.cs" />
+    <Compile Include="Common\EncryptHelperTest.cs" />
     <Compile Include="Common\LogTest.cs" />
+    <Compile Include="DBModelTest\ShareTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="DBModelTest\Sys_buttonTest.cs" />

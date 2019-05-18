@@ -1,5 +1,6 @@
 ﻿using Common;
 using System;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
@@ -15,8 +16,9 @@ namespace WebSite.Controllers.Filter
         /// <param name="filterContext"></param>
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
-            var m_userId = filterContext.HttpContext.Session[ConstString.UserLoginId];
-            if (m_userId == null)
+            var se_userId = filterContext.HttpContext.Session[ConstString.SysUserLoginId];
+            var ck_userId = HttpContext.Current.Request.Cookies[ConstString.SysUidCookieName];
+            if (se_userId == null || ck_userId == null)
             {
                 filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new
                 {

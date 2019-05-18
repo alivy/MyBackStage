@@ -10,22 +10,20 @@ using DBModel;
 
 namespace BackStageBLL
 {
-    [Export("Sys_ButtonBLL", typeof(ISys_ButtonBLL<Sys_button>))]
-    public class Sys_buttonBLL : BaseBLL<Sys_button>, ISys_ButtonBLL<Sys_button>
+    [Export("Sys_ButtonBLL", typeof(ISys_ButtonBLL))]
+    public class Sys_buttonBLL : ISys_ButtonBLL
     {
         [Import("Sys_UserDAL")]
-        private ISys_UserDAL<Sys_User> _user { get; set; }
+        private ISys_UserDAL _user { get; set; }
 
         [Import("Sys_LoginHistoryDAL")]
-        private ISys_LoginHistoryDAL<Sys_LoginHistory> _loginHistory { get; set; }
-        public Sys_buttonBLL()
-        {
+        private ISys_LoginHistoryDAL _loginHistory { get; set; }
 
-        }
-        public override void SetDal()
-        {
-            //_baseDal = _user ?? new Sys_buttonDal();
-        }
+        [Import]
+        private IBaseDal<Sys_User> _shareUser { get; set; }
+
+        [Import]
+        private IBaseDal<Sys_LoginHistory> _shareLoginHistory { get; set; }
 
 
         #region 实现抽象类
@@ -40,8 +38,8 @@ namespace BackStageBLL
 
         public int GetButtonCount()
         {
-            var hcount = _loginHistory.GetCount();
-            return _user.GetCount(x => x.OrganizeName.Equals(""));
+            var hcount = _shareUser.GetCount();
+            return _shareUser.GetCount(x => x.OrganizeName.Equals(""));
         }
     }
 }

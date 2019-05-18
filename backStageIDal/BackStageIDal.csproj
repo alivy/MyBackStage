@@ -38,6 +38,7 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -50,13 +51,24 @@
   <ItemGroup>
     <Compile Include="IBaseDal.cs" />
     <Compile Include="ISys_LoginHistoryDAL.cs" />
-    <Compile Include="ISys_User.cs" />
+    <Compile Include="ISys_NavMenuDal.cs" />
+    <Compile Include="ISys_UserDAL.cs" />
     <Compile Include="ISys_ButtonDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{0c08e018-3115-4108-b0bf-08b2d1056a5d}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DBModel\DBModel.csproj">
+      <Project>{f6fe6f02-0f56-4feb-b595-a8f0c8f7b007}</Project>
+      <Name>DBModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

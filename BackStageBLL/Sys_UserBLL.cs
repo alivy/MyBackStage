@@ -10,32 +10,22 @@ using DBModel;
 
 namespace BackStageBLL
 {
-    [Export("Sys_UserBLL",typeof(ISys_UserBLL<Sys_User>))]
-    public class Sys_UserBLL : BaseBLL<Sys_User>, ISys_UserBLL<Sys_User>
+    [Export("Sys_UserBLL", typeof(ISys_UserBLL))]
+    public class Sys_UserBLL : ISys_UserBLL
     {
         [Import("Sys_UserDAL")]
-        private static ISys_UserDAL<Sys_User> _user { get; set; }
+        private  ISys_UserDAL _user { get; set; }
 
         public Sys_UserBLL()
         {
-            //_baseDal = _user ?? new Sys_UserDal(); 
+
         }
-        public override void SetDal()
+
+
+        public void testUser()
         {
-            _baseDal = _user ?? new Sys_UserDal();
+           // MEFBase.Compose(this);
+            var userList = _user.QueryAllUser();
         }
-
-
-        #region 实现抽象类
-        /// <summary>
-        /// 实现抽象类
-        /// </summary>
-        //public override void SetDal()
-        //{
-        //    _baseDal = new Sys_buttonDal();
-        //}
-        #endregion
-
-
     }
 }

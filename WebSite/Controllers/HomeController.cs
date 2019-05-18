@@ -15,14 +15,18 @@ namespace WebSite.Controllers
     [Export]
     public class HomeController : Controller
     {
-        [Import("Sys_ButtonBLL")]
-        public ISys_ButtonBLL<Sys_button> buttonBll { get; set; }
+        [Import]
+        private IShareBLL<Sys_User> userBll { get; set; }
 
-        [Import("Sys_UserBLL")]
-        public ISys_UserBLL<Sys_User> userBll { get; set; }
+        [Import]
+        public IShareBLL<Sys_button> buttonBll { get; set; }
 
-        [Import("Sys_LoginHistoryBLL")]
-        public ISys_LoginHistoryBLL<Sys_LoginHistory> loginHistoryBll { get; set; }
+        [Import]
+        private IShareBLL<Sys_LoginHistory> loginHistoryBll { get; set; }
+
+        [Import("Sys_NavMenu")]
+        private ISys_NavMenuBLL _navMenuBll { get; set; }
+
         public ActionResult Index()
         {
             return View();
@@ -33,6 +37,9 @@ namespace WebSite.Controllers
         /// <returns></returns>
         public ActionResult WebLogin()
         {
+            var cookie = CookiesManager.Get(ConstString.SysUserLoginGuid);
+            if (cookie != null && (bool)cookie)
+                return Redirect("/ShowBoard/Index");
             Session.Clear();
             return View();
         }
@@ -44,10 +51,7 @@ namespace WebSite.Controllers
         [HttpPost]
         public ActionResult WebUserLogin(ViewUserLogin user)
         {
-            loginHistoryBll.GetCount();
-            loginHistoryBll.GetUserCountTest();
-            userBll.GetCount();
-            var action = new LogionAction(userBll,loginHistoryBll);
+            var action = new LogionAction(userBll, loginHistoryBll, _navMenuBll);
             return action.Action(user);
         }
 
@@ -63,5 +67,12 @@ namespace WebSite.Controllers
 
             return View();
         }
+
+        public ActionResult Test()
+        {
+            ViewBag.Message = "Your application description page.";
+            return View();
+        }
+
     }
 }

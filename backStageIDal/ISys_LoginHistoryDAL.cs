@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace backStageIDal
 {
-    public interface ISys_LoginHistoryDAL<T> : IBaseDal<T> where T : class, new()
+    [InheritedExport]
+    public interface ISys_LoginHistoryDAL
     {
     }
 }

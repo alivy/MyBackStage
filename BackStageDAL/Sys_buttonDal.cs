@@ -8,7 +8,7 @@ using backStageIDal;
 
 namespace BackStageDAL
 {
-    public class Sys_buttonDal : BaseDal<Sys_button>,ISys_ButtonDal<Sys_button>
+    public class Sys_buttonDal : DataAccessBase, ISys_ButtonDal
     {
 
     }

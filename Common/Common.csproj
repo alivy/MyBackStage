@@ -59,6 +59,7 @@
     <Compile Include="Cache\SessionManager.cs" />
     <Compile Include="Encrypt\DESEncrypt.cs" />
     <Compile Include="Encrypt\EncryptHelper.cs" />
+    <Compile Include="Expand\ModelStateExpand.cs" />
     <Compile Include="MEFContainer\MEFBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Share\Http\AddFile.cs" />

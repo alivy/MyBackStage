@@ -1,7 +1,4 @@
-﻿using MyBackStage.Controllers;
-using System;
-using System.ComponentModel.Composition.Hosting;
-using System.Web.Http;
+﻿using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -19,9 +16,10 @@ namespace MyBackStage
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             //设置MEF依赖注入容器
-            DirectoryCatalog catalog = new DirectoryCatalog(AppDomain.CurrentDomain.SetupInformation.PrivateBinPath);
-            MefDependencySolver solver = new MefDependencySolver(catalog);
-            DependencyResolver.SetResolver(solver);
+            //DirectoryCatalog catalog = new DirectoryCatalog(AppDomain.CurrentDomain.SetupInformation.PrivateBinPath);
+            //MefDependencySolver solver = new MefDependencySolver(catalog);
+         
+            //DependencyResolver.SetResolver(solver);
         }
     }
 }

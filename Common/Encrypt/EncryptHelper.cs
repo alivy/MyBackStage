@@ -42,7 +42,7 @@ namespace Common
         /// </summary>
         /// <param name="Text"></param>
         /// <returns></returns>
-        public static string Encrypt(string Text)
+        public static string Encrypt(this string Text)
         {
             return Encrypt(Text, "BERTCORP");
         }
@@ -85,7 +85,7 @@ namespace Common
         /// </summary>
         /// <param name="Text"></param>
         /// <returns></returns>
-        public static string Decrypt(string Text)
+        public static string Decrypt(this string Text)
         {
             return Decrypt(Text, "BERTCORP");
         }

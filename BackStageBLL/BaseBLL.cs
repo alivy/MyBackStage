@@ -26,9 +26,6 @@ namespace BackStageBLL
         ///// </summary>
         public abstract void SetDal();
 
-
-
-
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -313,7 +310,7 @@ namespace BackStageBLL
         #endregion
 
         #region 批量插入list集合
-        public void BulkInsert<T>(string tableName, List<T> list)
+        public void BulkInsert(string tableName, List<T> list)
         {
             _baseDal.BulkInsert(tableName, list);
         }

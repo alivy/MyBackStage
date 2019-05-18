@@ -3,7 +3,6 @@ using DBModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.Composition;
 using System.Data;
 using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
@@ -13,7 +12,7 @@ using System.Linq.Expressions;
 
 namespace BackStageDAL
 {
-    //[Export("BaseDal")]
+
     public class BaseDal<T> : IBaseDal<T>
         where T : class, new()
     {
@@ -648,7 +647,7 @@ namespace BackStageDAL
         /// <typeparam name="T">泛型集合的类型</typeparam>  
         /// <param name="tableName">将泛型集合插入到本地数据库表的表名</param>  
         /// <param name="list">要插入大泛型集合</param>  
-        public void BulkInsert<T>(string tableName, List<T> list)
+        public void BulkInsert(string tableName, List<T> list)
         {
             using (var db = DBContext.CreateContext())
             {

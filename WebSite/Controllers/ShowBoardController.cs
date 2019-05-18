@@ -10,10 +10,11 @@ namespace WebSite.Controllers
     [UserAuthorize]
     public class ShowBoardController : Controller
     {
-       
         // GET: ShowBoard
         public ActionResult Index()
         {
+
+
             return View();
         }
     }

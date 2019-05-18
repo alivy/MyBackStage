@@ -49,8 +49,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ShareBLL.cs" />
     <Compile Include="BaseBLL.cs" />
     <Compile Include="Sys_LoginHistoryBLL.cs" />
+    <Compile Include="Sys_NavMenuBLL.cs" />
     <Compile Include="Sys_UserBLL.cs" />
     <Compile Include="Sys_buttonBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,10 +1,7 @@
 namespace DBModel
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     public partial class Sys_LoginHistory
     {
@@ -28,6 +25,21 @@ namespace DBModel
 
         public DateTime? LoginDate { get; set; }
 
-       
+        public Sys_LoginHistory CreateInstance(string userId,string hostName,string hostIP,
+            string loginLocal,string loginBrowser)
+        {
+
+            return new Sys_LoginHistory()
+            {
+                UserId = userId,
+                HostIP = hostIP,
+                HostName = hostName, 
+                LoginBrowser = loginBrowser,
+                LoginLocal = loginLocal,
+                LoginDate = DateTime.Now
+            };
+        }
+
+
     }
 }

@@ -1,11 +1,12 @@
 ﻿using BackStageIBLL;
 using Common;
+using Common.Expand;
 using Common.Share.Http;
 using DBModel;
-
 using System;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
+using System.Linq;
 using System.Reflection;
 using System.Web.Mvc;
 using WebSite.Models.HomeModel;
@@ -15,14 +16,23 @@ namespace WebSite.Controllers.HomeAciton
     [Export]
     public class LogionAction : BaseAction
     {
-        private ISys_UserBLL<Sys_User> userBll { get; set; }
 
-        private ISys_LoginHistoryBLL<Sys_LoginHistory> loginHistoryBLL { get; set; }
 
-        public LogionAction(ISys_UserBLL<Sys_User> sys_UserBLL,ISys_LoginHistoryBLL<Sys_LoginHistory> sys_LoginHistoryBLL)
+        private IShareBLL<Sys_User> userBll { get; set; }
+
+
+        private IShareBLL<Sys_LoginHistory> loginHistoryBLL { get; set; }
+
+
+        private ISys_NavMenuBLL navMenuBll { get; set; }
+
+
+        public LogionAction(IShareBLL<Sys_User> sys_UserBLL, IShareBLL<Sys_LoginHistory> sys_LoginHistoryBLL,
+            ISys_NavMenuBLL sys_navMenuBll)
         {
             userBll = sys_UserBLL;
             loginHistoryBLL = sys_LoginHistoryBLL;
+            navMenuBll = sys_navMenuBll;
         }
 
 
@@ -33,34 +43,17 @@ namespace WebSite.Controllers.HomeAciton
         /// <returns></returns>
         public ActionResult Action(ViewUserLogin viewUser)
         {
-            int userCount = userBll.GetCount();
             if (!ModelState.IsValid)
             {
-                return View("UserLogin", viewUser);
+                var errorMsg = ModelState.FristModelStateErrors().FirstOrDefault(); ;
+                return RequestAction(RequestResult.ValidateError(errorMsg));
             }
-            //if (!(SessionManager.Get(ConstString.SysUserLoginValidateCode) is string m_code))
-            //{
-            //    ModelState.AddModelError("ValidateCode", "验证码超时，请重新获取");
-            //    return View("UserLogin", viewUser);
-            //}
-            //验证码
-            //if (m_code.ToLower().Equals(viewUser.ValidateCode.Trim().ToLower()) == false)
-            //{
-            //    ModelState.AddModelError("ValidateCode", "验证码错误");
-            //    return View("UserLogin", viewUser);
-            //}
-          
             if (!CheckLogin(viewUser))
-            {
-                ModelState.AddModelError("Password", "用户名或密码错误");
-                return View("UserLogin", viewUser);
-            }
+                return RequestAction(RequestResult.Error("用户名或密码错误", viewUser));
 
-          
-            int m_userId = int.Parse(SessionManager.Get(ConstString.UserLoginId).ToString());
-
-            return Redirect(string.IsNullOrEmpty(viewUser.BackUrl) ? "/ShowBoard/Index" : viewUser.BackUrl);
-          
+            var resultUrl = string.IsNullOrEmpty(viewUser.BackUrl) ? "/ShowBoard/Index" : viewUser.BackUrl;
+            var result = new { Code = 1, Url = resultUrl };
+            return RequestAction(RequestResult.Success("", result)); ;
         }
 
 
@@ -74,47 +67,63 @@ namespace WebSite.Controllers.HomeAciton
         {
             bool validate = false;
             userInfo.UserPwd = userInfo.UserPwd.GetMD5FromString();
-            //防止注入
             var userName = StringHelp.FilterSql(userInfo.UserName);
             var userPwd = StringHelp.FilterSql(userInfo.UserPwd);
-           
             var user = userBll.FirstOrDefault<Sys_User>(x => x.UserNickName.Equals(userName) && x.Password.Equals(userPwd));
             if (user != null)
             {
-                //登录成功，添加Session
-                SessionManager.Add(ConstString.UserLoginId, user.UserId);
-                CacheManager.Add(ConstString.SysUserInfo + user.UserId, user);
-                //验证ip,浏览器
-                string IP = NetworkHelper.GetIp();
-                //浏览器
-                string Browser = NetworkHelper.GetBrowser();
-                //查询站内未读消息条数，并加入缓存
-                //添加登录日志表，记录登录日志
-
-                var lanIP = ZHttp.ClientIP;
-                loginHistoryBLL.AddEntity(new Sys_LoginHistory
-                {
-                    UserId = user.UserId,
-                    HostIP = ZHttp.ClientIP,
-                    HostName = ZHttp.IsLanIP(ZHttp.ClientIP) ? ZHttp.ClientHostName : string.Empty, //如果是内网就获取，否则出错获取不到，且影响效率
-                    LoginBrowser = Browser,
-                    LoginLocal =userInfo.City,
-                    LoginDate = DateTime.Now 
-                });
-                int m_guid = (user.UserId + Guid.NewGuid().ToString()).GetHashCode();
-                //添加cookie消息
-                CookiesManager.Add(ConstString.SysUserLoginGuid, user.UserId, DateTime.Now.AddDays(1));
+                //var session = HttpContext.Session[ConstString.SysUserLoginId];
+                //if (session == null)
+                //{
+                var loginHistory = new Sys_LoginHistory();
+                SessionManager.Add(ConstString.SysUserLoginId, user.UserId);
+                string browser = NetworkHelper.GetBrowser();
+                string hostIP = NetworkHelper.GetIp() != "0.0.0.0" ? NetworkHelper.GetIp() : ZHttp.ClientIP;
+                string hostName = ZHttp.IsLanIP(ZHttp.ClientIP) ? ZHttp.ClientHostName : string.Empty; //如果是内网就获取，否则出错获取不到，且影响效率
+                loginHistoryBLL.AddEntity(loginHistory.CreateInstance(user.UserId, hostName, hostIP, userInfo.City, browser));
+                SetUserCache(user);
+                SetCookie(user.UserId);
+                //}
                 validate = true;
             }
             return validate;
         }
 
 
-        public void Compose()
+
+
+        /// <summary>
+        /// 需要放入缓存的用户信息
+        /// </summary>
+        public void SetUserCache(Sys_User user)
         {
-            var catalog = new AssemblyCatalog(Assembly.GetEntryAssembly());
-            CompositionContainer container = new CompositionContainer(catalog);
-            container.ComposeParts(this);
+            //用户信息添加缓存
+            string userId = user.UserId;
+            CacheManager.Add(Sys_User.GetKey(userId), user);
+            //用户菜单信息
+            var userMenuKey = Sys_NavMenu.GetKey(userId);
+            var userMenus = navMenuBll.GetNavMenuByUserId(userId);
+            userMenus.ForEach(x =>
+               {
+                   x.Url = x.Url ?? "#";
+                   x.IconClass = x.IconClass ?? "icon icon-target";
+                   x.IconUrl = string.Format("<i class='{0}'></i>", x.IconClass);
+               });
+            CacheManager.Add(userMenuKey, userMenus);
+
+            //查询站内未读消息条数，并加入缓存
+        }
+
+
+
+        /// <summary>
+        /// 设置cookie，以及存在时间
+        /// </summary>
+        /// <param name="userId"></param>
+        public void SetCookie(string userId)
+        {
+            CookiesManager.Add(ConstString.SysUidCookieName, userId.Encrypt(), DateTime.Now.AddMonths(1));
+            CookiesManager.Add(ConstString.SysIsNeedAutoLogin, "true", DateTime.Now.AddMonths(1));
         }
     }
 }

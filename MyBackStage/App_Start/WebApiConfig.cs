@@ -1,7 +1,9 @@
-﻿using System;
+﻿using MyBackStage.Controllers;
+using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.ComponentModel.Composition.Hosting;
 using System.Web.Http;
+using System.Web.Http.Dependencies;
 
 namespace MyBackStage
 {
@@ -9,8 +11,11 @@ namespace MyBackStage
     {
         public static void Register(HttpConfiguration config)
         {
-            // Web API 配置和服务
 
+            // Web API 配置和服务
+            //DirectoryCatalog catalog = new DirectoryCatalog(AppDomain.CurrentDomain.SetupInformation.PrivateBinPath);
+            //MefDependencySolver solver = new MefDependencySolver(catalog);
+            //config.DependencyResolver = solver;
             // Web API 路由
             config.MapHttpAttributeRoutes();
 

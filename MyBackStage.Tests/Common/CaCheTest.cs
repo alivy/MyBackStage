@@ -33,6 +33,14 @@ namespace MyBackStage.Tests.Common
 
             //写入list缓存
             var programList = Query();
+
+            var tt = programList.Where((x, y) => x.TsetName.Contains(y.ToString())).ToList();
+
+            Func<List<TestModel>, string, List<TestModel>> f = (p, y) => p.Where(x => x.TsetName.Contains(y)).ToList();
+
+            var cc = f(programList, "1");
+
+
             CacheManager.Add("TestModel", programList);
             //读取缓存
             if (CacheManager.Contains("TestModel"))
@@ -45,8 +53,7 @@ namespace MyBackStage.Tests.Common
             Assert.AreEqual(testModel.TsetName, "小严");
         }
 
-
-
+       
 
 
         /// <summary>
@@ -63,6 +70,9 @@ namespace MyBackStage.Tests.Common
             return modelList;
         }
     }
+
+
+
 
     /// <summary>
     /// 测试对象

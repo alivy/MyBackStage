@@ -1,8 +1,20 @@
-﻿@{
+﻿@using DBModel;
+@using Common;
+@{
     Layout = "~/Views/Shared/_LayoutBootStrap.cshtml";
-    var loginId = Session[Common.ConstString.UserLoginId];
-    var user = Common.CacheManager.GetData<DBModel.Sys_User>(Common.ConstString.SysUserInfo + loginId) ?? new DBModel.Sys_User();
+    var loginId = Session[ConstString.SysUserLoginId];
+    var userInfo = CacheManager.GetData<Sys_User>(Sys_User.GetKey(loginId.ToString())) ?? new Sys_User();
+    var userMenus = CacheManager.GetData<List<Sys_NavMenu>>(Sys_NavMenu.GetKey(loginId.ToString())) ?? new List<Sys_NavMenu>();
+    Func<int, string, List<Sys_NavMenu>> uM = (y, z) => userMenus.Where(x => x.Level.Equals(y) && x.ParentMenId.Equals(z)).OrderBy(x => x.Seq).ToList();
 }
+
+<script type="text/javascript">
+    $(".nav-link").click(function () {
+        $(".nav-link").addClass("active");
+    })
+</script>
+
+
 
 
 
@@ -37,13 +49,13 @@
 
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-               
+
                 <img src="~/Content/imgs/avatar-1.png" class="avatar avatar-sm" alt="logo">
-                <span class="small ml-1 d-md-down-none">@user.UserRoleName</span>
+                <span class="small ml-1 d-md-down-none">@userInfo.UserRoleName</span>
             </a>
 
             <div class="dropdown-menu dropdown-menu-right">
-                <div class="dropdown-header">@user.UserNickName</div>
+                <div class="dropdown-header">@userInfo.UserNickName</div>
 
                 <a href="#" class="dropdown-item">
                     <i class="fa fa-user"></i> 轮廓
@@ -71,101 +83,41 @@
     </ul>
 </nav>
 
+
 <div class="main-container">
     @*侧边导航*@
     <div class="sidebar">
         <nav class="sidebar-nav">
             <ul class="nav">
                 <li class="nav-title">导航</li>
-
                 <li class="nav-item">
                     <a href="index.html" class="nav-link active">
                         <i class="icon icon-speedometer"></i> 仪表板
                     </a>
                 </li>
-
-                <li class="nav-item nav-dropdown">
-                    <a href="#" class="nav-link nav-dropdown-toggle">
-                        <i class="icon icon-target"></i> 布局 <i class="fa fa-caret-left"></i>
-                    </a>
-
-                    <ul class="nav-dropdown-items">
-                        <li class="nav-item">
-                            <a href="layouts-normal.html" class="nav-link">
-                                <i class="icon icon-target"></i> 正常
+                @{
+                    foreach (var item in uM(1, "#"))
+                    {
+                        <li class="nav-item nav-dropdown">
+                            <a href=@item.Url class="nav-link nav-dropdown-toggle">
+                                @Html.Raw(item.IconUrl)
+                                @Html.Raw(item.MenuName)
+                                <i class="fa fa-caret-left"></i>
                             </a>
+                            <ul class="nav-dropdown-items">
+                                @foreach (var sonMenu in uM(2, item.MenuId))
+                                {
+                                    <li class="nav-item">
+                                        <a href="/BootStrap/LayoutsNormal" class="nav-link">
+                                            @Html.Raw(sonMenu.IconUrl)
+                                            @sonMenu.MenuName
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
                         </li>
-
-                        <li class="nav-item">
-                            <a href="layouts-fixed-sidebar.html" class="nav-link">
-                                <i class="icon icon-target"></i> 固定边栏
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="layouts-fixed-header.html" class="nav-link">
-                                <i class="icon icon-target"></i> 固定标题
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="layouts-hidden-sidebar.html" class="nav-link">
-                                <i class="icon icon-target"></i> 隐藏边栏
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="nav-item nav-dropdown">
-                    <a href="#" class="nav-link nav-dropdown-toggle">
-                        <i class="icon icon-energy"></i>UI套件 <i class="fa fa-caret-left"></i>
-                    </a>
-
-                    <ul class="nav-dropdown-items">
-                        <li class="nav-item">
-                            <a href="alerts.html" class="nav-link">
-                                <i class="icon icon-energy"></i> 警报
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="buttons.html" class="nav-link">
-                                <i class="icon icon-energy"></i> 按钮
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="cards.html" class="nav-link">
-                                <i class="icon icon-energy"></i> 卡片
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="modals.html" class="nav-link">
-                                <i class="icon icon-energy"></i> 礼貌
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="tabs.html" class="nav-link">
-                                <i class="icon icon-energy"></i> 标签
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="progress-bars.html" class="nav-link">
-                                <i class="icon icon-energy"></i> 进度条
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="widgets.html" class="nav-link">
-                                <i class="icon icon-energy"></i> 小工具
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
+                    }
+                }
                 <li class="nav-item nav-dropdown">
                     <a href="#" class="nav-link nav-dropdown-toggle">
                         <i class="icon icon-graph"></i> Charts <i class="fa fa-caret-left"></i>

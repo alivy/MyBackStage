@@ -12,10 +12,10 @@ namespace MyBackStage.Controllers
     public class HomeController : Controller
     {
         [Import("Sys_ButtonBLL")]
-        private ISys_ButtonBLL<Sys_button> buttonBll { get; set; }
+        private ISys_ButtonBLL buttonBll { get; set; }
 
         [Import("Sys_UserBLL")]
-        private ISys_UserBLL<Sys_User> userBll { get; set; }
+        private ISys_UserBLL userBll { get; set; }
 
 
         public ActionResult Index()

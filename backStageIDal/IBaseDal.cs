@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq.Expressions;
 
 namespace backStageIDal
 {
+    [InheritedExport]
     public interface IBaseDal<T> where T : class, new()
     {
 
@@ -285,7 +287,7 @@ namespace backStageIDal
         /// <typeparam name="T">泛型集合的类型</typeparam>  
         /// <param name="tableName">将泛型集合插入到本地数据库表的表名</param>  
         /// <param name="list">要插入大泛型集合</param>  
-        void BulkInsert<T>(string tableName, List<T> list);
+        void BulkInsert(string tableName, List<T> list);
 
 
         /// <summary>

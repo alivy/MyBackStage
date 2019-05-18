@@ -156,8 +156,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseAction\BaseAction.cs" />
     <Compile Include="Controllers\BaseAction\RequestActionResult.cs" />
+    <Compile Include="Controllers\BootStrapController.cs" />
     <Compile Include="Controllers\HomeAction\LoginAction.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IviewController.cs" />
     <Compile Include="Controllers\ShowBoardController.cs" />
     <Compile Include="Filter\ExceptionHandleAttribute.cs" />
     <Compile Include="Filter\HttpsToHttpAttribute.cs" />
@@ -279,6 +281,10 @@
     <Content Include="Views\Shared\_LayoutBootStrapContent.cshtml" />
     <Content Include="Views\ShowBoard\Index.cshtml" />
     <Content Include="Views\ShowBoard\layoutsNormal.cshtml" />
+    <Content Include="Views\Home\Test.cshtml" />
+    <Content Include="Views\BootStrap\LayoutsNormal.cshtml" />
+    <Content Include="Views\BootStrap\Share.cshtml" />
+    <Content Include="Views\Iview\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

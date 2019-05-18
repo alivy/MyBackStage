@@ -9,9 +9,18 @@ using System.ComponentModel.Composition;
 
 namespace BackStageDAL
 {
-    [Export("Sys_UserDAL", typeof(ISys_UserDAL<Sys_User>))]
-    public class Sys_UserDal : BaseDal<Sys_User>, ISys_UserDAL<Sys_User>
+    [Export("Sys_UserDAL", typeof(ISys_UserDAL))]
+    public class Sys_UserDal : DataAccessBase, ISys_UserDAL
     {
 
+        /// <summary>
+        /// 查询所有用户信息
+        /// </summary>
+        /// <returns></returns>
+        public List<Sys_User> QueryAllUser()
+        {
+            var result = CurrentContext.Set<Sys_User>().ToList();
+            return result;
+        }
     }
 }

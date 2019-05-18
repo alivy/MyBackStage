@@ -12,11 +12,11 @@ namespace MyBackStage.Controllers.HomeAciton
 {
     public class LogionAction : BaseAction
     {
-        [Import("Sys_ButtonBLL")]
-        private ISys_ButtonBLL<Sys_button> buttonBll { get; set; }
+        [Import]
+        private IShareBLL<Sys_User> userBll { get; set; }
 
-        [Import("Sys_UserBLL")]
-        private ISys_UserBLL<Sys_User> userBll { get; set; }
+        [Import]
+        private IShareBLL<Sys_button> buttonBll { get; set; }
 
         /// <summary>
         /// 用户登录功能
@@ -26,8 +26,6 @@ namespace MyBackStage.Controllers.HomeAciton
         public ActionResult Action(ViewUserLogin viewUser)
         {
             Compose();
-
-            int buttonCount = buttonBll.GetButtonCount();
             int userCount = userBll.GetCount();
             if (!ModelState.IsValid)
             {

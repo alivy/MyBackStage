@@ -117,8 +117,8 @@ namespace Common
              @"&(quot|#34);",
              @"&(amp|#38);",
              @"&(lt|#60);",
-             @"&(gt|#62);", 
-             @"&(nbsp|#160);", 
+             @"&(gt|#62);",
+             @"&(nbsp|#160);",
              @"&(iexcl|#161);",
              @"&(cent|#162);",
              @"&(pound|#163);",
@@ -191,16 +191,14 @@ namespace Common
         /// <returns>返回安全的SQL</returns> 
         public static string FilterSql(string source)
         {
-            //string str = sourceString;
-            //str = str.Replace("'", "''");
-            //str = str.Replace("<", "<");
-            //str = str.Replace(">", ">");
-
-            //return str;
-            //if (String.IsNullOrEmpty(source))
-            //{
-            //    return "";
-            //}
+            string str = source;
+            str = str.Replace("'", "''");
+            str = str.Replace("<", "<");
+            str = str.Replace(">", ">");
+            if (String.IsNullOrEmpty(source))
+            {
+                return "";
+            }
             //string _pattern = "exec |insert |select |delete |'|update |chr(|mid(|master |truncate |char(|declare | and |--";
             //if (Regex.IsMatch(source, _pattern, RegexOptions.IgnoreCase))
             //{

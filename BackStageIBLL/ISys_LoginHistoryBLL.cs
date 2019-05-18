@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BackStageIBLL
 {
-    public interface ISys_LoginHistoryBLL<T> : IBaseBLL<T> where T : class, new()
+    public interface ISys_LoginHistoryBLL
     {
         int GetUserCountTest();
     }

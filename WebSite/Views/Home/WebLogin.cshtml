@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
@@ -15,7 +14,16 @@
     <link href="~/Content/css/WebLogin/style.css" rel="stylesheet" />
     <script src="~/Content/js/jquery/jquery.min.js"></script>
     <script src="~/Content/js/WebLogin/vector.js"></script>
+    <style>
+        #entry_code {
+            width: 3rem;
+        }
 
+        #codeImg {
+            width: auto;
+            float: left;
+        }
+    </style>
 </head>
 <body>
 
@@ -26,6 +34,7 @@
                 <form class="form" id="entry_form">
                     <input type="text" placeholder="用户名" id="entry_name" value="admin">
                     <input type="password" placeholder="密码" id="entry_password" value="123456">
+
                     <button type="button" id="entry_btn">登录</button>
                     <div id="prompt" class="prompt"></div>
                 </form>
@@ -46,15 +55,13 @@
                     $("#entry_btn").click();
                 }
             });
-
-
             $.getJSON("http://api.map.baidu.com/location/ip?ak=F454f8a5efe5e577997931cc01de3974&callback=?", function (d) {
                 city = d.content.address;
             });
         });
-   
 
-       
+
+
 
         $("#entry_btn").click(function () {
             $.ajax({
@@ -68,16 +75,23 @@
                 },
                 dataType: 'json',
                 success: function (data) {
-                    status = data.status;
-                    if (status == 200) {
-
-                    } else {
-                        console.log('数据加载失败');
-
-                    }
+                    resultLoginData(data);
                 }
             });
         })
+
+        function resultLoginData(data) {
+            if (data.ResultType == 1) {
+                var url = data.ReturnEntity.Url;
+                window.location.href = url;
+            } else {
+                alert(data.Message);
+            }
+        }
+
+
+
+
     </script>
 
 

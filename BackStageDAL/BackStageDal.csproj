@@ -49,8 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccessBase.cs" />
+    <Compile Include="ShareDal.cs" />
     <Compile Include="BaseDal.cs" />
     <Compile Include="Sys_LoginHistoryDal.cs" />
+    <Compile Include="Sys_NavMenuDal.cs" />
     <Compile Include="Sys_UserDal.cs" />
     <Compile Include="Sys_buttonDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
