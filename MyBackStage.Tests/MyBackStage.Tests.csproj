@@ -104,7 +104,6 @@
     <Compile Include="Common\LogTest.cs" />
     <Compile Include="DBModelTest\ShareTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="DBModelTest\Sys_buttonTest.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -130,12 +129,10 @@
       <Project>{F6FE6F02-0F56-4FEB-B595-A8F0C8F7B007}</Project>
       <Name>DBModel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MyBackStage\MyBackStage.csproj">
-      <Project>{B4936216-CF85-4331-8FD3-A0D60585D12C}</Project>
-      <Name>MyBackStage</Name>
-    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
