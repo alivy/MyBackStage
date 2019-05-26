@@ -54,6 +54,7 @@
     <Compile Include="BaseDal.cs" />
     <Compile Include="Sys_LoginHistoryDal.cs" />
     <Compile Include="Sys_NavMenuDal.cs" />
+    <Compile Include="Sys_RoleDal.cs" />
     <Compile Include="Sys_UserDal.cs" />
     <Compile Include="Sys_buttonDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

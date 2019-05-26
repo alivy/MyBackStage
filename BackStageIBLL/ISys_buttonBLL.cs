@@ -1,4 +1,5 @@
 ﻿using DBModel;
+using DBModel.Result;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,8 @@ namespace BackStageIBLL
     public interface ISys_ButtonBLL
     {
         int GetButtonCount();
+
+
+        List<UserMenuButtonResult> ButtonQueryByuserId(string userId);
     }
 }

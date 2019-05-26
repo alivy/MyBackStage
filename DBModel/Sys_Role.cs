@@ -11,10 +11,10 @@ namespace DBModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Sys_Role()
         {
-            Sys_MenuRoleMap = new HashSet<Sys_MenuRoleMap>();
-            Sys_OrganzieRoleMap = new HashSet<Sys_OrganzieRoleMap>();
-            Sys_RoleMenuButttonMap = new HashSet<Sys_RoleMenuButttonMap>();
-            Sys_UserRoleMap = new HashSet<Sys_UserRoleMap>();
+            //Sys_MenuRoleMap = new HashSet<Sys_MenuRoleMap>();
+            //Sys_OrganzieRoleMap = new HashSet<Sys_OrganzieRoleMap>();
+            //Sys_RoleMenuButttonMap = new HashSet<Sys_RoleMenuButttonMap>();
+            //Sys_UserRoleMap = new HashSet<Sys_UserRoleMap>();
         }
 
         [Key]
@@ -35,16 +35,16 @@ namespace DBModel
 
         public DateTime? UpdateDate { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sys_MenuRoleMap> Sys_MenuRoleMap { get; set; }
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        //public virtual ICollection<Sys_MenuRoleMap> Sys_MenuRoleMap { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sys_OrganzieRoleMap> Sys_OrganzieRoleMap { get; set; }
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        //public virtual ICollection<Sys_OrganzieRoleMap> Sys_OrganzieRoleMap { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sys_RoleMenuButttonMap> Sys_RoleMenuButttonMap { get; set; }
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        //public virtual ICollection<Sys_RoleMenuButttonMap> Sys_RoleMenuButttonMap { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sys_UserRoleMap> Sys_UserRoleMap { get; set; }
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        //public virtual ICollection<Sys_UserRoleMap> Sys_UserRoleMap { get; set; }
     }
 }

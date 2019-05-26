@@ -8,9 +8,15 @@
     Layout = "~/Views/Shared/_LayoutBootStrap.cshtml";
     var userInfo = ViewData["userInfo"] as DBModel.Sys_User;
     var userMenus = ViewData["userMenus"] as List<DBModel.Sys_NavMenu>;
+    string backUrl = ViewBag.backUrl;
     Func<int, string, List<DBModel.Sys_NavMenu>> uM = (y, z) => userMenus.Where(x => x.Level.Equals(y) && x.ParentMenId.Equals(z)).OrderBy(x => x.Seq).ToList();
 }
 
+<script type="text/javascript">
+    function urlClick(url) {
+        $("#output").attr("src", url);
+    }
+</script>
 @*<-- 头部导航模块 /-->*@
 <nav class="navbar page-header">
 
@@ -102,7 +108,7 @@
                                 @foreach (var sonMenu in uM(2, item.MenuId))
                                 {
                                     <li class="nav-item">
-                                        <a href="@sonMenu.Url" class="nav-link">
+                                        <a href="javascript: urlClick('@sonMenu.Url.ToString()')" on class="nav-link">
                                             @Html.Raw(sonMenu.IconUrl)
                                             @sonMenu.MenuName
                                         </a>
@@ -192,7 +198,8 @@
             </ul>
         </nav>
     </div>
-
-    @RenderBody()
+    <div class="content">
+        <iframe id="output" scrolling="auto" frameborder="0" src="@backUrl" style="padding:0;width:100%;height:99%;margin:0;overflow-x:hidden; overflow-y:auto;"></iframe>
+    </div>
 </div>
 

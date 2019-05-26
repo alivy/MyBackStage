@@ -7,6 +7,7 @@ using BackStageIBLL;
 using backStageIDal;
 using Common;
 using DBModel;
+using DBModel.Result;
 
 namespace BackStageBLL
 {
@@ -25,7 +26,8 @@ namespace BackStageBLL
         [Import]
         private IBaseDal<Sys_LoginHistory> _shareLoginHistory { get; set; }
 
-
+        [Import]
+        private ISys_ButtonDal _button { get; set; }
         #region 实现抽象类
         /// <summary>
         /// 实现抽象类
@@ -40,6 +42,23 @@ namespace BackStageBLL
         {
             var hcount = _shareUser.GetCount();
             return _shareUser.GetCount(x => x.OrganizeName.Equals(""));
+        }
+
+
+        /// <summary>
+        /// 获取用户页面按钮权限
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public List<UserMenuButtonResult> ButtonQueryByuserId(string userId)
+        {
+            var result = _button.ButtonQueryByuserId(userId);
+            if (result != null)
+            {
+                var key = Sys_button.GetKey(userId);
+                CacheManager.Add(key, result);
+            }
+            return result;
         }
     }
 }

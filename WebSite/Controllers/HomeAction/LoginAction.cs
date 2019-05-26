@@ -1,6 +1,7 @@
 ﻿using BackStageIBLL;
 using Common;
 using Common.Expand;
+using Common.Share;
 using Common.Share.Http;
 using DBModel;
 using System;
@@ -51,9 +52,9 @@ namespace WebSite.Controllers.HomeAciton
             if (!CheckLogin(viewUser))
                 return RequestAction(RequestResult.Error("用户名或密码错误", viewUser));
 
-            var resultUrl = string.IsNullOrEmpty(viewUser.BackUrl) ? "/ShowBoard/Index" : viewUser.BackUrl;
+            var resultUrl = UrlString.LoginJumpUrl + (string.IsNullOrEmpty(viewUser.BackUrl) ? "" : "?backUrl=" + viewUser.BackUrl);
             var result = new { Code = 1, Url = resultUrl };
-            return RequestAction(RequestResult.Success("", result)); ;
+            return RequestAction(RequestResult.Success("", result));
         }
 
 
@@ -101,16 +102,7 @@ namespace WebSite.Controllers.HomeAciton
             string userId = user.UserId;
             CacheManager.Add(Sys_User.GetKey(userId), user);
             //用户菜单信息
-            var userMenuKey = Sys_NavMenu.GetKey(userId);
             var userMenus = navMenuBll.GetNavMenuByUserId(userId);
-            userMenus.ForEach(x =>
-               {
-                   x.Url = x.Url ?? "#";
-                   x.IconClass = x.IconClass ?? "icon icon-target";
-                   x.IconUrl = string.Format("<i class='{0}'></i>", x.IconClass);
-               });
-            CacheManager.Add(userMenuKey, userMenus);
-
             //查询站内未读消息条数，并加入缓存
         }
 

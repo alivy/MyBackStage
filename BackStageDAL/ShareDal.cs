@@ -128,19 +128,19 @@ namespace BackStageDAL
         {
             using (DBContext db = DBContext.CreateContext())
             {
-                var temp = db.Set<T>().Where<T>(where).AsQueryable();
+                var temp = db.Set<T>().Where(where).AsQueryable();
                 total = temp.Count();
                 if (isAsc)
                 {
-                    return temp.OrderBy<T, S>(order)
-                            .Skip<T>((pageIndex - 1) * pageSize)
-                            .Take<T>(pageSize).ToList();
+                    return temp.OrderBy(order)
+                            .Skip((pageIndex - 1) * pageSize)
+                            .Take(pageSize).ToList();
                 }
                 else
                 {
                     return temp.OrderByDescending(order)
-                        .Skip<T>((pageIndex - 1) * pageSize)
-                        .Take<T>(pageSize).ToList();
+                        .Skip((pageIndex - 1) * pageSize)
+                        .Take(pageSize).ToList();
                 }
             }
         }

@@ -130,10 +130,10 @@
                 .Property(e => e.RoleName)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Sys_Role>()
-                .HasMany(e => e.Sys_UserRoleMap)
-                .WithOptional(e => e.Sys_Role)
-                .HasForeignKey(e => e.RoleId);
+            //modelBuilder.Entity<Sys_Role>()
+            //    .HasMany(e => e.Sys_UserRoleMap)
+            //    .WithOptional(e => e.Sys_Role)
+            //    .HasForeignKey(e => e.RoleId);
 
             modelBuilder.Entity<Sys_RoleMenuButttonMap>()
                 .Property(e => e.RoleId)

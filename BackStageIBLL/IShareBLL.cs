@@ -4,6 +4,7 @@ using System.ComponentModel.Composition;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq.Expressions;
+using DBModel;
 
 namespace BackStageIBLL
 {
@@ -46,7 +47,6 @@ namespace BackStageIBLL
         /// <param name="where">条件</param>
         /// <returns></returns>
         List<T> LoadEntities<S>(Expression<Func<T, bool>> where = null, Func<T, S> order = null, bool isAsc = false, int top = 0);
-
         #endregion
 
         #region 数据分页

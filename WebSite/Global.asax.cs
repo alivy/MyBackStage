@@ -14,9 +14,16 @@ namespace WebSite
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            //设置MEF依赖注入容器
+            MEFResolver();
+        }
+
+        /// <summary>
+        /// 设置MEF依赖注入容器
+        /// </summary>
+        private void MEFResolver()
+        {
             DirectoryCatalog catalog = new DirectoryCatalog(AppDomain.CurrentDomain.SetupInformation.PrivateBinPath);
-            MefDependencySolver solver = new MefDependencySolver(catalog);
+            var solver = new MefDependencySolver(catalog);
             DependencyResolver.SetResolver(solver);
         }
     }

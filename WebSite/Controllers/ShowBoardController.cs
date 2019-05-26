@@ -13,8 +13,11 @@ namespace WebSite.Controllers
         // GET: ShowBoard
         public ActionResult Index()
         {
+            return View();
+        }
 
-
+        public ActionResult ShowBoardIndex()
+        {
             return View();
         }
     }

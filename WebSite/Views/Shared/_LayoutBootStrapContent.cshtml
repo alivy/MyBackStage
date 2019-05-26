@@ -8,16 +8,6 @@
     Func<int, string, List<Sys_NavMenu>> uM = (y, z) => userMenus.Where(x => x.Level.Equals(y) && x.ParentMenId.Equals(z)).OrderBy(x => x.Seq).ToList();
 }
 
-<script type="text/javascript">
-    $(".nav-link").click(function () {
-        $(".nav-link").addClass("active");
-    })
-</script>
-
-
-
-
-
 @*<-- 头部导航模块 /-->*@
 <nav class="navbar page-header">
     <a href="#" class="btn btn-link sidebar-mobile-toggle d-md-none mr-auto">
@@ -91,8 +81,8 @@
             <ul class="nav">
                 <li class="nav-title">导航</li>
                 <li class="nav-item">
-                    <a href="index.html" class="nav-link active">
-                        <i class="icon icon-speedometer"></i> 仪表板
+                    <a href="tt/index" class="nav-link ">
+                        <i class="icon-speedometer"></i> 仪表板
                     </a>
                 </li>
                 @{
@@ -108,7 +98,7 @@
                                 @foreach (var sonMenu in uM(2, item.MenuId))
                                 {
                                     <li class="nav-item">
-                                        <a href="/BootStrap/LayoutsNormal" class="nav-link">
+                                        <a href=@sonMenu.Url class="nav-link">
                                             @Html.Raw(sonMenu.IconUrl)
                                             @sonMenu.MenuName
                                         </a>
@@ -202,3 +192,60 @@
     @RenderBody()
 </div>
 
+<script type="text/javascript">
+    $(".nav-link").click(function () {
+        $(".nav-link").addClass("active");
+    })
+
+    $(document).ready(function () {
+        var url = getUrlRelativePath(window.location.href);
+        url = url.substr(1, url.length - 1).split("/");
+        if (url.length < 2) {
+            url[1] = "Index";
+        }
+        var str = url[1].match("^[a-zA-Z]+");//过滤特殊字符
+        var controllerName = url[0],
+            actionName = str;
+        var objA = $('a[href^="/' + controllerName + '/' + actionName + '"]');
+        if (controllerName.toLowerCase() == "account" && actionName[0].toLowerCase() == "index") {
+            $('.overview').addClass("active");
+        }
+        else {
+            objA.addClass("active");
+            objA.parent().parent().addClass("open in");
+        }
+    })
+
+
+    function getUrlRelativePath() {
+        var url = document.location.toString();
+        var arrUrl = url.split("//");
+
+        var start = arrUrl[1].indexOf("/");
+        var relUrl = arrUrl[1].substring(start);
+
+        if (relUrl.indexOf("?") != -1) {
+            relUrl = relUrl.split("?")[0];
+        }
+        return relUrl;
+    }
+    //(function setMemberNavHightLight() {
+    //    var url = getUrlRelativePath(window.location.href);
+    //    url = url.substr(1, url.length - 1).split("/");
+    //    if (url.length < 2) {
+    //        url[1] = "Index";
+    //    }
+    //    var str = url[1].match("^[a-zA-Z]+");//过滤特殊字符
+    //    var controllerName = url[0],
+    //        actionName = str;
+    //    var objA = $('a[href^="/' + controllerName + '/' + actionName + '"]');
+    //    //$("a[href^='tt/index']").addClass("active");
+    //    if (controllerName.toLowerCase() == "account" && actionName[0].toLowerCase() == "index") {
+    //        $('.overview').addClass("active");
+    //    }
+    //    else {
+    //        objA.addClass("active");
+    //        objA.parent().parent().addClass("open in");
+    //    }
+    //})();
+</script>

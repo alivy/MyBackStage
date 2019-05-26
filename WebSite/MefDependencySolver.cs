@@ -10,6 +10,9 @@ using System.Web.Mvc;
 
 namespace WebSite
 {
+    /// <summary>
+    /// MEF注入
+    /// </summary>
     public class MefDependencySolver : IDependencyResolver
     {
         private readonly ComposablePartCatalog _catalog;

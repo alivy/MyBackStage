@@ -14,7 +14,8 @@ namespace WebSite.Controllers
         public override void ExecuteResult(ControllerContext context)
         {
             context.HttpContext.Response.ContentType = "application/json";
-            context.HttpContext.Response.Write(JsonConvert.SerializeObject(Data));
+            string json = JsonConvert.SerializeObject(Data);
+            context.HttpContext.Response.Write(json);
         }
     }
 

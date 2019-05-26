@@ -1,5 +1,6 @@
 ﻿using BackStageIBLL;
 using Common;
+using Common.Share;
 using DBModel;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,9 @@ namespace WebSite.Controllers
         public IShareBLL<Sys_button> buttonBll { get; set; }
 
         [Import]
+        private IShareBLL<Sys_Role> roleBll { get; set; }
+
+        [Import]
         private IShareBLL<Sys_LoginHistory> loginHistoryBll { get; set; }
 
         [Import("Sys_NavMenu")]
@@ -37,12 +41,16 @@ namespace WebSite.Controllers
         /// <returns></returns>
         public ActionResult WebLogin()
         {
-            var cookie = CookiesManager.Get(ConstString.SysUserLoginGuid);
-            if (cookie != null && (bool)cookie)
-                return Redirect("/ShowBoard/Index");
+            var ssionid = Session[ConstString.SysUserLoginId];
+            //var cookie = CookiesManager.Get(ConstString.SysUserLoginGuid);
+            //if (cookie != null && (bool)cookie)
+            //    return Redirect(UrlString.LoginJumpUrl);
+            if (ssionid != null)
+                return Redirect(UrlString.LoginJumpUrl);
             Session.Clear();
             return View();
         }
+
         public ActionResult Logion()
         {
             return View();
@@ -54,7 +62,7 @@ namespace WebSite.Controllers
             var action = new LogionAction(userBll, loginHistoryBll, _navMenuBll);
             return action.Action(user);
         }
-
+        [HttpGet]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

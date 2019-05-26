@@ -1,6 +1,10 @@
 ﻿
+using BackStageIBLL;
+using Common;
+using DBModel;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,6 +16,17 @@ namespace WebSite.Controllers
     public class BaseAction : Controller
     {
         /// <summary>
+        /// 用户菜单信息
+        /// </summary>
+        public List<Sys_NavMenu> userMenus;
+        /// <summary>
+        /// 菜单id
+        /// </summary>
+        public string MenuId;
+
+        [Import("Sys_NavMenu")]
+        private ISys_NavMenuBLL _navMenuBll { get; set; }
+        /// <summary>
         /// 公共验证过滤
         /// </summary>
         /// <param name="context"></param>
@@ -22,7 +37,7 @@ namespace WebSite.Controllers
             {
                 context.Result = Content("ie浏览器就只支持ie8+", "text/json");
                 return;
-            }         
+            }
             if (IsUserAccess(context))
             {
                 context.Result = Content("抱歉，您没有权限访问此页面", "text/json");
@@ -44,8 +59,19 @@ namespace WebSite.Controllers
             var url = "/" + context.RouteData.Values[controller] + "/" + context.RouteData.Values[action];
 
             //根据controller和action 可以判断权限了
-            //isAccess = true;
+            var userId = Session[ConstString.SysUserLoginId];
+            if (userId != null)
+            {
+                //用户菜单信息
+                userMenus = _navMenuBll.GetNavMenuByUserId(userId.ToString());
+                var menu = userMenus.FirstOrDefault(x => x.Url.Contains(url));
+                if (menu != null)
+                {
+                    MenuId = menu.MenuId;
+                    isAccess = true;
+                }
 
+            }
             return isAccess;
         }
 

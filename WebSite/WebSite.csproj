@@ -156,11 +156,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseAction\BaseAction.cs" />
     <Compile Include="Controllers\BaseAction\RequestActionResult.cs" />
+    <Compile Include="Controllers\BootStrapAction\ShareAciton.cs" />
     <Compile Include="Controllers\BootStrapController.cs" />
     <Compile Include="Controllers\HomeAction\LoginAction.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IviewController.cs" />
     <Compile Include="Controllers\ShowBoardController.cs" />
+    <Compile Include="Controllers\JurisdictionController.cs" />
+    <Compile Include="Controllers\UserRoleManagement\UserRoleManagementAction.cs" />
     <Compile Include="Filter\ExceptionHandleAttribute.cs" />
     <Compile Include="Filter\HttpsToHttpAttribute.cs" />
     <Compile Include="Filter\MefDependencySolver.cs" />
@@ -173,6 +176,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -196,11 +203,21 @@
     <Content Include="Content\css\webLogin\style.css" />
     <Content Include="Content\imgs\avatar-1.png" />
     <Content Include="Content\imgs\logo.png" />
+    <Content Include="Content\js\actionView\UserRoleManagement.js" />
+    <Content Include="Content\js\bootstrap\bootstrapv3.js" />
+    <Content Include="Content\js\bootstrap\highlight.pack.js" />
+    <Content Include="Content\js\bootstrap\jquery.history.js" />
+    <Content Include="Content\js\bootstrap\js\bootstrap-paginator.min.js" />
+    <Content Include="Content\js\bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="Content\js\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="Content\js\bootstrap\js\bootstrap.js" />
     <Content Include="Content\js\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\js\bootstrap\qunit-1.11.0.js" />
     <Content Include="Content\js\carbon.js" />
     <Content Include="Content\js\chart.js\chart.js" />
     <Content Include="Content\js\chart.js\chart.min.js" />
     <Content Include="Content\js\demo.js" />
+    <Content Include="Content\js\jquery\jquery-2.1.0.min.js" />
     <Content Include="Content\js\jquery\jquery.js" />
     <Content Include="Content\js\jquery\jquery.min.js" />
     <Content Include="Content\js\popper.js\popper.min.js" />
@@ -250,6 +267,7 @@
     <Content Include="Content\sass\carbon\_variables.scss" />
     <Content Include="Content\sass\styles.scss" />
     <Content Include="Content\sass\vendor\vendor.scss" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -285,6 +303,17 @@
     <Content Include="Views\BootStrap\LayoutsNormal.cshtml" />
     <Content Include="Views\BootStrap\Share.cshtml" />
     <Content Include="Views\Iview\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutBootStrapUsing.cshtml" />
+    <Content Include="Views\ShowBoard\ShowBoardIndex.cshtml" />
+    <Content Include="Views\BootStrap\LayoutsFixedSidebar.cshtml" />
+    <Content Include="Views\BootStrap\LayoutsAlerts.cshtml" />
+    <Content Include="Views\BootStrap\LayoutsButtons.cshtml" />
+    <Content Include="Views\BootStrap\LayoutsCards.cshtml" />
+    <Content Include="Views\BootStrap\LayoutsModals.cshtml" />
+    <Content Include="Views\BootStrap\LayoutsTabs.cshtml" />
+    <Content Include="Views\BootStrap\LayoutsProgressBars.cshtml" />
+    <Content Include="Views\BootStrap\LayoutsWidgets.cshtml" />
+    <Content Include="Views\Jurisdiction\UserRoleManagement.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -326,6 +355,10 @@
     <ProjectReference Include="..\DBModel\DBModel.csproj">
       <Project>{f6fe6f02-0f56-4feb-b595-a8f0c8f7b007}</Project>
       <Name>DBModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ViewModel\ViewModel.csproj">
+      <Project>{d2ff35dd-cf55-4f83-aedb-36fdfeedb0b5}</Project>
+      <Name>ViewModel</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -28,20 +28,20 @@ namespace WebSite.Controllers.Filter
                         Data = new
                         {
                             IsAuthrizeFail = true,//验证失败
-                            IsLoginOther =false,
-                            backurl = "/User/UserLogin"
+                            IsLoginOther = false,
+                            backurl = UrlString.LoginUrl
                         },
                         JsonRequestBehavior = JsonRequestBehavior.AllowGet
                     };
                     filterContext.Controller.ControllerContext.HttpContext.SkipAuthorization = true;
                     filterContext.Result.ExecuteResult(filterContext.Controller.ControllerContext);
                     filterContext.HttpContext.Response.StatusCode = 504;
-                    //filterContext.HttpContext.Response.End();
+                    filterContext.HttpContext.Response.End();
                     return;
                 }
                 filterContext.Result = new RedirectResult("/Error.html");
                 filterContext.Result.ExecuteResult(filterContext.Controller.ControllerContext);
-                //filterContext.HttpContext.Response.End();
+                filterContext.HttpContext.Response.End();
                 return;
             }
         }
