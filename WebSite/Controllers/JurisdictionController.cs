@@ -24,6 +24,13 @@ namespace WebSite.Controllers
         [Import]
         private IShareBLL<Sys_Role> _roleShareBll { get; set; }
 
+        [Import]
+        private IShareBLL<Sys_NavMenu> _menuShareBll { get; set; }
+
+
+        [Import("Sys_NavMenu")]
+        private ISys_NavMenuBLL _navMenuBll { get; set; }
+
         //[Import("Sys_RoleBLL")]
         //private ISys_RoleBLL _roleBll { get; set; }
 
@@ -39,6 +46,19 @@ namespace WebSite.Controllers
             return View();
         }
 
+
+        /// <summary>
+        /// 菜单管理
+        /// </summary>
+        /// <returns></returns>
+        // GET: UserRole
+        public ActionResult NavMenuManagement()
+        {
+            var userId = Session[ConstString.SysUserLoginId];
+
+            return View();
+        }
+
         /// <summary>
         /// 角色列表
         /// </summary>
@@ -47,20 +67,19 @@ namespace WebSite.Controllers
         {
             var userId = Session[ConstString.SysUserLoginId];
             var userRole = new UserRoleManagementAction(_roleShareBll);
+            return userRole.QueryUserRoleList(page, userId.ToString());
+        }
 
-            return userRole.QueryUserRoleList(page,userId.ToString());
-            //var userId = Session[ConstString.SysUserLoginId];
-            //int total;
-            //Expression<Func<Sys_Role, bool>> wehre = (x) => x.RoleId != "";
-            //Func<Sys_Role, string> order = (x) => x.RoleSeq;
-            //var roleList = _roleShareBll.GetPageList(wehre, order, out total, page.pageSize, page.pageIndex);
-
-            //var pageList = new ResBasePage<Sys_Role>
-            //{
-            //    TotalRecordCount = total,
-            //    Data = roleList
-            //};
-            //return Json(new RequestActionResult<RequestResult>(RequestResult.Success("", pageList)));
+        /// <summary>
+        /// 菜单列表
+        /// </summary>
+        /// <param name="page"></param>
+        /// <returns></returns>
+        public ActionResult QueryNavMenuList(ReqBasePage page)
+        {
+            var userId = Session[ConstString.SysUserLoginId];
+            var userRole = new NavMenuAction(_menuShareBll,_navMenuBll);
+            return userRole.QueryNavMenuList(page, userId.ToString());
         }
     }
 }

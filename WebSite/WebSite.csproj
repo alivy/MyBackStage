@@ -163,6 +163,7 @@
     <Compile Include="Controllers\IviewController.cs" />
     <Compile Include="Controllers\ShowBoardController.cs" />
     <Compile Include="Controllers\JurisdictionController.cs" />
+    <Compile Include="Controllers\UserRoleManagement\NavMenuAction.cs" />
     <Compile Include="Controllers\UserRoleManagement\UserRoleManagementAction.cs" />
     <Compile Include="Filter\ExceptionHandleAttribute.cs" />
     <Compile Include="Filter\HttpsToHttpAttribute.cs" />
@@ -184,6 +185,14 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootStrap3.3.7\css\bootstrap-theme.css" />
+    <Content Include="Content\bootStrap3.3.7\css\bootstrap-theme.min.css" />
+    <Content Include="Content\bootStrap3.3.7\css\bootstrap.css" />
+    <Content Include="Content\bootStrap3.3.7\css\bootstrap.min.css" />
+    <Content Include="Content\bootStrap3.3.7\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\bootStrap3.3.7\js\bootstrap.js" />
+    <Content Include="Content\bootStrap3.3.7\js\bootstrap.min.js" />
+    <Content Include="Content\bootStrap3.3.7\js\npm.js" />
     <Content Include="Content\css\font-awesome\css\fa-brands.css" />
     <Content Include="Content\css\font-awesome\css\fa-brands.min.css" />
     <Content Include="Content\css\font-awesome\css\fa-regular.css" />
@@ -203,6 +212,7 @@
     <Content Include="Content\css\webLogin\style.css" />
     <Content Include="Content\imgs\avatar-1.png" />
     <Content Include="Content\imgs\logo.png" />
+    <Content Include="Content\js\actionView\NavMenuManagement.js" />
     <Content Include="Content\js\actionView\UserRoleManagement.js" />
     <Content Include="Content\js\bootstrap\bootstrapv3.js" />
     <Content Include="Content\js\bootstrap\highlight.pack.js" />
@@ -267,6 +277,14 @@
     <Content Include="Content\sass\carbon\_variables.scss" />
     <Content Include="Content\sass\styles.scss" />
     <Content Include="Content\sass\vendor\vendor.scss" />
+    <Content Include="Content\bootStrap3.3.7\css\bootstrap-theme.css.map" />
+    <Content Include="Content\bootStrap3.3.7\css\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootStrap3.3.7\css\bootstrap.css.map" />
+    <Content Include="Content\bootStrap3.3.7\css\bootstrap.min.css.map" />
+    <Content Include="Content\bootStrap3.3.7\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootStrap3.3.7\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\bootStrap3.3.7\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\bootStrap3.3.7\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -314,6 +332,7 @@
     <Content Include="Views\BootStrap\LayoutsProgressBars.cshtml" />
     <Content Include="Views\BootStrap\LayoutsWidgets.cshtml" />
     <Content Include="Views\Jurisdiction\UserRoleManagement.cshtml" />
+    <Content Include="Views\Jurisdiction\NavMenuManagement.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
