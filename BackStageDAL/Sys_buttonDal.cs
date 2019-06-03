@@ -6,12 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using backStageIDal;
 using DBModel.Result;
+using System.ComponentModel.Composition;
 
 namespace BackStageDAL
 {
     /// <summary>
     /// 按钮
     /// </summary>
+    [Export("Sys_buttonDal", typeof(ISys_ButtonDal))]
     public class Sys_buttonDal : DataAccessBase, ISys_ButtonDal
     {
 

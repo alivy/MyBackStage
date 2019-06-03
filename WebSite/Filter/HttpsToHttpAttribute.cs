@@ -74,17 +74,16 @@ namespace WebSite.Controllers.Filter
         {
             XDocument doc = XDocument.Load(Common.IOHelper.GetMapPath("/Configs/PublicPages.xml"));
             var pages = doc.Descendants("pages");
-            List<string> pagelist = new List<string>();
-            if (pages != null)
+            List<string> pageList = new List<string>();
             {
-                var pieceareas = pages.Elements();
-                foreach (var item in pieceareas)
+                var pieceAreas = pages.Elements();
+                foreach (var item in pieceAreas)
                 {
-                    pagelist.Add(item.Value);
+                    pageList.Add(item.Value);
                 }
             }
 
-            return pagelist;
+            return pageList;
         }
         #endregion
 

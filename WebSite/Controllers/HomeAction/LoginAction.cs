@@ -1,14 +1,11 @@
 ﻿using BackStageIBLL;
 using Common;
 using Common.Expand;
-using Common.Share;
 using Common.Share.Http;
 using DBModel;
 using System;
 using System.ComponentModel.Composition;
-using System.ComponentModel.Composition.Hosting;
 using System.Linq;
-using System.Reflection;
 using System.Web.Mvc;
 using WebSite.Models.HomeModel;
 

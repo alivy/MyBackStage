@@ -1,5 +1,6 @@
 ﻿using BackStageIBLL;
 using Common;
+using Common.TypeConvert;
 using DBModel;
 using System;
 using System.Collections.Generic;
@@ -18,8 +19,8 @@ namespace WebSite.Controllers
     /// 权限管理
     /// </summary>
     [Export]
-    //[UserAuthorize]
-    public class JurisdictionController : Controller
+    [UserAuthorize]
+    public class JurisdictionController : BaseAction
     {
         [Import]
         private IShareBLL<Sys_Role> _roleShareBll { get; set; }
@@ -28,11 +29,11 @@ namespace WebSite.Controllers
         private IShareBLL<Sys_NavMenu> _menuShareBll { get; set; }
 
 
-        [Import("Sys_NavMenu")]
-        private ISys_NavMenuBLL _navMenuBll { get; set; }
+        //[Import("Sys_NavMenu")]
+        //private ISys_NavMenuBLL _navMenuBll { get; set; }
 
-        //[Import("Sys_RoleBLL")]
-        //private ISys_RoleBLL _roleBll { get; set; }
+
+
 
         /// <summary>
         /// 用户角色管理
@@ -42,7 +43,6 @@ namespace WebSite.Controllers
         public ActionResult UserRoleManagement()
         {
             var userId = Session[ConstString.SysUserLoginId];
-
             return View();
         }
 
@@ -55,19 +55,22 @@ namespace WebSite.Controllers
         public ActionResult NavMenuManagement()
         {
             var userId = Session[ConstString.SysUserLoginId];
-
+            ViewBag.Btn = userButtonAccess;
             return View();
         }
+
+     
 
         /// <summary>
         /// 角色列表
         /// </summary>
         /// <returns></returns>
+        [AllowAnonymous]
         public ActionResult QueryUserRoleList(ReqBasePage page)
         {
             var userId = Session[ConstString.SysUserLoginId];
             var userRole = new UserRoleManagementAction(_roleShareBll);
-            return userRole.QueryUserRoleList(page, userId.ToString());
+            return RequestAction(userRole.QueryUserRoleList(page, userId.ToString()));
         }
 
         /// <summary>
@@ -75,11 +78,36 @@ namespace WebSite.Controllers
         /// </summary>
         /// <param name="page"></param>
         /// <returns></returns>
+        [AllowAnonymous]
         public ActionResult QueryNavMenuList(ReqBasePage page)
         {
             var userId = Session[ConstString.SysUserLoginId];
-            var userRole = new NavMenuAction(_menuShareBll,_navMenuBll);
-            return userRole.QueryNavMenuList(page, userId.ToString());
+            var userRole = new NavMenuAction(_menuShareBll, _navMenuBll);
+            var result = userRole.QueryNavMenuList(page, userId.ToString());
+            return RequestAction(result);
         }
+
+        /// <summary>
+        /// 操作菜单视图
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult NavMenuExecutive(ReqNavMenuView navMenu)
+        {
+
+            bool result = false;
+            var sysNav = TransExpV2<ReqNavMenuView, Sys_NavMenu>.Trans(navMenu);
+            if (navMenu.ExecutiveAction == (int)Operation.Add)
+                result = _menuShareBll.AddEntity(sysNav);
+            else if (navMenu.ExecutiveAction == (int)Operation.Update)
+                result = _menuShareBll.UpdateEntity(sysNav);
+            else
+                _menuShareBll.DeleteEntity(sysNav);
+
+            if (result)
+                return RequestAction(RequestResult.Success());
+            else
+                return RequestAction(RequestResult.Exception("执行操作出错"));
+        }
+
     }
 }

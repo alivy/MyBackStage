@@ -78,6 +78,7 @@
     <Compile Include="Share\MessageSend.cs" />
     <Compile Include="Share\NetworkHelper.cs" />
     <Compile Include="Share\UrlString.cs" />
+    <Compile Include="TypeConvert\TransExpV2.cs" />
     <Compile Include="TypeConvert\HtmlHelperExtends.cs" />
     <Compile Include="TypeConvert\ImageHelper.cs" />
     <Compile Include="TypeConvert\IOHelper.cs" />

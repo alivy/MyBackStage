@@ -29,8 +29,6 @@ namespace MyBackStage.Tests
         [TestMethod]
         public void ShareMefDIQuery()
         {
-
-
             int getCount = 1;
             MEFBase.Compose(this);
             if (userBll != null)
@@ -42,11 +40,5 @@ namespace MyBackStage.Tests
             }
             Assert.AreEqual(getCount > 0, true);
         }
-
-
-
-
-
-
     }
 }

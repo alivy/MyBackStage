@@ -12,7 +12,7 @@ using ViewModel;
 
 namespace WebSite.Controllers.UserRoleManagement
 {
-    public class UserRoleManagementAction : BaseAction
+    public class UserRoleManagementAction
     {
         private IShareBLL<Sys_Role> _roleShareBll { get; set; }
 
@@ -28,7 +28,7 @@ namespace WebSite.Controllers.UserRoleManagement
         /// </summary>
         /// <param name="page"></param>
         /// <returns></returns>
-        public ActionResult QueryUserRoleList(ReqBasePage page,string userId)
+        public RequestResult QueryUserRoleList(ReqBasePage page,string userId)
         {
             int total;
             Expression<Func<Sys_Role, bool>> wehre = (x) => x.RoleId != "";
@@ -39,7 +39,9 @@ namespace WebSite.Controllers.UserRoleManagement
                 TotalRecordCount = total,
                 Data = roleList
             };
-            return RequestAction(RequestResult.Success("", pageList));
+
+
+            return RequestResult.Success("", pageList);
         }
 
 

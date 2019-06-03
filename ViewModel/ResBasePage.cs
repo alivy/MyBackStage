@@ -21,5 +21,21 @@ namespace ViewModel
         /// 总条数
         /// </summary>
         public int TotalRecordCount { get; set; }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ts"></param>
+        /// <param name="total"></param>
+        /// <returns></returns>
+        public static ResBasePage<T> GetInstance(List<T> ts, int total)
+        {
+            return new ResBasePage<T>
+            {
+                Data= ts,
+                TotalRecordCount = total
+            };
+        }
     }
 }

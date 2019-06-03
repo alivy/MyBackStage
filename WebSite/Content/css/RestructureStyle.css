@@ -1,0 +1,10 @@
+﻿
+#number, #proName {
+    width: 20%;
+    margin-right: 20px;
+}
+
+#btnQuery, #btnDetails, #btnAdd, #btnDel, #btnUpdate {
+    margin-right: 20px;
+    margin-left: 20px;
+}

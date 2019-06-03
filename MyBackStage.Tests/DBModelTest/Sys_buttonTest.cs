@@ -30,7 +30,7 @@ namespace MyBackStage.Tests
             MEFBase.Compose(this);
             if (buttonBll != null)
             {
-                getCount = buttonBll.GetButtonCount();
+              
                 //getCount = userBll.GetCount();
             }
             Assert.AreEqual(getCount, 0);
@@ -45,9 +45,12 @@ namespace MyBackStage.Tests
         {
             ISys_ButtonBLL button = new Sys_buttonBLL();
             ISys_UserBLL user = new Sys_UserBLL();
-            int getCount = button.GetButtonCount();
-            //getCount = user.GetCount(x => x.OrganizeName.Equals(""));
-            Assert.AreEqual(getCount, 0);
+           
+           
         }
+
+
+
+
     }
 }

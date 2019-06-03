@@ -10,6 +10,17 @@ window.onload = function () {
     queryUserRoleList(currPage, limit);
    
 }
+///页面按钮权限控制
+function btnAuthorityControl()
+{
+
+
+
+}
+
+
+
+
 
 
 //查询用户角色列表数据
@@ -63,8 +74,8 @@ function createTable() {
 /*创建分页数据*/
 function loadPageLimit(currPage, limit, totalCount) {
     var totalPage = totalCount / limit;
-    if (totalCount % limit != 0)
-        totalPage + 1;
+    if (totalCount % limit !== 0)
+        totalPage =totalPage + 1;
     $('#pageLimit').bootstrapPaginator({
         currentPage: currPage,//当前的请求页面。
         totalPages: totalPage,//一共多少页。

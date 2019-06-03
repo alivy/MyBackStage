@@ -25,7 +25,7 @@ namespace BackStageBLL
             //用户菜单信息
             var userMenuKey = Sys_NavMenu.GetKey(userId);
             result = CacheManager.GetData<List<Sys_NavMenu>>(userMenuKey);
-            if (result == null || result.Any())
+            if (result == null || !result.Any())
             {
                 result = _navMenu.GetNavMenuByUserId(userId);
                 result.ForEach(x =>

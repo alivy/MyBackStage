@@ -1,6 +1,7 @@
-﻿
+﻿@using DBModel.Result;
 @{
     Layout = null;
+    var btns = ViewBag.Btn as List<UserMenuButtonResult>;
 }
 
 <!DOCTYPE html>
@@ -8,22 +9,12 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>@*NavMenuManagement*@</title>
+    <title></title>
     <link href="~/Content/css/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" />
     <link href="~/Content/css/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" />
     <link href="~/Content/css/styles.css" rel="stylesheet" />
     <link href="~/Content/bootStrap3.3.7/css/bootstrap.min.css" rel="stylesheet" />
-    <style type="text/css">
-        #number, #proName {
-            width: 20%;
-            margin-right: 20px;
-        }
-
-        #btnQuery {
-            margin-right: 20px;
-            margin-left: 20px;
-        }
-    </style>
+    <link href="~/Content/css/RestructureStyle.css" rel="stylesheet" />
 </head>
 <body class="sidebar-fixed header-fixed">
     <div class="page-wrapper">
@@ -37,22 +28,47 @@
                             <li><a href="#">权限管理</a></li>
                             <li class="active">角色管理</li>
                         </ul>
+                        <!--搜索框-->
                         <div class="input-group">
                             <input id="number" type="text" class="form-control" placeholder="序号">
                             <input id="proName" type="text" class="form-control" placeholder="项目名称">
-                            <button id="btnQuery" class="btn btn-primary">查询</button>
+
+                            @{
+                                foreach (var item in btns)
+                                {
+                                    if (item.ButtonId == "4")
+                                    {
+                                        <button id="btnQuery" class="btn btn-primary">@item.ButtonName</button>
+                                    }
+                                    else if (item.ButtonId == "5")
+                                    {
+                                        <button id="btnDetails" class="btn btn-primary">@item.ButtonName</button>
+                                    }
+                                    else if (item.ButtonId == "1")
+                                    {
+                                        <button id="btnAdd" class="btn btn-primary">@item.ButtonName</button>
+                                    }
+                                    else if (item.ButtonId == "3")
+                                    {
+                                        <button id="btnDel" class="btn btn-danger">@item.ButtonName</button>
+                                    }
+                                    else if (item.ButtonId == "2")
+                                    {
+                                        <button id="btnUpdate" class="btn btn-warning">@item.ButtonName</button>
+                                    }
+                                }
+                            }
                         </div>
                     </div>
 
-                    <!--内容-->
+                    <!--表单内容-->
                     <div class="panel panel-default table-responsive" id="mainContent">
 
                     </div>
+
                 </div>
             </div>
         </div>
-
-
 
         <!--分页部分-->
         <div id="example" style="text-align: center" class="bg-light">
@@ -60,6 +76,7 @@
         </div>
 
     </div>
+
     <script src="~/Content/js/jquery/jquery-2.1.0.min.js"></script>
     <script src="~/Content/bootStrap3.3.7/js/bootstrap.js"></script>
     <script src="~/Content/js/bootstrap/js/bootstrap-paginator.min.js"></script>

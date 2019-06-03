@@ -14,7 +14,7 @@ namespace BackStageDAL
     /// </summary>
     public class DataAccessBase
     {
-        private const int TimeOut = 600;
+        private const int TimeOut = 60000;
         public DbContext CurrentContext;
         /// <summary>
         /// 默认的构造函数使用Config库
