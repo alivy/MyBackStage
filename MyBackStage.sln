@@ -27,6 +27,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSite", "WebSite\WebSite.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModel", "ViewModel\ViewModel.csproj", "{D2FF35DD-CF55-4F83-AEDB-36FDFEEDB0B5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OtherFile", "OtherFile", "{910CDBCF-4F03-47A4-B117-68F39E98723F}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\数据库\MiaoServerDB.pdb = ..\..\数据库\MiaoServerDB.pdb
+		..\..\数据库\MiaoServerDB.pdm = ..\..\数据库\MiaoServerDB.pdm
+		..\..\数据库\导航设计.pdb = ..\..\数据库\导航设计.pdb
+		..\..\数据库\导航设计.PDM = ..\..\数据库\导航设计.PDM
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

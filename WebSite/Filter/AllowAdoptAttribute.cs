@@ -11,6 +11,7 @@ namespace WebSite.Filter
     /// </summary>
     public class AllowAdoptAttribute : AuthorizeAttribute
     {
+
         /// <summary>
         /// 只做权限验证
         /// </summary>

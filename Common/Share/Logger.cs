@@ -32,7 +32,7 @@ namespace Common
                     sbError.AppendFormat("请求地址：{0}\r\n", request.RawUrl);
                 }
             }
-            Action<int, Exception> AddException = null;
+            Action<int, Exception> AddException = (level, exception) => { };
             AddException = (level, exception) =>
             {
                 sbError.AppendFormat("异常层级：{0}\r\n", level);
@@ -41,17 +41,17 @@ namespace Common
                 sbError.AppendFormat("错误堆栈：{0}", ex.StackTrace);
                 sbError.AppendFormat("异常方法：{0}\r\n", ex.TargetSite);
                 if (ex.Data != null)
-                {
                     sbError.AppendFormat("异常数据：{0}\r\n", JsonConvert.SerializeObject(ex.Data));
-                }
                 if (exception.InnerException != null)
-                {
                     AddException(level + 1, exception.InnerException);
-                }
             };
             AddException(0, ex);
-            Logger.WirteMessageLog(sbError.ToString());
+            WirteMessageLog(sbError.ToString());
         }
+
+
+
+
         /// <summary>
         /// 写入异常日志
         /// </summary>

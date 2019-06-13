@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using System.Xml.Linq;
 
@@ -22,47 +23,40 @@ namespace WebSite.Controllers.Filter
         /// <param name="filterContext"></param>
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            //var host = filterContext.HttpContext.Request.Url.DnsSafeHost;
+            var host = filterContext.HttpContext.Request.Url.DnsSafeHost;
+            var isLocal = false;
             //本地不进行处理
-            //if (!host.Contains("192.168") && host != "localhost" && !filterContext.HttpContext.Request.UserHostName.Contains("127.0.0.1"))
-
-            //本地不进行处理
-            //var isLocal = filterContext.HttpContext.Request.IsLocal;  //是否为来自本地请求
-            //if (!isLocal)
-            //{
-            //    var pages = GetRulePages();  //    获取公共页面集合
-
-            //    var isPublic = false;          //是否为公共页面
-            //    var url = filterContext.HttpContext.Request.Url.PathAndQuery.Trim();
-            //    foreach (var u in pages)
-            //    {
-            //        Regex r = new Regex(u);
-            //        if (r.IsMatch(url))
-            //        {
-            //            isPublic = true;
-            //            break;
-            //        }
-            //    }
-
-            //    var isHttps = filterContext.HttpContext.Request.Url.Scheme.Contains("https");  //是否为https
-            //    //是否为公共页面
-            //    if (isPublic)
-            //    {
-            //        //公共页面转http
-            //        if (isHttps)
-            //        {
-            //            filterContext.Result = new RedirectResult(filterContext.HttpContext.Request.Url.ToString().Replace("https", "http"));
-            //        }
-            //    }
-            //    else
-            //    {
-            //        if (!isHttps)
-            //        {
-            //            filterContext.Result = new RedirectResult(filterContext.HttpContext.Request.Url.ToString().Replace("http", "https"));
-            //        }
-            //    }
-            //}
-
+            if (!host.Contains("192.168") && host != "localhost" && !filterContext.HttpContext.Request.UserHostName.Contains("127.0.0.1"))
+                isLocal = filterContext.HttpContext.Request.IsLocal;  //是否为来自本地请求
+            if (isLocal)
+            {
+                var pages = GetRulePages();  //    获取公共页面集合
+                var isPublic = false;          //是否为公共页面
+                var url = filterContext.HttpContext.Request.Url.PathAndQuery.Trim();
+                foreach (var u in pages)
+                {
+                    Regex r = new Regex(u);
+                    if (r.IsMatch(url))
+                    {
+                        isPublic = true;
+                        break;
+                    }
+                }
+                var isHttps = filterContext.HttpContext.Request.Url.Scheme.Contains("https");  //是否为https
+                //是否为公共页面
+                if (isPublic && isHttps)
+                {
+                    //公共页面转http
+                    filterContext.Result = new RedirectResult(filterContext.HttpContext.Request.Url.ToString().Replace("https", "http"));
+                }
+                else
+                {
+                    if (!isHttps)
+                    {
+                        filterContext.Result = new RedirectResult(filterContext.HttpContext.Request.Url.ToString().Replace("http", "https"));
+                    }
+                }
+            }
             base.OnActionExecuting(filterContext);
         }
         #region 获取公共页面集合
@@ -82,7 +76,6 @@ namespace WebSite.Controllers.Filter
                     pageList.Add(item.Value);
                 }
             }
-
             return pageList;
         }
         #endregion

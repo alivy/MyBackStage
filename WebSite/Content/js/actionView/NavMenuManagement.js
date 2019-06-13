@@ -8,11 +8,10 @@ window.onload = function () {
     var limit = 5;
     //初始化查询
     queryUserRoleList(currPage, limit);
-   
+
 }
 ///页面按钮权限控制
-function btnAuthorityControl()
-{
+function btnAuthorityControl() {
 
 
 
@@ -48,34 +47,98 @@ function queryUserRoleList(currPage, limit) {
 function createTable() {
     var html = [];
     html.push(' <table class="table table-striped table-bordered templatemo-user-table" style="margin-left: 0;">');
-    html.push(' <thead><tr><th>角色编号</th><th>角色名称</th><th>排序</th><th>创建人</th><th>创建日期</th><th>详情</th><th>操作</th></tr></thead><tbody>');
-
+    html.push(' <thead><tr> <th style="text-align: center">全选</th><th>菜单编号</th><th>菜单名称</th><th>父级编号</th><th>菜单级别</th><th>菜单地址</th><th>详情</th></tr></thead><tbody>');
+    //<th>操作</th>
     for (var i = 0; i < dataLIst.length; i++) {
         html.push('<tr>');
+        html.push('<td  style="text-align: center"><input type="checkbox" name ="ckb"></td>');
         html.push('<td>' + dataLIst[i].MenuId + '</td>');
         html.push('<td>' + dataLIst[i].MenuName + '</td>');
         html.push('<td>' + dataLIst[i].ParentMenId + '</td>');
         html.push('<td>' + dataLIst[i].Level + '</td>');
         html.push('<td>' + dataLIst[i].Url + '</td>');
-        html.push('<td><a href="project_details_init.html?id=' + dataLIst[i].MenuId + '" class="templatemo-edit-btn">详情</a></td>');
-        html.push('<td><button class="btn btn-primary" onclick=checkproject(' + dataLIst[i].MenuId + ',"1")>同意</button>  &nbsp');
-        html.push('<button class="btn btn-warning" onclick= checkproject(' + dataLIst[i].MenuId + ', "2") > 修改</button > &nbsp');
-        html.push('<button class="btn btn-danger" onclick= checkproject(' + dataLIst[i].MenuId + ', "2") > 删除</button ></td > ');
+        html.push('<td><a href="project_details_init.html?id=' + dataLIst[i].MenuId + '" class="templatemo-edit-btn" data-target="#modal-1">详情</a></td>');
+        //html.push('<td><button class="btn btn-primary" data-toggle="modal" data-target="#modal-1" onclick=checkproject(' + dataLIst[i].MenuId + ',1) >同意</button>  &nbsp');
+        //html.push('<button class="btn btn-warning" data-toggle="modal" data-target="#modal-2" onclick= checkproject(' + dataLIst[i].MenuId + ', 2) > 修改</button > &nbsp');
+        //html.push('<button class="btn btn-danger" data-toggle="modal" data-target="#modal-3" onclick= checkproject(' + dataLIst[i].MenuId + ', 3) > 删除</button ></td > ');
         html.push('</tr>');
     }
     html.push('</tbody></table>');
     var mainObj = $('#mainContent');
     mainObj.empty();
     mainObj.html(html.join(''));
-   
 }
+
+
+///数据修改弹窗
+$("#btnUpdate").click(function () {
+    var checkLength = $("input:checkbox[name='ckb']:checked").length;
+    if (checkLength == 0) {
+        alert("请至少选择一条记录！");
+        return;
+    }
+    if (checkLength != 1) {
+        alert("当前操作只允许操作单条数据！");
+        return;
+    }
+    $('#modal-1').modal();
+    var set = false; //读取标志
+    //获取数据
+    $("input[type='checkbox']").each(function ()//遍历checkbox的选择状态
+    {
+        if ($(this).prop("checked") && !set)//如果值为checked表明选中了
+        {
+            $("#myModalLabel").text("修改");
+            //$("#modal-1").find(".form-control").val("");
+            var tdData = $(this).closest('tr').find('td');//获取td的那一列数据
+            var menuId = tdData.eq(1).text();
+            var menuName = tdData.eq(2).text();
+            var parentMenId = tdData.eq(3).text();
+            var level = tdData.eq(4).text();
+            var url = tdData.eq(5).text();
+            $("#menuId").val(menuId);
+            $("#menuName").val(menuName);
+            $("#parentMenId").val(parentMenId);
+            $("#level").val(level);
+            $("#url").val(url);
+            set = true;
+        }
+    });
+});
+
+
+
+//新增数据
+$("#btnAdd").click(function () {
+    $("#modal-1").find(".form-control").val("");
+    $('#modal-1').modal();
+});
+
+
+
+
+
+
+//增删改共用接口
+function checkproject(data, Operation) {
+    $.ajax({
+        url: "/Jurisdiction/NavMenuExecutive",
+        type: 'post',
+        data: data,
+        dataType: 'json',
+        success: function (data) {
+            alert(data.Message);
+        }
+    });
+}
+
 
 
 /*创建分页数据*/
 function loadPageLimit(currPage, limit, totalCount) {
     var totalPage = totalCount / limit;
     if (totalCount % limit !== 0)
-        totalPage =totalPage + 1;
+        totalPage = totalPage + 1;
     $('#pageLimit').bootstrapPaginator({
         currentPage: currPage,//当前的请求页面。
         totalPages: totalPage,//一共多少页。

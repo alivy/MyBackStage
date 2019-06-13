@@ -12,6 +12,7 @@ using System.Web.Mvc;
 using ViewModel;
 using WebSite.Controllers.Filter;
 using WebSite.Controllers.UserRoleManagement;
+using WebSite.Filter;
 
 namespace WebSite.Controllers
 {
@@ -52,6 +53,7 @@ namespace WebSite.Controllers
         /// </summary>
         /// <returns></returns>
         // GET: UserRole
+        [CompressActionFilter]
         public ActionResult NavMenuManagement()
         {
             var userId = Session[ConstString.SysUserLoginId];
@@ -91,9 +93,9 @@ namespace WebSite.Controllers
         /// 操作菜单视图
         /// </summary>
         /// <returns></returns>
+        [CustomHandleError]
         public ActionResult NavMenuExecutive(ReqNavMenuView navMenu)
         {
-
             bool result = false;
             var sysNav = TransExpV2<ReqNavMenuView, Sys_NavMenu>.Trans(navMenu);
             if (navMenu.ExecutiveAction == (int)Operation.Add)
@@ -102,9 +104,8 @@ namespace WebSite.Controllers
                 result = _menuShareBll.UpdateEntity(sysNav);
             else
                 _menuShareBll.DeleteEntity(sysNav);
-
             if (result)
-                return RequestAction(RequestResult.Success());
+                return RequestAction(RequestResult.Success("执行成功"));
             else
                 return RequestAction(RequestResult.Exception("执行操作出错"));
         }

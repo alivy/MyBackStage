@@ -9,6 +9,7 @@ namespace Common.TypeConvert
 {
     /// <summary>
     ///对象复制
+    ///测试表达式树复制效率最高 所以选用
     /// </summary>
     /// <typeparam name="TIn"></typeparam>
     /// <typeparam name="TOut"></typeparam>
