@@ -172,10 +172,13 @@ namespace BackStageDAL
         {
             using (var db = DBContext.CreateContext())
             {
-                db.Entry<T>(entity).State = System.Data.Entity.EntityState.Modified;
+             
+                db.Entry(entity).State = System.Data.Entity.EntityState.Modified;
                 return db.SaveChanges();
             }
         }
+      
+        //db.Sys_NavMenu.BulkDelete()
         #endregion
 
         #region 更新指定属性的记录
@@ -231,7 +234,7 @@ namespace BackStageDAL
         /// <param name="order">排序</param>
         /// <param name="isAsc">是否升序</param>
         /// <returns></returns>
-        public T FirstOrDefault<S>(Expression<Func<T, bool>> where = null, Expression<Func<T, S>> order = null, bool isAsc = true)
+        public T FirstOrDefault<S>(Expression<Func<T, bool>> where = null)
         {
             using (var db = DBContext.CreateContext())
             {
@@ -239,17 +242,6 @@ namespace BackStageDAL
                 if (where != null)
                 {
                     m_query = m_query.Where(where);
-                }
-                if (order != null)
-                {
-                    if (isAsc)
-                    {
-                        m_query = m_query.OrderBy(order);
-                    }
-                    else
-                    {
-                        m_query = m_query.OrderByDescending(order);
-                    }
                 }
                 return m_query.FirstOrDefault();
             }

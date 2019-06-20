@@ -38,5 +38,23 @@ namespace BackStageDAL
                 return userMenus;
             }
         }
+
+        /// <summary>
+        /// 根据菜单id获取button
+        /// </summary>
+        /// <param name="menuId"></param>
+        /// <returns></returns>
+        public List<Sys_button> GetMenuButtonsByMenuId(string menuId)
+        {
+            using (CurrentContext)
+            {
+                string sql = string.Format(@"select B.* from Sys_MenuButttonMap A
+                                             left join Sys_button B on A.ButtonId =B.ButtonId
+                                             where A.MenuId ={0}", menuId);
+                var userMenus = CurrentContext.Database.SqlQuery<Sys_button>(sql).ToList();
+                return userMenus;
+            }
+        }
+
     }
 }

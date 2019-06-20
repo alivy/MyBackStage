@@ -1,14 +1,8 @@
 ﻿using BackStageIBLL;
 using Common;
 using DBModel;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Web;
-using System.Web.Mvc;
 using ViewModel;
+using ViewModel.Enums;
 
 namespace WebSite.Controllers.UserRoleManagement
 {
@@ -28,23 +22,16 @@ namespace WebSite.Controllers.UserRoleManagement
         /// </summary>
         /// <param name="page"></param>
         /// <returns></returns>
-        public RequestResult QueryUserRoleList(ReqBasePage page,string userId)
+        public RequestResult QueryUserRoleList(ReqBasePage page, string userId)
         {
             int total;
-            Expression<Func<Sys_Role, bool>> wehre = (x) => x.RoleId != "";
-            Func<Sys_Role, string> order = (x) => x.RoleSeq;
-            List<Sys_Role> roleList = _roleShareBll.GetPageList(wehre, order, out total, page.pageSize, page.pageIndex);
+            var roleList = _roleShareBll.GetPageList(x => !x.RoleId.Equals(""), x=> x.RoleSeq, out total, page.pageSize, page.pageIndex);
             var pageList = new ResBasePage<Sys_Role>
             {
                 TotalRecordCount = total,
                 Data = roleList
             };
-
-
-            return RequestResult.Success("", pageList);
+            return RequestResult.Success(ExecutSuccessMsgEnum.QuerySuccess.GetRemark(), pageList);
         }
-
-
-      
     }
 }

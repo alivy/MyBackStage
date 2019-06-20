@@ -9,7 +9,8 @@ using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
-
+using Z.EntityFramework.Extensions;
+using EntityFramework.Extensions;
 
 namespace BackStageDAL
 {
@@ -228,28 +229,15 @@ namespace BackStageDAL
         /// 获取第一个或者null的实体
         /// </summary>
         /// <param name="where">条件</param>
-        /// <param name="order">排序</param>
-        /// <param name="isAsc">是否升序</param>
         /// <returns></returns>
-        public T FirstOrDefault<S>(Expression<Func<T, bool>> where = null, Expression<Func<T, S>> order = null, bool isAsc = true)
+        public T FirstOrDefault<S>(Expression<Func<T, bool>> where = null)
         {
             using (var db = DBContext.CreateContext())
             {
-                var m_query = db.Set<T>().AsQueryable<T>();
+                var m_query = db.Set<T>().AsQueryable();
                 if (where != null)
                 {
                     m_query = m_query.Where(where);
-                }
-                if (order != null)
-                {
-                    if (isAsc)
-                    {
-                        m_query = m_query.OrderBy(order);
-                    }
-                    else
-                    {
-                        m_query = m_query.OrderByDescending(order);
-                    }
                 }
                 return m_query.FirstOrDefault();
             }
@@ -651,7 +639,8 @@ namespace BackStageDAL
         {
             using (var db = DBContext.CreateContext())
             {
-                //db.Database.Connection.Open(); //打开Coonnection连接  
+                if (db.Database.Connection.State != ConnectionState.Open)
+                    db.Database.Connection.Open(); //打开Coonnection连接  
                 using (var bulkCopy = new SqlBulkCopy(db.Database.Connection.ConnectionString))
                 {
                     bulkCopy.BatchSize = list.Count;
@@ -683,6 +672,8 @@ namespace BackStageDAL
                     }
                     bulkCopy.WriteToServer(table);
                 }
+                if (db.Database.Connection.State != ConnectionState.Closed)
+                    db.Database.Connection.Close(); //关闭Connection连接
             }
         }
 
@@ -705,5 +696,120 @@ namespace BackStageDAL
             }
         }
         #endregion
+
+        #region 使用Z.EntityFramework.Extensions批量处理
+        /// <summary>
+        /// 批量更新
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public int BulkUpdate(List<T> entity)
+        {
+            using (var db = DBContext.CreateContext())
+            {
+                db.Set<T>().BulkUpdate(entity);
+                return db.SaveChanges();
+            }
+        }
+
+
+        /// <summary>
+        /// 批量更新,可协变
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public int BulkUpdate(IEnumerable<T> entity)
+        {
+            using (var db = DBContext.CreateContext())
+            {
+                db.Set<T>().BulkUpdate(entity);
+                return db.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// 批量插入
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public int BulkInsert(IEnumerable<T> entity)
+        {
+            using (var db = DBContext.CreateContext())
+            {
+                db.Set<T>().BulkInsert(entity);
+                return db.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// 批量删除
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public int BulkDelete(IEnumerable<T> entity)
+        {
+            using (var db = DBContext.CreateContext())
+            {
+                db.Set<T>().BulkDelete(entity);
+                return db.SaveChanges();
+            }
+        }
+        #endregion
+
+
+        #region 使用EntityFramework.Extended批量处理
+
+        /// <summary>
+        /// 批量删除
+        /// </summary>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public int BulkDelete(Expression<Func<T, bool>> where = null)
+        {
+            using (var db = DBContext.CreateContext())
+            {
+                if (where == null)
+                {
+                    db.Set<T>().Delete();
+                }
+                db.Set<T>().Where(where).Delete();
+
+                return db.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// 批量更新
+        /// </summary>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public int BulkUpdate(Expression<Func<T, T>> entity, Expression<Func<T, bool>> where = null)
+        {
+            using (var db = DBContext.CreateContext())
+            {
+                if (where == null)
+                {
+                    db.Set<T>().Update(entity);
+                }
+                db.Set<T>().Where(where).Update(entity);
+                return db.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// 批量添加
+        /// </summary>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public int BulkInsert2(IEnumerable<T> entity)
+        {
+            using (var db = DBContext.CreateContext())
+            {
+                db.Set<T>().AddRange(entity);
+                return db.SaveChanges();
+            }
+        }
+        #endregion
+
     }
 }

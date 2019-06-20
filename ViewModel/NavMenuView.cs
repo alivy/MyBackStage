@@ -42,27 +42,27 @@ namespace ViewModel
         [StringLength(300)]
         public string Url { get; set; }
 
-        /// <summary>
-        /// 图标样式
-        /// </summary>
-        [StringLength(50)]
-        public string IconClass { get; set; }
+        ///// <summary>
+        ///// 图标样式
+        ///// </summary>
+        //[StringLength(50)]
+        //public string IconClass { get; set; }
 
-        /// <summary>
-        /// 图标地址
-        /// </summary>
-        [StringLength(300)]
-        public string IconUrl { get; set; }
+        ///// <summary>
+        ///// 图标地址
+        ///// </summary>
+        //[StringLength(300)]
+        //public string IconUrl { get; set; }
 
-        /// <summary>
-        /// 排序值
-        /// </summary>
-        public int? Seq { get; set; }
+        ///// <summary>
+        ///// 排序值
+        ///// </summary>
+        //public int Seq => 9999;
 
 
-        /// <summary>
-        /// 是否可见
-        /// </summary>
-        public int? IsVisible { get; set; }
+        ///// <summary>
+        ///// 是否可见
+        ///// </summary>
+        //public int IsVisible => 0;
     }
 }

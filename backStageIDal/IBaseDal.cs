@@ -115,7 +115,7 @@ namespace backStageIDal
         /// <param name="order">排序</param>
         /// <param name="isAsc">是否升序</param>
         /// <returns></returns>
-        T FirstOrDefault<S>(Expression<Func<T, bool>> where = null, Expression<Func<T, S>> order = null, bool isAsc = true);
+        T FirstOrDefault<S>(Expression<Func<T, bool>> where = null);
 
         #endregion
 
@@ -297,8 +297,66 @@ namespace backStageIDal
         /// <param name="tableName">本地数据库表的表名</param>
         void BulkInsert(string tableName, DataTable dt);
 
-        
 
+
+        #endregion
+
+
+
+        #region 使用EF.Extensions批量处理
+        /// <summary>
+        /// 批量更新
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        int BulkUpdate(IEnumerable<T> entity);
+
+
+
+
+        /// <summary>
+        /// 批量插入
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        int BulkInsert(IEnumerable<T> entity);
+
+
+
+        /// <summary>
+        /// 批量删除
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        int BulkDelete(IEnumerable<T> entity);
+
+
+        #endregion
+
+        #region 使用EntityFramework.Extended批量处理
+
+        /// <summary>
+        /// 批量删除
+        /// </summary>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        int BulkDelete(Expression<Func<T, bool>> where = null);
+
+        /// <summary>
+        /// 批量更新
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        int BulkUpdate(Expression<Func<T, T>> entity, Expression<Func<T, bool>> where = null);
+
+
+        /// <summary>
+        ///批量删除
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        int BulkInsert2(IEnumerable<T> entity);
         #endregion
     }
 }

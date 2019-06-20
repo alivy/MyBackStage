@@ -42,15 +42,15 @@
                                 {
                                     <button id="btnDetails" class="btn btn-primary">@Button("5").ButtonName</button>
                                 }
-                                 if (Button("1") != null)
+                                if (Button("1") != null)
                                 {
                                     <button id="btnAdd" class="btn btn-primary">@Button("1").ButtonName</button>
                                 }
-                                 if (Button("3") != null)
+                                if (Button("3") != null)
                                 {
                                     <button id="btnDel" class="btn btn-danger">@Button("3").ButtonName</button>
                                 }
-                                 if (Button("2") != null)
+                                if (Button("2") != null)
                                 {
                                     <button id="btnUpdate" class="btn btn-warning">@Button("2").ButtonName</button>
                                 }
@@ -73,46 +73,73 @@
         </div>
 
 
-
-        <!--弹窗-->
-        <div class="modal fade" id="modal-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="txt_username">菜单编号</label>
-                            <input type="text" name="menuId" class="form-control" id="menuId" placeholder="菜单编号">
+        <form id="modalMenu">
+            <!--增改弹窗-->
+            <div class="modal fade" id="modal-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                        <div class="form-group">
-                            <label for="txt_fullname">菜单名称</label>
-                            <input type="text" name="menuName" class="form-control" id="menuName" placeholder="菜单名称">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="txt_username">菜单编号</label>
+                                <input type="text" name="menuId" class="form-control" id="menuId" placeholder="菜单编号">
+                            </div>
+                            <div class="form-group">
+                                <label for="txt_fullname">菜单名称</label>
+                                <input type="text" name="menuName" class="form-control" id="menuName" placeholder="菜单名称">
+                            </div>
+                            <div class="form-group">
+                                <label for="txt_remark">父级编号</label>
+                                <input type="text" name="parentMenId" class="form-control" id="parentMenId" placeholder="父级编号">
+                            </div>
+                            <div class="form-group">
+                                <label for="txt_remark">菜单级别</label>
+                                <input type="text" name="level" class="form-control" id="level" placeholder="菜单级别">
+                            </div>
+                            <div class="form-group">
+                                <label for="txt_remark">菜单地址</label>
+                                <input type="text" name="url" class="form-control" id="url" placeholder="菜单地址">
+                            </div>
+                            <input type="text" name="ExecutiveAction" class="form-control" id="ExecutiveAction" hidden="hidden" value="2">
                         </div>
-                        <div class="form-group">
-                            <label for="txt_remark">父级编号</label>
-                            <input type="text" name="parentMenId" class="form-control" id="parentMenId" placeholder="父级编号">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-link" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary" id="btn_submit">保存</button>
                         </div>
-                        <div class="form-group">
-                            <label for="txt_remark">菜单级别</label>
-                            <input type="text" name="level" class="form-control" id="level" placeholder="菜单级别">
-                        </div>
-                        <div class="form-group">
-                            <label for="txt_remark">菜单地址</label>
-                            <input type="text" name="url" class="form-control" id="url" placeholder="菜单地址">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-link" data-dismiss="modal">取消</button>
-                        <button type="button" class="btn btn-primary">保存</button>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
+
+
+        <form id="modalButton">
+            <!--按钮权限弹窗-->
+            <div class="modal fade" id="modal-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="modalBtnTitle">Modal title</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-link" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary" id="btn_submit_btns">保存</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
     </div>
 
 

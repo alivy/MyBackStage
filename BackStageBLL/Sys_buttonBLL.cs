@@ -19,6 +19,10 @@ namespace BackStageBLL
         [Import("Sys_buttonDal")]
         private ISys_ButtonDal _button { get; set; }
 
+        private ShareDal<Sys_MenuButttonMap> _menuButttonMap { get; set; }
+
+
+        private ShareDal<Sys_button> _buttonShare { get; set; }
         /// <summary>
         /// 获取用户页面按钮权限
         /// </summary>
@@ -45,6 +49,18 @@ namespace BackStageBLL
                 CacheManager.Add(key, result);
             }
             return result;
+        }
+
+
+        /// <summary>
+        /// 根据菜单id获取button
+        /// </summary>
+        /// <param name="menuId"></param>
+        /// <returns></returns>
+        public List<Sys_button> GetMenuButtonsByMenuId(string menuId)
+        {
+            var menuButttons = _menuButttonMap.LoadEntities<Sys_MenuButttonMap>(x => x.MenuId.Equals(menuId));
+            return _buttonShare.LoadEntities<Sys_button>(x => menuButttons.Exists(t => t.ButtonId.Equals(x.ButtonId)));
         }
     }
 }

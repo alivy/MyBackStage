@@ -16,7 +16,7 @@ namespace ViewModel
         /// </summary>
         public int ExecutiveAction { get; set; }
 
-      
+       
     }
 
 
@@ -25,6 +25,7 @@ namespace ViewModel
         /// <summary>
         /// 增加
         /// </summary>
+        
         Add = 1,
 
         /// <summary>

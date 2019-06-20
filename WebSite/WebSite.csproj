@@ -49,6 +49,9 @@
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework.Extended, Version=6.0.0.0, Culture=neutral, PublicKeyToken=05b7e29bdd433584, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.Extended.6.1.0.168\lib\net45\EntityFramework.Extended.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
@@ -117,6 +120,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Z.EntityFramework.Extensions, Version=3.20.5.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Z.EntityFramework.Extensions.3.20.5\lib\net45\Z.EntityFramework.Extensions.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Diagnostics.DiagnosticSource">
@@ -165,6 +171,9 @@
     <Compile Include="Controllers\JurisdictionController.cs" />
     <Compile Include="Controllers\UserRoleManagement\NavMenuAction.cs" />
     <Compile Include="Controllers\UserRoleManagement\UserRoleManagementAction.cs" />
+    <Compile Include="CustomExtension\ModelValidMsg.cs" />
+    <Compile Include="CustomExtension\ModelValidState.cs" />
+    <Compile Include="CustomExtension\ValidErrorMessage.cs" />
     <Compile Include="Filter\AllowAdoptAttribute.cs" />
     <Compile Include="Filter\CompressActionFilterAttribute.cs" />
     <Compile Include="Filter\CustomActionFilterAttribute.cs" />

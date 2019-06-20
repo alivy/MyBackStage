@@ -13,5 +13,12 @@ namespace BackStageIBLL
         /// <param name="userId"></param>
         /// <returns></returns>
         List<Sys_NavMenu> GetNavMenuByUserId(string userId);
+
+        /// <summary>
+        /// 根据用户id得到菜单列表
+        /// </summary>
+        /// <param name="roleId"></param>
+        /// <returns></returns>
+        List<Sys_NavMenu> GetRoleMenusByRoleId(string roleId);
     }
 }

@@ -15,7 +15,7 @@ namespace BackStageBLL
     /// </summary>
     /// <typeparam name="T"></typeparam>
     //[Export]
-    public class ShareBLL<T> : IShareBLL<T> 
+    public class ShareBLL<T> : IShareBLL<T>
         where T : class, new()
     {
         //[Import]
@@ -140,6 +140,9 @@ namespace BackStageBLL
         {
             return _baseDal.DeleteEntity(entity) > 0;
         }
+
+
+
         #endregion
 
         #region 获取第一个实体
@@ -151,9 +154,9 @@ namespace BackStageBLL
         /// <param name="order">排序</param>
         /// <param name="isAsc">是否升序</param>
         /// <returns></returns>
-        public T FirstOrDefault<S>(Expression<Func<T, bool>> where = null, Expression<Func<T, S>> order = null, bool isAsc = true)
+        public T FirstOrDefault<S>(Expression<Func<T, bool>> where = null)
         {
-            return _baseDal.FirstOrDefault(where, order, isAsc);
+            return _baseDal.FirstOrDefault<T>(where);
         }
         #endregion
 
@@ -168,7 +171,7 @@ namespace BackStageBLL
         /// <returns></returns>
         public T First<S>(Expression<Func<T, bool>> where = null, Expression<Func<T, S>> order = null, bool isAsc = true)
         {
-            return _baseDal.FirstOrDefault(where, order, isAsc);
+            return _baseDal.First(where, order, isAsc);
         }
         #endregion
 
@@ -347,7 +350,73 @@ namespace BackStageBLL
         }
         #endregion
 
+        #region 使用EF.Extensions批量处理
+        /// <summary>
+        /// 批量更新
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public int BulkUpdate(IEnumerable<T> entity)
+        {
+            return _baseDal.BulkUpdate(entity);
+        }
+
+        /// <summary>
+        /// 批量插入
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public int BulkInsert(IEnumerable<T> entity)
+        {
+            return _baseDal.BulkInsert(entity);
+        }
 
 
+        /// <summary>
+        /// 批量删除
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public int BulkDelete(IEnumerable<T> entity)
+        {
+            return _baseDal.BulkDelete(entity);
+        }
+        #endregion
+
+
+
+        #region 使用EntityFramework.Extended批量处理
+
+        /// <summary>
+        /// 批量删除
+        /// </summary>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public int BulkDelete(Expression<Func<T, bool>> where = null)
+        {
+            return _baseDal.BulkDelete(where);
+        }
+
+        /// <summary>
+        /// 批量更新
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public int BulkUpdate(Expression<Func<T, T>> entity, Expression<Func<T, bool>> where = null)
+        {
+            return _baseDal.BulkUpdate(entity);
+        }
+
+        /// <summary>
+        ///批量删除
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public int BulkInsert2(IEnumerable<T> entity)
+        {
+            return _baseDal.BulkInsert2(entity);
+        }
+        #endregion
     }
 }

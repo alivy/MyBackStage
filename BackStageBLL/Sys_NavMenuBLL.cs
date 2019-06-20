@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
+using BackStageDAL;
 using BackStageIBLL;
 using backStageIDal;
 using Common;
@@ -14,6 +15,11 @@ namespace BackStageBLL
         [Import("NavMenuDal")]
         private ISys_NavMenuDal _navMenu { get; set; }
 
+        [Import]
+        private ShareDal<Sys_MenuRoleMap> _menuRoleMap { get; set; }
+
+        [Import]
+        private ShareDal<Sys_NavMenu> _menuShare { get; set; }
         /// <summary>
         /// 根据用户id获取用户菜单
         /// </summary>
@@ -38,5 +44,23 @@ namespace BackStageBLL
             }
             return result;
         }
+
+
+        /// <summary>
+        /// 根据菜单id获取button
+        /// </summary>
+        /// <param name="roleId"></param>
+        /// <returns></returns>
+        public List<Sys_NavMenu> GetRoleMenusByRoleId(string roleId)
+        {
+            var menuRoleMap = _menuRoleMap.LoadEntities(x => x.RoleId.Equals(roleId));
+            if (!menuRoleMap.Any())
+            {
+                return null;
+            }
+            var result = _menuShare.LoadEntities(x => menuRoleMap.Exists(t => t.MendId.Equals(x.MenuId)));
+            return result;
+        }
+
     }
 }

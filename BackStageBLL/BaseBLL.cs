@@ -160,7 +160,7 @@ namespace BackStageBLL
         /// <returns></returns>
         public T FirstOrDefault<S>(Expression<Func<T, bool>> where = null, Expression<Func<T, S>> order = null, bool isAsc = true)
         {
-            return _baseDal.FirstOrDefault(where, order, isAsc);
+            return _baseDal.FirstOrDefault<T>(where);
         }
         #endregion
 
@@ -175,7 +175,7 @@ namespace BackStageBLL
         /// <returns></returns>
         public T First<S>(Expression<Func<T, bool>> where = null, Expression<Func<T, S>> order = null, bool isAsc = true)
         {
-            return _baseDal.FirstOrDefault(where, order, isAsc);
+            return _baseDal.First(where, order, isAsc);
         }
         #endregion
 
