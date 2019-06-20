@@ -13,7 +13,7 @@ using System.Linq.Expressions;
 namespace BackStageDAL
 {
 
-    public class BaseDal<T> : IBaseDal<T>
+    public class BaseDal<T> 
         where T : class, new()
     {
 
