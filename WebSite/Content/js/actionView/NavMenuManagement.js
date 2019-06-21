@@ -58,19 +58,19 @@ function createTable() {
         html.push('<td>' + dataLIst[i].ParentMenId + '</td>');
         html.push('<td>' + dataLIst[i].Level + '</td>');
         html.push('<td>' + dataLIst[i].Url + '</td>');
-        html.push('<td><button class="btn btn-primary" data-toggle="modal" data-target="#modal-1" onclick=setupButton(' + dataLIst[i].MenuId + ') > <i class="fa fa-align-center"></i> &nbsp;设置按钮</button>  &nbsp');
+        html.push('<td><button class="btn btn-primary" data-toggle="modal"  onclick=setupButton(' + dataLIst[i].MenuId + ') > <i class="fa fa-align-center"></i> &nbsp;设置按钮</button>  &nbsp');
         html.push('</tr>');
     }
     html.push('</tbody></table>');
     var mainObj = $('#mainContent');
     mainObj.empty();
-    mainObj.html(html.join('MenuId'));
+    mainObj.html(html.join(''));
 }
 ///设置按钮
 function setupButton(menuId)
 {
-
-
+    $("#modalBtnTitle").text("配置页面按钮");
+    $('#modal-2').modal();
 }
 
 
@@ -118,6 +118,7 @@ $("#btnUpdate").click(function () {
 $("#btnAdd").click(function () {
     $("#modal-1").find(".form-control").val("");
     $('#operationType').val(1);
+    $("#myModalLabel").text("新增");
     $('#modal-1').modal();
 });
 

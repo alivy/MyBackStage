@@ -24,6 +24,7 @@ namespace WebSite.Controllers
     [UserAuthorize]
     public class JurisdictionController : BaseAction
     {
+        #region 创建接口
         /// <summary>
         /// 用户模板接口
         /// </summary>
@@ -80,7 +81,7 @@ namespace WebSite.Controllers
         /// </summary>
         [Import("Sys_ButtonBLL")]
         private ISys_ButtonBLL _buttonBll { get; set; }
-
+        #endregion
 
         #region 角色管理
         /// <summary>
@@ -294,7 +295,6 @@ namespace WebSite.Controllers
             }
         }
         #endregion
-
 
         #region  用户管理
         /// <summary>

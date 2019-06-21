@@ -55,7 +55,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="ResdSingleToMultiple.cs" />
+    <Compile Include="ResUserMenuAPI.cs" />
+    <Compile Include="Enums\LoginEnum.cs" />
+    <Compile Include="ResLogin.cs" />
     <Compile Include="ResSet.cs" />
     <Compile Include="ResSetRoleMenus.cs" />
     <Compile Include="ResSetMenuBtns.cs" />

@@ -20,12 +20,6 @@ namespace WebSite.Controllers
         private IShareBLL<Sys_User> userBll { get; set; }
 
         [Import]
-        public IShareBLL<Sys_button> buttonBll { get; set; }
-
-        [Import]
-        private IShareBLL<Sys_Role> roleBll { get; set; }
-
-        [Import]
         private IShareBLL<Sys_LoginHistory> loginHistoryBll { get; set; }
 
         [Import("Sys_NavMenu")]

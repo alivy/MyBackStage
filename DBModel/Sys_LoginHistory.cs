@@ -25,7 +25,7 @@ namespace DBModel
 
         public DateTime? LoginDate { get; set; }
 
-        public Sys_LoginHistory CreateInstance(string userId,string hostName,string hostIP,
+        public static Sys_LoginHistory CreateInstance(string userId,string hostName,string hostIP,
             string loginLocal,string loginBrowser)
         {
 

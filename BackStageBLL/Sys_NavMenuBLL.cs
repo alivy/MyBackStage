@@ -16,10 +16,10 @@ namespace BackStageBLL
         private ISys_NavMenuDal _navMenu { get; set; }
 
         [Import]
-        private ShareDal<Sys_MenuRoleMap> _menuRoleMap { get; set; }
+        private IBaseDal<Sys_MenuRoleMap> _menuRoleMap { get; set; }
 
         [Import]
-        private ShareDal<Sys_NavMenu> _menuShare { get; set; }
+        private IBaseDal<Sys_NavMenu> _menuShare { get; set; }
         /// <summary>
         /// 根据用户id获取用户菜单
         /// </summary>
@@ -47,7 +47,7 @@ namespace BackStageBLL
 
 
         /// <summary>
-        /// 根据菜单id获取button
+        /// 根据菜单id获取按钮
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>

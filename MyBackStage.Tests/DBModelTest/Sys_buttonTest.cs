@@ -19,6 +19,8 @@ namespace MyBackStage.Tests
         [Import("Sys_UserBLL")]
         private ISys_UserBLL userBll { get; set; }
 
+        [Import("Sys_NavMenu")]
+        private ISys_NavMenuBLL _navMenuBll { get; set; }
 
         /// <summary>
         /// 测试MEF依赖注入
@@ -28,11 +30,7 @@ namespace MyBackStage.Tests
         {
             int getCount = 1;
             MEFBase.Compose(this);
-            if (buttonBll != null)
-            {
-              
-                //getCount = userBll.GetCount();
-            }
+            _navMenuBll.GetNavMenuByUserId("");
             Assert.AreEqual(getCount, 0);
         }
 

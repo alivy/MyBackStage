@@ -19,10 +19,10 @@ namespace BackStageBLL
         [Import("Sys_buttonDal")]
         private ISys_ButtonDal _button { get; set; }
 
-        private ShareDal<Sys_MenuButttonMap> _menuButttonMap { get; set; }
+        private IBaseDal<Sys_MenuButttonMap> _menuButttonMap { get; set; }
 
 
-        private ShareDal<Sys_button> _buttonShare { get; set; }
+        private IBaseDal<Sys_button> _buttonShare { get; set; }
         /// <summary>
         /// 获取用户页面按钮权限
         /// </summary>

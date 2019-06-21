@@ -7,6 +7,8 @@ using System;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Web.Mvc;
+using ViewModel;
+using ViewModel.Enums;
 using WebSite.Models.HomeModel;
 
 namespace WebSite.Controllers.HomeAciton
@@ -54,6 +56,76 @@ namespace WebSite.Controllers.HomeAciton
             return RequestAction(RequestResult.Success("", result));
         }
 
+        /// <summary>
+        /// API用户登录功能
+        /// </summary>
+        /// <param name="viewUser"></param>
+        /// <returns></returns>
+        public ActionResult APIAction(ViewUserLogin viewUser)
+        {
+            if (!ModelState.IsValid)
+            {
+                var errorMsg = ModelState.FristModelStateErrors().FirstOrDefault(); ;
+                return RequestAction(RequestResult.ValidateError(errorMsg));
+            }
+            var check = APICheckLogin(viewUser);
+            if (!check.Item1)
+            {
+                return RequestAction(RequestResult.Success(LoginEnum.LandError.GetRemark(),
+                ResLoginAPI.GetInstance(LoginEnum.LandError)));
+            }
+            var userId = check.Item2;
+            LoginHistory(userId, viewUser.City);
+            var token = userId.Encrypt();
+            return RequestAction(RequestResult.Success(LoginEnum.Suceess.GetRemark(),
+                    ResLoginAPI.GetInstance(LoginEnum.Suceess, token)));
+        }
+
+        /// <summary>
+        /// API检查用户登录 
+        /// </summary>
+        /// <param name="userInfo"></param>
+        /// <returns></returns>
+        public Tuple<bool, string> APICheckLogin(ViewUserLogin userInfo)
+        {
+            bool validate = false;
+            userInfo.UserPwd = userInfo.UserPwd.GetMD5FromString();
+            var userName = StringHelp.FilterSql(userInfo.UserName);
+            var userPwd = StringHelp.FilterSql(userInfo.UserPwd);
+            var user = userBll.FirstOrDefault<Sys_User>(x => x.UserNickName.Equals(userName) && x.Password.Equals(userPwd));
+            string userId = string.Empty;
+            if (user != null)
+            {
+                userId = user.UserId;
+                SetUserCacheAPI(user);
+                validate = true;
+            }
+            return new Tuple<bool, string>(validate, userId);
+        }
+
+        /// <summary>
+        /// 添加登陆记录
+        /// </summary>
+        /// <param name="userInfo"></param>
+        /// <returns></returns>
+        public void LoginHistory(string UserId, string City)
+        {
+            try
+            {
+                SessionManager.Add(ConstString.SysUserLoginId, UserId);
+                string browser = NetworkHelper.GetBrowser();
+                string hostIP = NetworkHelper.GetIp() != "0.0.0.0" ? NetworkHelper.GetIp() : ZHttp.ClientIP;
+                string hostName = ZHttp.IsLanIP(ZHttp.ClientIP) ? ZHttp.ClientHostName : string.Empty; //如果是内网就获取，否则出错获取不到，且影响效率
+                var loginHistory = Sys_LoginHistory.CreateInstance(UserId, hostName, hostIP, City, browser);
+                loginHistoryBLL.AddEntity(loginHistory);
+            }
+            catch (Exception ex)
+            {
+                Log.Write(LogLevel.Error, "添加登陆记录日志表出错", ex);
+            }
+        }
+
+
 
         /// <summary>
         /// 检查用户登录
@@ -73,18 +145,27 @@ namespace WebSite.Controllers.HomeAciton
                 //var session = HttpContext.Session[ConstString.SysUserLoginId];
                 //if (session == null)
                 //{
-                var loginHistory = new Sys_LoginHistory();
                 SessionManager.Add(ConstString.SysUserLoginId, user.UserId);
                 string browser = NetworkHelper.GetBrowser();
                 string hostIP = NetworkHelper.GetIp() != "0.0.0.0" ? NetworkHelper.GetIp() : ZHttp.ClientIP;
                 string hostName = ZHttp.IsLanIP(ZHttp.ClientIP) ? ZHttp.ClientHostName : string.Empty; //如果是内网就获取，否则出错获取不到，且影响效率
-                loginHistoryBLL.AddEntity(loginHistory.CreateInstance(user.UserId, hostName, hostIP, userInfo.City, browser));
+                loginHistoryBLL.AddEntity(Sys_LoginHistory.CreateInstance(user.UserId, hostName, hostIP, userInfo.City, browser));
                 SetUserCache(user);
                 SetCookie(user.UserId);
                 //}
                 validate = true;
             }
             return validate;
+        }
+
+        /// <summary>
+        /// API用户过期信息缓存
+        /// </summary>
+        public void SetUserCacheAPI(Sys_User user)
+        {
+            //生成用户token
+            var token = Sys_User.GetKey(user.UserId);
+            CacheManager.Add(token, user, 12 * 60);
         }
 
 

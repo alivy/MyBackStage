@@ -14,6 +14,7 @@ using EntityFramework.Extensions;
 
 namespace BackStageDAL
 {
+   
     public class ShareDal<T> : IBaseDal<T>
         where T : class, new()
     {

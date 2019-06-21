@@ -167,6 +167,7 @@
     <Compile Include="Controllers\HomeAction\LoginAction.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IviewController.cs" />
+    <Compile Include="Controllers\LoginAPIController.cs" />
     <Compile Include="Controllers\ShowBoardController.cs" />
     <Compile Include="Controllers\JurisdictionController.cs" />
     <Compile Include="Controllers\UserRoleManagement\NavMenuAction.cs" />
@@ -181,6 +182,7 @@
     <Compile Include="Filter\ExceptionHandleAttribute.cs" />
     <Compile Include="Filter\HttpsToHttpAttribute.cs" />
     <Compile Include="Filter\MefDependencySolver.cs" />
+    <Compile Include="Filter\TokenAuthorizeAttribute.cs" />
     <Compile Include="Filter\UserAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -350,6 +352,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\LoginAPI\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
