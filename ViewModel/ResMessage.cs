@@ -15,13 +15,41 @@ namespace ViewModel
         /// </summary>
         public string msg { get; set; }
 
-        public static ResMessage CreatMessage(Enum em )
+        public  object data { get; set; }
+
+        public static ResMessage CreatMessage(Enum em)
         {
             return new ResMessage
             {
                 code = Convert.ToInt32(em),
-                msg = em.GetRemark()
+                msg = em.GetRemark(),
+                data = ""
+            };
+        }
+
+
+        public static ResMessage CreatMessage(Enum em, object data)
+        {
+            return new ResMessage
+            {
+                code = Convert.ToInt32(em),
+                msg = em.GetRemark(),
+                data =data ?? ""
+            };
+        }
+
+
+        public static ResMessage CreatMessage(Enum em, string msg, object data)
+        {
+            return new ResMessage
+            {
+                code = Convert.ToInt32(em),
+                msg = msg,
+                data = data ?? ""
             };
         }
     }
+
+
+   
 }

@@ -132,7 +132,7 @@ namespace WebSite.Controllers
         /// <typeparam name="T"></typeparam>
         /// <param name="t"></param>
         /// <returns></returns>
-        internal RequestActionResult<T> RequestAction<T>(T t) where T : RequestResult
+        internal RequestActionResult<T> RequestAction<T>(T t) where T : class
         {
             return new RequestActionResult<T>(t);
         }

@@ -13,7 +13,7 @@ namespace WebSite.Controllers.BootStrapAction
     {
 
 
-        private ISys_NavMenuBLL _navMenuBll { get; set; }
+        private  new ISys_NavMenuBLL _navMenuBll { get; set; }
 
 
         public ShareAciton(ISys_NavMenuBLL navMenuBll)

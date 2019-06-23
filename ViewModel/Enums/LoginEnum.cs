@@ -17,5 +17,8 @@ namespace ViewModel.Enums
 
         [Remark("用户或密码错误")]
         LandError = 1,
+
+        [Remark("请求数据验证出错")]
+        ReqDateError = 2,
     }
 }

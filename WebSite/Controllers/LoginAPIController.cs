@@ -8,6 +8,7 @@ using WebSite.Models.HomeModel;
 using System.Linq;
 using WebSite.Controllers.Filter;
 using ViewModel;
+using ViewModel.Enums;
 
 namespace WebSite.Controllers
 {
@@ -49,7 +50,7 @@ namespace WebSite.Controllers
         {
             var userId = Session[ConstString.SysUserLoginId];
             if (userId == null)
-                return Json(RequestResult.Success("用户id不存在"));
+                return Json(ResMessage.CreatMessage(QueryUserMenu.NullUser));
             var userMenus = _navMenuBll.GetNavMenuByUserId(userId.ToString());
             if (userMenus != null)
             {
@@ -63,9 +64,9 @@ namespace WebSite.Controllers
                     IconClass = "",
                     IconUrl = ""
                 }).ToList();
-                return Json(RequestResult.Success("查询成功", userMenuAPI));
+                return Json(ResMessage.CreatMessage(QueryUserMenu.Suceess, userMenuAPI));
             }
-            return Json(RequestResult.Success("当前用户无可用菜单"));
+            return Json(ResMessage.CreatMessage(QueryUserMenu.NullMenu));
         }
     }
 }

@@ -74,7 +74,7 @@ namespace WebSite.Controllers
         /// 菜单接口
         /// </summary>
         [Import("Sys_NavMenu")]
-        private ISys_NavMenuBLL _navMenuBll { get; set; }
+        private new ISys_NavMenuBLL _navMenuBll { get; set; }
 
         /// <summary>
         /// 按钮接口
