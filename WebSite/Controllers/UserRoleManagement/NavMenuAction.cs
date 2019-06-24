@@ -36,7 +36,36 @@ namespace WebSite.Controllers
                                        .Skip((page.pageIndex - 1) * page.pageSize)
                                        .Take(page.pageSize).ToList();
             var pageList=ResBasePage<Sys_NavMenu>.GetInstance(menuList, userMenus.Count);
+            ResMessage.CreatMessage(ResultTypeEnum.Success, null, pageList);
             return RequestResult.Success("", pageList);
+        }
+
+
+        /// <summary>
+        /// API获取菜单列表
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public ResMessage APIQueryNavMenus(ReqBasePage page, string userId)
+        {
+            //用户菜单信息
+            var userMenus = _navMenuBll.GetNavMenuByUserId(userId);
+            var menuList = userMenus.OrderBy(x => x.Seq)
+                                       .Skip((page.pageIndex - 1) * page.pageSize)
+                                       .Take(page.pageSize).ToList();
+            var userMenuAPI = menuList.Select(x => new ResUserMenuAPI
+            {
+                MenuId = x.MenuId,
+                MenuName = x.MenuName,
+                ParentMenId = x.ParentMenId,
+                Level = x.Level,
+                Url = x.Url,
+                IconClass = "",
+                IconUrl = ""
+            }).ToList();
+            var pageList = ResBasePage<ResUserMenuAPI>.GetInstance(userMenuAPI, userMenus.Count);
+            return ResMessage.CreatMessage(ResultTypeEnum.Success, null, pageList); 
         }
     }
 }

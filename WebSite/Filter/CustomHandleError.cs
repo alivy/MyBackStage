@@ -1,9 +1,12 @@
 ﻿using Common;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ViewModel;
+using WebSite.Controllers;
 
 namespace WebSite.Filter
 {
@@ -23,11 +26,14 @@ namespace WebSite.Filter
             {
                 Console.WriteLine(filterContext.HttpContext.Request);
                 Log.Write(LogLevel.Error, filterContext.Exception.Message, filterContext.Exception);
-                filterContext.Result = new ViewResult
-                {
-                    ViewName = "",//跳转页面
-                    ViewData =new ViewDataDictionary<string>(filterContext.Exception.Message)
-                };
+                //filterContext.Result = new ViewResult
+                //{
+                //    ViewName = "",//跳转页面
+                //    ViewData =new ViewDataDictionary<string>(filterContext.Exception.Message)
+                //};
+                filterContext.HttpContext.Response.ContentType = "application/json";
+                string json = JsonConvert.SerializeObject(ResMessage.CreatMessage(ResultTypeEnum.Exception, filterContext.Exception.Message));
+                filterContext.HttpContext.Response.Write(json);
                 //表示异常已被处理
                 filterContext.ExceptionHandled = true;
             } 

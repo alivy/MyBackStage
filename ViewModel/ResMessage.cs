@@ -15,7 +15,7 @@ namespace ViewModel
         /// </summary>
         public string msg { get; set; }
 
-        public  object data { get; set; }
+        public object data { get; set; }
 
         public static ResMessage CreatMessage(Enum em)
         {
@@ -28,13 +28,13 @@ namespace ViewModel
         }
 
 
-        public static ResMessage CreatMessage(Enum em, object data)
+        public static ResMessage CreatMessage(Enum em, string msg)
         {
             return new ResMessage
             {
                 code = Convert.ToInt32(em),
-                msg = em.GetRemark(),
-                data =data ?? ""
+                msg = msg,
+                data = ""
             };
         }
 
@@ -44,12 +44,12 @@ namespace ViewModel
             return new ResMessage
             {
                 code = Convert.ToInt32(em),
-                msg = msg,
+                msg = msg ?? em.GetRemark(),
                 data = data ?? ""
             };
         }
     }
 
 
-   
+
 }

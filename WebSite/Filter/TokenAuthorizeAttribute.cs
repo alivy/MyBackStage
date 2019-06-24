@@ -8,10 +8,12 @@ using System.Web.Routing;
 using BackStageIBLL;
 using DBModel;
 using Newtonsoft.Json;
+using WebSite.Filter;
 
 namespace WebSite.Controllers.Filter
 {
     [Export]
+    [CompressActionFilter]
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class TokenAuthorizeAttribute : AuthorizeAttribute
     {

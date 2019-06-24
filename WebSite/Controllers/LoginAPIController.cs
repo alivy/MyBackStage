@@ -9,6 +9,8 @@ using System.Linq;
 using WebSite.Controllers.Filter;
 using ViewModel;
 using ViewModel.Enums;
+using System;
+using System.Collections.Generic;
 
 namespace WebSite.Controllers
 {
@@ -54,19 +56,21 @@ namespace WebSite.Controllers
             var userMenus = _navMenuBll.GetNavMenuByUserId(userId.ToString());
             if (userMenus != null)
             {
-                var userMenuAPI = userMenus.Select(x => new ResUserMenuAPI
+                Func<string, List<ResUserMenuAPI>> funcMenus = null;
+                funcMenus = (x) => userMenus.Where(t => t.ParentMenId.Equals(x)).Select(t => new ResUserMenuAPI
                 {
-                    MenuId = x.MenuId,
-                    MenuName = x.MenuName,
-                    ParentMenId = x.ParentMenId,
-                    Level = x.Level,
-                    Url = x.Url,
+                    MenuId = t.MenuId,
+                    MenuName = t.MenuName,
+                    ParentMenId = t.ParentMenId,
+                    Level = t.Level,
+                    Url = t.Url,
                     IconClass = "",
-                    IconUrl = ""
+                    IconUrl = "",
+                    SubLevelMenus = funcMenus(t.ParentMenId)
                 }).ToList();
-                return Json(ResMessage.CreatMessage(QueryUserMenu.Suceess, userMenuAPI));
+                return Json(ResMessage.CreatMessage(ResultTypeEnum.Success, "获取菜单成功", funcMenus));
             }
-            return Json(ResMessage.CreatMessage(QueryUserMenu.NullMenu));
+            return Json(ResMessage.CreatMessage(ResultTypeEnum.ValidateError, "当前用户无可用菜单"));
         }
     }
 }

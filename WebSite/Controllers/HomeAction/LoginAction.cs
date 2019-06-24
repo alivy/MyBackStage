@@ -131,17 +131,17 @@ namespace WebSite.Controllers.HomeAciton
             if (!ModelState.IsValid)
             {
                 var errorMsg = ModelState.FristModelStateErrors().FirstOrDefault(); ;
-                return RequestAction(ResMessage.CreatMessage(LoginEnum.ReqDateError, errorMsg));
+                return RequestAction(ResMessage.CreatMessage(ResultTypeEnum.ValidateError, errorMsg));
             }
             var check = APICheckLogin(viewUser);
             if (!check.Item1)
             {
-                return RequestAction(ResMessage.CreatMessage(LoginEnum.LandError));
+                return RequestAction(ResMessage.CreatMessage(ResultTypeEnum.Error, "用户名或密码错误"));
             }
             var userId = check.Item2;
             LoginHistory(userId, viewUser.City);
             var token = userId.Encrypt();
-            return RequestAction(ResMessage.CreatMessage(LoginEnum.Suceess, ResLoginAPI.GetInstance(token)));
+            return RequestAction(ResMessage.CreatMessage(ResultTypeEnum.Success, "登陆成功", ResLoginAPI.GetInstance(token)));
         }
 
         /// <summary>

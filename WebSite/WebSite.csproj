@@ -170,6 +170,7 @@
     <Compile Include="Controllers\LoginAPIController.cs" />
     <Compile Include="Controllers\ShowBoardController.cs" />
     <Compile Include="Controllers\JurisdictionController.cs" />
+    <Compile Include="Controllers\SysSetAPIController.cs" />
     <Compile Include="Controllers\UserRoleManagement\NavMenuAction.cs" />
     <Compile Include="Controllers\UserRoleManagement\UserRoleManagementAction.cs" />
     <Compile Include="CustomExtension\ModelValidMsg.cs" />
@@ -353,6 +354,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\LoginAPI\" />
+    <Folder Include="Views\SysSet\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
