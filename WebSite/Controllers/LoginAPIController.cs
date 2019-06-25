@@ -56,8 +56,8 @@ namespace WebSite.Controllers
             var userMenus = _navMenuBll.GetNavMenuByUserId(userId.ToString());
             if (userMenus != null)
             {
-                Func<string, List<ResUserMenuAPI>> funcMenus = null;
-                funcMenus = (x) => userMenus.Where(t => t.ParentMenId.Equals(x)).Select(t => new ResUserMenuAPI
+                Func<string, int, List<ResUserMenuAPI>> funcMenus = null;
+                funcMenus = (x, y) => userMenus.Where(t => t.ParentMenId.Equals(x) && t.Level.Equals(y)).Select(t => new ResUserMenuAPI
                 {
                     MenuId = t.MenuId,
                     MenuName = t.MenuName,
@@ -66,9 +66,9 @@ namespace WebSite.Controllers
                     Url = t.Url,
                     IconClass = "",
                     IconUrl = "",
-                    SubLevelMenus = funcMenus(t.ParentMenId)
+                    SubLevelMenus = funcMenus(t.MenuId, t.Level + 1)
                 }).ToList();
-                return Json(ResMessage.CreatMessage(ResultTypeEnum.Success, "获取菜单成功", funcMenus));
+                return Json(ResMessage.CreatMessage(ResultTypeEnum.Success, "获取菜单成功", funcMenus("#", 1)));
             }
             return Json(ResMessage.CreatMessage(ResultTypeEnum.ValidateError, "当前用户无可用菜单"));
         }
