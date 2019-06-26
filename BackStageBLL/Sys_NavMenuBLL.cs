@@ -34,12 +34,6 @@ namespace BackStageBLL
             if (result == null || !result.Any())
             {
                 result = _navMenu.GetNavMenuByUserId(userId);
-                result.ForEach(x =>
-                {
-                    x.Url = x.Url ?? "#";
-                    x.IconClass = x.IconClass ?? "icon icon-target";
-                    x.IconUrl = string.Format("<i class='{0}'></i>", x.IconClass);
-                });
                 CacheManager.Add(userMenuKey, result);
             }
             return result;
@@ -61,6 +55,40 @@ namespace BackStageBLL
             var result = _menuShare.LoadEntities(x => menuRoleMap.Exists(t => t.MendId.Equals(x.MenuId)));
             return result;
         }
+
+        /// <summary>
+        /// 获取最大父级菜单编号 
+        /// </summary>
+        /// <returns></returns>
+        public string  maxParentMenuId()
+        {
+            string maxMenuId = string.Empty;
+            var parentLevelMenus = _menuShare.LoadEntities(x => x.Level.Equals(1));
+            if (parentLevelMenus == null)
+                maxMenuId = "01";
+            else
+            {
+                var menuIds = parentLevelMenus.Select(i => i.MenuId);
+                maxMenuId = $"{(StringHelp.ChartToInteger(menuIds).Max() + 1).ToString().PadLeft(2, '0')}";
+            }
+            return maxMenuId;
+        }
+
+
+        /// <summary>
+        /// 获取最大子级菜单编号 
+        /// </summary>
+        /// <returns></returns>
+        public string maxSubMenuId(string parentMenId)
+        {
+            string maxMenuId = string.Empty;
+            var subLevelMenus = _menuShare.LoadEntities(x => x.ParentMenId.Equals(parentMenId));
+            if (subLevelMenus == null)
+                return $"{parentMenId}001";
+            var menuIds = subLevelMenus.Select(x => x.MenuId.Replace(parentMenId, "")).ToList();
+            return $"{parentMenId}{(StringHelp.ChartToInteger(menuIds).Max() + 1).ToString().PadLeft(3, '0')}"; ;
+        }
+
 
     }
 }

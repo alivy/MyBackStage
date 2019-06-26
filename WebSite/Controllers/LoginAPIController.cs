@@ -64,12 +64,11 @@ namespace WebSite.Controllers
                     ParentMenId = t.ParentMenId,
                     Level = t.Level,
                     Url = t.Url,
-                    IconClass = "",
-                    IconUrl = "",
+                    IconClass = t.IconClass,
+                    IconUrl = t.IconUrl,
                     SubLevelMenus = funcMenus(t.MenuId, t.Level + 1)
                 }).ToList();
-                return Json(ResMessage.CreatMessage(ResultTypeEnum.Success, "获取菜单成功", funcMenus("#", 1)));
-
+                return Json(ResMessage.CreatMessage(ResultTypeEnum.Success, "获取菜单成功", funcMenus("$", 1)));
             }
             return Json(ResMessage.CreatMessage(ResultTypeEnum.ValidateError, "当前用户无可用菜单"));
         }

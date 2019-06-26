@@ -1,0 +1,737 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebSite</name>
+    </assembly>
+    <members>
+        <member name="F:WebSite.Controllers.BaseAction.userMenus">
+            <summary>
+            当前用户菜单信息
+            </summary>
+        </member>
+        <member name="F:WebSite.Controllers.BaseAction.userButtonAccess">
+            <summary>
+            当前用户菜单信息
+            </summary>
+        </member>
+        <member name="M:WebSite.Controllers.BaseAction.OnAuthorization(System.Web.Mvc.AuthorizationContext)">
+            <summary>
+            公共验证过滤
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:WebSite.Controllers.BaseAction.GetButtonAccess(System.String)">
+            <summary>
+            获取用户按钮权限
+            </summary>
+        </member>
+        <member name="M:WebSite.Controllers.BaseAction.IsUserAccess(System.Web.Mvc.AuthorizationContext)">
+            <summary>
+            权限检查
+            </summary>
+            <param name="context"></param>
+            <returns>一个bool的数据，表示用户是否拥有其他权限</returns>
+        </member>
+        <member name="M:WebSite.Controllers.BaseAction.ExistAllowAnonymous(System.Web.Mvc.AuthorizationContext)">
+            <summary>
+            检查是否存在免验证
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.BaseAction.RequestAction``1(``0)">
+            <summary>
+            用于封装返回对象直接转json输出
+            
+            小知识：使用这些访问修饰符可指定下列五个可访问性级别：
+            public：访问不受限制。
+            protected：访问仅限于包含类或从包含类派生的类型。
+            Internal：访问仅限于当前程序集。
+            protected internal:访问限制到当前程序集或从包含派生的类型的类别。
+            private：访问仅限于包含类型。
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WebSite.Controllers.RequestResult">
+            <summary>
+            js请求返回的结果对象
+            </summary>
+        </member>
+        <member name="T:WebSite.Controllers.ResultTypeEnum">
+            <summary>
+            成功失败的枚举
+            </summary>
+        </member>
+        <member name="F:WebSite.Controllers.ResultTypeEnum.Success">
+            <summary>
+            成功
+            </summary>
+        </member>
+        <member name="F:WebSite.Controllers.ResultTypeEnum.ValidateError">
+            <summary>
+            验证失败
+            </summary>
+        </member>
+        <member name="F:WebSite.Controllers.ResultTypeEnum.Error">
+            <summary>
+            错误，已知的错误
+            </summary>
+        </member>
+        <member name="F:WebSite.Controllers.ResultTypeEnum.Exception">
+            <summary>
+            错误，写在try catch中的错误
+            </summary>
+        </member>
+        <member name="F:WebSite.Controllers.ResultTypeEnum.AuthorityCheck">
+            <summary>
+            权限验证
+            </summary>
+        </member>
+        <member name="F:WebSite.Controllers.ResultTypeEnum.BaseAuthorityCheckFailed">
+            <summary>
+            基础权限校验失败
+            如：用户不存在，ip不允许等等
+            </summary>
+        </member>
+        <member name="M:WebSite.Controllers.BootStrapController.Share(System.String)">
+            <summary>
+            加载模板页面
+            </summary>
+            <param name="backUrl">跳转地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.BootStrapController.LayoutsNormal">
+            <summary>
+            布局-正常页
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.BootStrapController.LayoutsFixedSidebar">
+            <summary>
+            布局-固定边栏
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.BootStrapController.LayoutsFixedHeader">
+            <summary>
+            布局-固定标题
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.BootStrapController.LayoutsHiddenSidebar">
+            <summary>
+            布局-隐藏边栏
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.BootStrapController.LayoutsAlerts">
+            <summary>
+            警报
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.BootStrapController.LayoutsButtons">
+            <summary>
+            按钮样式
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.BootStrapController.LayoutsCards">
+            <summary>
+            卡片样式
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.BootStrapController.LayoutsModals">
+             <summary>
+            动态弹窗
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.BootStrapController.LayoutsTabs">
+             <summary>
+            标签
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.BootStrapController.LayoutsProgressBars">
+             <summary>
+            进度条
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.BootStrapController.LayoutsWidgets">
+             <summary>
+            小工具
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.HomeAciton.LogionAction.Action(WebSite.Models.HomeModel.ViewUserLogin)">
+            <summary>
+            用户登录功能
+            </summary>
+            <param name="viewUser"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.HomeAciton.LogionAction.CheckLogin(WebSite.Models.HomeModel.ViewUserLogin)">
+            <summary>
+            检查用户登录
+            </summary>
+            <param name="userName">用户名</param>
+            <param name="password">密码</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.HomeAciton.LogionAction.SetUserCache(DBModel.Sys_User)">
+            <summary>
+            需要放入缓存的用户信息
+            </summary>
+        </member>
+        <member name="M:WebSite.Controllers.HomeAciton.LogionAction.SetCookie(System.String)">
+            <summary>
+            设置cookie，以及存在时间
+            </summary>
+            <param name="userId"></param>
+        </member>
+        <member name="M:WebSite.Controllers.HomeAciton.LogionAction.APIAction(WebSite.Models.HomeModel.ViewUserLogin)">
+            <summary>
+            API用户登录功能
+            </summary>
+            <param name="viewUser"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.HomeAciton.LogionAction.APICheckLogin(WebSite.Models.HomeModel.ViewUserLogin)">
+            <summary>
+            API检查用户登录 
+            </summary>
+            <param name="userInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.HomeAciton.LogionAction.LoginHistory(System.String,System.String)">
+            <summary>
+            添加登陆记录
+            </summary>
+            <param name="userInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.HomeAciton.LogionAction.SetUserCacheAPI(DBModel.Sys_User)">
+            <summary>
+            API用户过期信息缓存
+            </summary>
+        </member>
+        <member name="M:WebSite.Controllers.HomeController.WebLogin">
+            <summary>
+            web登陆
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:WebSite.Controllers.LoginAPIController">
+            <summary>
+            登陆API外部接口
+            </summary>
+        </member>
+        <member name="M:WebSite.Controllers.LoginAPIController.WebLoginAPI(WebSite.Models.HomeModel.ViewUserLogin)">
+            <summary>
+            Web端API登陆
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.LoginAPIController.UserMenu">
+            <summary>
+            获取用户菜单
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WebSite.Controllers.JurisdictionController">
+            <summary>
+            权限管理
+            </summary>
+        </member>
+        <member name="P:WebSite.Controllers.JurisdictionController._userShareBll">
+            <summary>
+            用户模板接口
+            </summary>
+        </member>
+        <member name="P:WebSite.Controllers.JurisdictionController._roleShareBll">
+            <summary>
+            角色模板接口
+            </summary>
+        </member>
+        <member name="P:WebSite.Controllers.JurisdictionController._menuShareBll">
+            <summary>
+            菜单模板接口
+            </summary>
+        </member>
+        <member name="P:WebSite.Controllers.JurisdictionController._buttonShareBll">
+            <summary>
+            按钮模板接口
+            </summary>
+        </member>
+        <member name="P:WebSite.Controllers.JurisdictionController._buttonMenuShareBll">
+            <summary>
+            菜单按钮模板接口
+            </summary>
+        </member>
+        <member name="P:WebSite.Controllers.JurisdictionController._menuRoleMapShareBll">
+            <summary>
+            菜单角色模板接口
+            </summary>
+        </member>
+        <member name="P:WebSite.Controllers.JurisdictionController._userRoleMapShareBll">
+            <summary>
+            用户角色模板接口
+            </summary>
+        </member>
+        <member name="P:WebSite.Controllers.JurisdictionController._userOrganizeMapShareBll">
+            <summary>
+            用户角色模板接口
+            </summary>
+        </member>
+        <member name="P:WebSite.Controllers.JurisdictionController._navMenuBll">
+            <summary>
+            菜单接口
+            </summary>
+        </member>
+        <member name="P:WebSite.Controllers.JurisdictionController._buttonBll">
+            <summary>
+            按钮接口
+            </summary>
+        </member>
+        <member name="M:WebSite.Controllers.JurisdictionController.UserRoleManagement">
+            <summary>
+            用户角色管理
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.JurisdictionController.QueryUserRoleList(ViewModel.ReqBasePage)">
+            <summary>
+            角色列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.JurisdictionController.RoleMenusByRoleId(System.String)">
+             <summary>
+            获取角色对应菜单权限
+             </summary>
+        </member>
+        <member name="M:WebSite.Controllers.JurisdictionController.SetRoleRelationMenus(ViewModel.ResSetRoleMenus)">
+            <summary>
+            设置角色关联的菜单列表
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.JurisdictionController.SetRoleRelationUsers(ViewModel.ResSetRoleUserInfos)">
+            <summary>
+            设置角色关联的用户列表
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.JurisdictionController.NavMenuManagement">
+            <summary>
+            菜单管理
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.JurisdictionController.QueryNavMenuList(ViewModel.ReqBasePage)">
+            <summary>
+            菜单列表
+            </summary>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.JurisdictionController.NavMenuExecutive(ViewModel.ReqNavMenuView)">
+            <summary>
+            操作菜单视图 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.JurisdictionController.MenuButtonsByMenuId(System.String)">
+            <summary>
+            获取菜单按钮
+            </summary>
+            <param name="navMenu"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.JurisdictionController.SetMenuButtons(ViewModel.ResSetMenuBtns)">
+            <summary>
+            获取菜单按钮,没有回滚，
+            </summary>
+            <param name="navMenu"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.JurisdictionController.UserManagement">
+            <summary>
+            用户管理
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.JurisdictionController.QueryUserList(ViewModel.ReqBasePage)">
+            <summary>
+            用户列表
+            </summary>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.JurisdictionController.SetUserRelationtRoles(ViewModel.ResSetUserRoles)">
+            <summary>
+            设置用户关联的角色
+            此处要加事务回滚
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.JurisdictionController.SetUserRelationtOrganizes(ViewModel.ResSetUserRoles)">
+            <summary>
+            设置用户关联的机构
+            此处要加事务回滚
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:WebSite.Controllers.SysSetAPIController">
+            <summary>
+            系统设置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:WebSite.Controllers.SysSetAPIController._userShareBll">
+            <summary>
+            用户模板接口
+            </summary>
+        </member>
+        <member name="P:WebSite.Controllers.SysSetAPIController._roleShareBll">
+            <summary>
+            角色模板接口
+            </summary>
+        </member>
+        <member name="P:WebSite.Controllers.SysSetAPIController._menuShareBll">
+            <summary>
+            菜单模板接口
+            </summary>
+        </member>
+        <member name="P:WebSite.Controllers.SysSetAPIController._buttonShareBll">
+            <summary>
+            按钮模板接口
+            </summary>
+        </member>
+        <member name="P:WebSite.Controllers.SysSetAPIController._buttonMenuShareBll">
+            <summary>
+            菜单按钮模板接口
+            </summary>
+        </member>
+        <member name="P:WebSite.Controllers.SysSetAPIController._menuRoleMapShareBll">
+            <summary>
+            菜单角色模板接口
+            </summary>
+        </member>
+        <member name="P:WebSite.Controllers.SysSetAPIController._userRoleMapShareBll">
+            <summary>
+            用户角色模板接口
+            </summary>
+        </member>
+        <member name="P:WebSite.Controllers.SysSetAPIController._userOrganizeMapShareBll">
+            <summary>
+            用户角色模板接口
+            </summary>
+        </member>
+        <member name="P:WebSite.Controllers.SysSetAPIController._navMenuBll">
+            <summary>
+            菜单接口
+            </summary>
+        </member>
+        <member name="P:WebSite.Controllers.SysSetAPIController._buttonBll">
+            <summary>
+            按钮接口
+            </summary>
+        </member>
+        <member name="M:WebSite.Controllers.SysSetAPIController.NavMenuManagement">
+            <summary>
+            菜单管理
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.SysSetAPIController.QueryNavMenuList(ViewModel.ReqBasePage)">
+            <summary>
+            菜单列表
+            </summary>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.SysSetAPIController.AddMenuExecutive(ViewModel.ReqNavMenuView)">
+            <summary>
+            操作菜单新增 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.SysSetAPIController.UpdateMenuExecutive(ViewModel.ReqNavMenuView)">
+            <summary>
+            操作菜单修改 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.SysSetAPIController.DelMenuExecutive(System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            删除菜单
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.SysSetAPIController.MenuButtonsByMenuId(System.String)">
+            <summary>
+            获取菜单按钮
+            </summary>
+            <param name="menuId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.SysSetAPIController.SetMenuButtons(ViewModel.ResSetMenuBtns)">
+            <summary>
+            设置菜单对应按钮,没有回滚，
+            </summary>
+            <param name="btns"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.NavMenuAction.QueryNavMenuList(ViewModel.ReqBasePage,System.String)">
+            <summary>
+            获取菜单列表
+            </summary>
+            <param name="page"></param>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.NavMenuAction.APIQueryNavMenus(ViewModel.ReqBasePage)">
+            <summary>
+            API获取菜单列表
+            </summary>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.UserRoleManagement.UserRoleManagementAction.QueryUserRoleList(ViewModel.ReqBasePage,System.String)">
+            <summary>
+            获取用户列表
+            </summary>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WebSite.Controllers.Filter.ExceptionHandleAttribute">
+            <summary>
+            错误重定向页面
+            </summary>
+        </member>
+        <member name="M:WebSite.Controllers.Filter.HttpsToHttpAttribute.OnActionExecuted(System.Web.Mvc.ActionExecutedContext)">
+            <summary>
+            Action执行后执行
+            </summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="M:WebSite.Controllers.Filter.HttpsToHttpAttribute.OnActionExecuting(System.Web.Mvc.ActionExecutingContext)">
+            <summary>
+            Action执行前执行
+            </summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="M:WebSite.Controllers.Filter.HttpsToHttpAttribute.GetRulePages">
+            <summary>
+            获取页面规则集合
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.Filter.HttpsToHttpAttribute.OnResultExecuted(System.Web.Mvc.ResultExecutedContext)">
+            <summary>
+            Action返回后执行
+            </summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="M:WebSite.Controllers.Filter.HttpsToHttpAttribute.OnResultExecuting(System.Web.Mvc.ResultExecutingContext)">
+            <summary>
+            Action返回前执行
+            </summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="M:WebSite.Controllers.Filter.TokenAuthorizeAttribute.OnAuthorization(System.Web.Mvc.AuthorizationContext)">
+            <summary>
+            权限验证
+            </summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="M:WebSite.Controllers.Filter.TokenAuthorizeAttribute.IsUserAccess(System.Web.Mvc.AuthorizationContext,System.String)">
+            <summary>
+            权限检查
+            </summary>
+            <param name="context"></param>
+               <param name="userId"></param>
+            <returns>一个bool的数据，表示用户是否拥有其他权限</returns>
+        </member>
+        <member name="M:WebSite.Controllers.Filter.UserAuthorizeAttribute.OnAuthorization(System.Web.Mvc.AuthorizationContext)">
+            <summary>
+            权限验证
+            </summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="M:WebSite.Controllers.Filter.UserAuthorizeAttribute.IsUserAccess(System.Web.Mvc.AuthorizationContext,System.String)">
+            <summary>
+            权限检查
+            </summary>
+            <param name="context"></param>
+               <param name="userId"></param>
+            <returns>一个bool的数据，表示用户是否拥有其他权限</returns>
+        </member>
+        <member name="P:WebSite.ModelValidMsg.IsValid">
+            <summary>
+            验证是否通过
+            </summary>
+        </member>
+        <member name="M:WebSite.ModelValidState.GetIsValid``1(``0)">
+            <summary>
+            获取验证结果
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.ModelValidState.GetErrorMessageList``1(``0)">
+            <summary>
+            获取所有验证消息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.ModelValidState.GetModelValid``1(``0)">
+            <summary>
+            根据类型获取表名称
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.ModelValidState.GetValidMode``1(``0)">
+            <summary>
+            验证合法性
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="S"></typeparam>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.ModelValidState.GetErrorMessage``1(``0)">
+            <summary>
+            验证所有数据合法性
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WebSite.ValidErrorMessage">
+            <summary>
+            验证错误消息
+            </summary>
+        </member>
+        <member name="P:WebSite.ValidErrorMessage.Key">
+            <summary>
+            验证是否通过
+            </summary>
+        </member>
+        <member name="T:WebSite.Filter.AllowAdoptAttribute">
+            <summary>
+            允许通过的接口
+            </summary>
+        </member>
+        <member name="M:WebSite.Filter.AllowAdoptAttribute.OnAuthorization(System.Web.Mvc.AuthorizationContext)">
+            <summary>
+            只做权限验证
+            </summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="M:WebSite.Filter.CompressActionFilterAttribute.OnActionExecuted(System.Web.Mvc.ActionExecutedContext)">
+            <summary>
+            Action方法执行后
+            </summary>
+            <param name="filterContext">请求上下文</param>
+        </member>
+        <member name="M:WebSite.Filter.CompressActionFilterAttribute.OnActionExecuting(System.Web.Mvc.ActionExecutingContext)">
+            <summary>
+            Action方法执行前
+            响应数据压缩处理
+            </summary>
+            <param name="filterContext">请求上下文</param>
+        </member>
+        <member name="T:WebSite.Filter.CustomActionFilterAttribute">
+            <summary>
+            Action执行过滤验证
+            </summary>
+        </member>
+        <member name="M:WebSite.Filter.CustomActionFilterAttribute.OnActionExecuted(System.Web.Mvc.ActionExecutedContext)">
+            <summary>
+            Action方法执行后
+            </summary>
+            <param name="filterContext">请求上下文</param>
+        </member>
+        <member name="M:WebSite.Filter.CustomActionFilterAttribute.OnActionExecuting(System.Web.Mvc.ActionExecutingContext)">
+            <summary>
+            Action方法执行前
+            </summary>
+            <param name="filterContext">请求上下文</param>
+        </member>
+        <member name="M:WebSite.Filter.CustomActionFilterAttribute.OnResultExecuted(System.Web.Mvc.ResultExecutedContext)">
+            <summary>
+            执行操作结果后
+            </summary>
+            <param name="filterContext">请求上下文</param>
+        </member>
+        <member name="M:WebSite.Filter.CustomActionFilterAttribute.OnResultExecuting(System.Web.Mvc.ResultExecutingContext)">
+             <summary>
+            执行操作结果前
+             </summary>
+             <param name="filterContext">请求上下文</param>
+        </member>
+        <member name="T:WebSite.Filter.CustomHandleErrorAttribute">
+            <summary>
+            自定义异常处理
+            </summary>
+        </member>
+        <member name="M:WebSite.Filter.CustomHandleErrorAttribute.OnException(System.Web.Mvc.ExceptionContext)">
+            <summary>
+            异常发生处理方法
+            </summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="M:WebSite.MvcApplication.MEFResolver">
+            <summary>
+            设置MEF依赖注入容器
+            </summary>
+        </member>
+        <member name="M:WebSite.MvcApplication.Application_Error(System.Object,System.EventArgs)">
+            <summary>
+            处理在http请求时发生的异常
+            </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
+        </member>
+        <member name="T:WebSite.MefDependencySolver">
+            <summary>
+            MEF注入
+            </summary>
+        </member>
+        <member name="P:WebSite.Models.HomeModel.ViewUserLogin.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:WebSite.Models.HomeModel.ViewUserLogin.UserPwd">
+            <summary>
+            用户密码
+            </summary>
+        </member>
+        <member name="P:WebSite.Models.HomeModel.ViewUserLogin.City">
+            <summary>
+            登陆城市
+            </summary>
+        </member>
+        <member name="P:WebSite.Models.HomeModel.ViewUserLogin.BackUrl">
+            <summary>
+            地址
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -11,6 +11,7 @@ using System;
 using System.Web;
 using System.Text.RegularExpressions;
 using System.Text;
+using System.Collections.Generic;
 
 namespace Common
 {
@@ -769,5 +770,21 @@ namespace Common
             return moneyStr;
         }
         #endregion
+
+        /// <summary>
+        /// 字符转整型
+        /// </summary>
+        /// <param name="score"></param>
+        /// <returns></returns>
+        public static List<int> ChartToInteger(IEnumerable<string> score)
+        {
+            var ints = new List<int>();
+            foreach (var item in score)
+            {
+                int.TryParse(item, out int num);
+                ints.Add(num);
+            }
+            return ints;
+        }
     }
 }

@@ -37,5 +37,16 @@ namespace BackStageIBLL
         /// <param name="menuId"></param>
         /// <returns></returns>
         List<Sys_button> GetMenuButtonsByMenuId(string menuId);
+
+
+      
+
+        /// <summary>
+        /// 获取是否存在对用菜单的操作权限
+        /// </summary>
+        /// <param name="menuId"></param>
+        /// <param name="btnId"></param>
+        /// <returns></returns>
+        bool BtnJurisdiction(string menuId, int btnId);
     }
 }

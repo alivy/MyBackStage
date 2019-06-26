@@ -9,6 +9,7 @@ using BackStageIBLL;
 using DBModel;
 using Newtonsoft.Json;
 using WebSite.Filter;
+using ViewModel;
 
 namespace WebSite.Controllers.Filter
 {
@@ -41,7 +42,8 @@ namespace WebSite.Controllers.Filter
                 } 
             }
             filterContext.HttpContext.Response.ContentType = "application/json";
-            string json = JsonConvert.SerializeObject(RequestResult.Success("检测Token存在错误"));
+            var result = ResMessage.CreatMessage(ResultTypeEnum.Error, "无Token用户权限,请登录获取token");
+            string json = JsonConvert.SerializeObject(result);
             filterContext.HttpContext.Response.Write(json);
             filterContext.HttpContext.Response.End();
         }

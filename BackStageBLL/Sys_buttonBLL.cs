@@ -19,9 +19,10 @@ namespace BackStageBLL
         [Import("Sys_buttonDal")]
         private ISys_ButtonDal _button { get; set; }
 
+        [Import]
         private IBaseDal<Sys_MenuButttonMap> _menuButttonMap { get; set; }
 
-
+        [Import]
         private IBaseDal<Sys_button> _buttonShare { get; set; }
         /// <summary>
         /// 获取用户页面按钮权限
@@ -60,7 +61,23 @@ namespace BackStageBLL
         public List<Sys_button> GetMenuButtonsByMenuId(string menuId)
         {
             var menuButttons = _menuButttonMap.LoadEntities<Sys_MenuButttonMap>(x => x.MenuId.Equals(menuId));
-            return _buttonShare.LoadEntities<Sys_button>(x => menuButttons.Exists(t => t.ButtonId.Equals(x.ButtonId)));
+            if (menuButttons == null)
+            {
+                return null;
+            }
+            var menuIds = menuButttons.Select(x => x.ButtonId).ToList();
+            return _buttonShare.LoadEntities<Sys_button>(x => menuIds.Contains(x.ButtonId));
+        }
+
+
+        /// <summary>
+        /// 获取是否存在对用菜单的操作权限
+        /// </summary>
+        /// <returns></returns>
+        public bool BtnJurisdiction(string menuId, int btnId)
+        {
+            var bts = GetMenuButtonsByMenuId(menuId);
+            return bts.FirstOrDefault(x => x.ButtonId.Equals(btnId.ToString())) != null;
         }
     }
 }

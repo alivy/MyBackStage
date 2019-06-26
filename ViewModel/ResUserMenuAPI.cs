@@ -55,6 +55,11 @@ namespace ViewModel
         public string IconUrl { get; set; }
 
         /// <summary>
+        /// 排序值
+        /// </summary>
+        [StringLength(300)]
+        public int Seq { get; set; }
+        /// <summary>
         /// 子级菜单
         /// </summary>
         public List<ResUserMenuAPI> SubLevelMenus { get; set; }

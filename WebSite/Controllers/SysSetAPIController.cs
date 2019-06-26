@@ -108,70 +108,103 @@ namespace WebSite.Controllers
         {
             var userId = Session[ConstString.SysUserLoginId];
             var userRole = new NavMenuAction(_menuShareBll, _navMenuBll);
-            var result = userRole.APIQueryNavMenus(page, userId.ToString());
+            var result = userRole.APIQueryNavMenus(page);
             return Json(result);
         }
 
         /// <summary>
-        /// 操作菜单增删改 
+        /// 操作菜单新增 
         /// </summary>
         /// <returns></returns>
         [CustomHandleError]
-        public ActionResult NavMenuExecutive(ReqNavMenuView navMenu)
+        public ActionResult AddMenuExecutive(ReqNavMenuView navMenu)
         {
             bool result = false;
-            if (navMenu.GetIsValid())
+            if (!navMenu.GetIsValid())
             {
                 string errorMsg = navMenu.GetErrorMessageList().First().ErrorMessage;
-                return Json(RequestResult.Exception(errorMsg));
+                return Json(ResMessage.CreatMessage(ResultTypeEnum.Exception, errorMsg));
             }
-            var enumTest = TestEnum.AgeSmall.GetRemark();
-            var nav = _menuShareBll.FirstOrDefault<Sys_NavMenu>(x => x.MenuId.Equals(navMenu.MenuId));
-            if (navMenu.ExecutiveAction == (int)Operation.Add)
+            string newMenuId = string.Empty;
+            if (navMenu.ParentMenId != null || navMenu.Level > 1)
             {
-                var sysNav = new Sys_NavMenu
-                {
-                    MenuId = navMenu.MenuId,
-                    MenuName = navMenu.MenuName,
-                    ParentMenId = navMenu.ParentMenId,
-                    Level = navMenu.Level,
-                    Url = navMenu.Url
-                };
-                result = _menuShareBll.AddEntity(sysNav);
-            }
-            else if (navMenu.ExecutiveAction == (int)Operation.Update)
-            {
-                nav.MenuId = navMenu.MenuId;
-                nav.MenuName = navMenu.MenuName;
-                nav.ParentMenId = navMenu.ParentMenId;
-                nav.Level = navMenu.Level;
-                nav.Url = navMenu.Url;
-                result = _menuShareBll.UpdateEntity(nav);
-            }
-            else if (navMenu.ExecutiveAction == (int)Operation.Delete)
-            {
+                var nav = _menuShareBll.FirstOrDefault<Sys_NavMenu>(x => x.MenuId.Equals(navMenu.ParentMenId));
                 if (nav == null)
-                {
-                    return Json(ResMessage.CreatMessage(ResultTypeEnum.Error, "记录不存在"));
-                }
-                _menuShareBll.DeleteEntity(nav);
-                result = true;
-            }
-
-            if (result)
-            {
-                return Json(ResMessage.CreatMessage(ResultTypeEnum.Success));
+                    return Json(ResMessage.CreatMessage(ResultTypeEnum.Error, "父级菜单不存在"));
+                newMenuId = _navMenuBll.maxSubMenuId(navMenu.ParentMenId);
+                navMenu.Level = 2;
             }
             else
             {
-                return Json(ResMessage.CreatMessage(ResultTypeEnum.Exception));
+                newMenuId = _navMenuBll.maxParentMenuId();
+                navMenu.Level = 2;
+                navMenu.ParentMenId = "$";
             }
+            result = _menuShareBll.AddEntity(new Sys_NavMenu
+            {
+                MenuId = newMenuId,
+                MenuName = navMenu.MenuName,
+                ParentMenId = navMenu.ParentMenId,
+                Level = navMenu.Level,
+                Url = navMenu.Url,
+                Seq = navMenu.Seq,
+                IsVisible = navMenu.IsVisible
+            });
+            return Json(ResMessage.CreatMessage(result ? ResultTypeEnum.Success : ResultTypeEnum.Exception));
         }
+
+        /// <summary>
+        /// 操作菜单修改 
+        /// </summary>
+        /// <returns></returns>
+        [CustomHandleError]
+        public ActionResult UpdateMenuExecutive(ReqNavMenuView navMenu)
+        {
+            var menuId = navMenu.MenuId;
+            var opera = (int)Operation.Update;
+            if (!navMenu.GetIsValid())
+            {
+                string errorMsg = navMenu.GetErrorMessageList().First().ErrorMessage;
+                return Json(ResMessage.CreatMessage(ResultTypeEnum.Exception, errorMsg));
+            }
+            //var isBtn = _buttonBll.BtnJurisdiction(menuId, opera);
+            //if (!isBtn)
+            //    return Json(ResMessage.CreatMessage(ResultTypeEnum.ValidateError, "您没有修改按钮权限"));
+            var nav = _menuShareBll.FirstOrDefault<Sys_NavMenu>(x => x.MenuId.Equals(menuId));
+            if (nav == null)
+                return Json(ResMessage.CreatMessage(ResultTypeEnum.Error, "菜单不存在"));
+            nav.MenuId = navMenu.MenuId;
+            nav.MenuName = navMenu.MenuName;
+            nav.ParentMenId = navMenu.ParentMenId;
+            nav.Level = navMenu.Level;
+            nav.Url = navMenu.Url;
+            var result = _menuShareBll.UpdateEntity(nav);
+            return Json(ResMessage.CreatMessage(result ? ResultTypeEnum.Success : ResultTypeEnum.Exception));
+        }
+
+
+        /// <summary>
+        /// 删除菜单
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult DelMenuExecutive(string menuId, List<string> delMenuIds)
+        {
+            var opera = (int)Operation.Delete;
+            var isBtn = _buttonBll.BtnJurisdiction(menuId, opera);
+            if (!isBtn)
+                return Json(ResMessage.CreatMessage(ResultTypeEnum.ValidateError, "您没有删除按钮权限"));
+            var result = _menuShareBll.BulkDelete(x => delMenuIds.Contains(x.MenuId));
+            return Json(ResMessage.CreatMessage(ResultTypeEnum.Exception));
+        }
+
+
+
+
 
         /// <summary>
         /// 获取菜单按钮
         /// </summary>
-        /// <param name="navMenu"></param>
+        /// <param name="menuId"></param>
         /// <returns></returns>
         [CustomHandleError]
         public ActionResult MenuButtonsByMenuId(string menuId)
@@ -186,7 +219,7 @@ namespace WebSite.Controllers
         /// <summary>
         /// 设置菜单对应按钮,没有回滚，
         /// </summary>
-        /// <param name="navMenu"></param>
+        /// <param name="btns"></param>
         /// <returns></returns>
         public ActionResult SetMenuButtons(ResSetMenuBtns btns)
         {

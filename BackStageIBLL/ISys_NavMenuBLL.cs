@@ -20,5 +20,18 @@ namespace BackStageIBLL
         /// <param name="roleId"></param>
         /// <returns></returns>
         List<Sys_NavMenu> GetRoleMenusByRoleId(string roleId);
+
+        /// <summary>
+        /// 获取最大父级菜单编号 
+        /// </summary>
+        /// <returns></returns>
+        string maxParentMenuId();
+
+
+        /// <summary>
+        /// 获取最大子级菜单编号 
+        /// </summary>
+        /// <returns></returns>
+        string maxSubMenuId(string parentMenId);
     }
 }
