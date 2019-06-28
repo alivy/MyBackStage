@@ -71,6 +71,10 @@
       <Project>{8be57177-5507-435e-b554-0dd7cc4ced05}</Project>
       <Name>BackStageIDal</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{0C08E018-3115-4108-B0BF-08B2D1056A5D}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DBModel\DBModel.csproj">
       <Project>{f6fe6f02-0f56-4feb-b595-a8f0c8f7b007}</Project>
       <Name>DBModel</Name>

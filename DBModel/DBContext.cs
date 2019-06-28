@@ -7,6 +7,8 @@
     {
         public DBContext(): base("name=DbContext")
         {
+            //Database.SetInitializer<DBContext>(null);
+
         }
         #region 创建DBContext
         /// <summary>

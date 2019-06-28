@@ -1,4 +1,5 @@
 ﻿
+using Common;
 using DBModel;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace BackStageDAL
         public DataAccessBase(ConnectionStringType connectionStringType = ConnectionStringType.WebSite)
         {
             CurrentContext = DBContextFactory(connectionStringType);
+            CurrentContext.Database.Log = (sql) => Log.Write(LogLevel.Info, sql);
             CurrentContext.Database.CommandTimeout = TimeOut; //时间单位是毫秒
         }
 

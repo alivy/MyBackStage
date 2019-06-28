@@ -241,7 +241,6 @@
             <summary>
             获取用户菜单
             </summary>
-            <param name="user"></param>
             <returns></returns>
         </member>
         <member name="T:WebSite.Controllers.JurisdictionController">
@@ -690,11 +689,46 @@
             自定义异常处理
             </summary>
         </member>
+        <member name="M:WebSite.Filter.CustomHandleErrorAttribute.#ctor">
+            <summary>
+            使用异常消息
+            </summary>
+        </member>
+        <member name="M:WebSite.Filter.CustomHandleErrorAttribute.#ctor(System.String)">
+            <summary>
+            使用自定义错误消息
+            </summary>
+            <param name="errorMsg"></param>
+        </member>
+        <member name="M:WebSite.Filter.CustomHandleErrorAttribute.#ctor(System.String,System.Boolean)">
+            <summary>
+            使用自定义错误消息拼接错误日志
+            </summary>
+            <param name="errorMsg"></param>
+            <param name="IsSplicing"></param>
+        </member>
+        <member name="F:WebSite.Filter.CustomHandleErrorAttribute.ErrorMsg">
+            <summary>
+            自定义错误消息
+            </summary>
+        </member>
+        <member name="F:WebSite.Filter.CustomHandleErrorAttribute.IsSplicing">
+            <summary>
+            是否拼接
+            </summary>
+        </member>
         <member name="M:WebSite.Filter.CustomHandleErrorAttribute.OnException(System.Web.Mvc.ExceptionContext)">
             <summary>
             异常发生处理方法
             </summary>
             <param name="filterContext"></param>
+        </member>
+        <member name="M:WebSite.Filter.CustomHandleErrorAttribute.EFErrorMsg(System.Web.Mvc.ExceptionContext)">
+            <summary>
+            处理EF异常
+            </summary>
+            <param name="filterContext"></param>
+            <returns></returns>
         </member>
         <member name="M:WebSite.MvcApplication.MEFResolver">
             <summary>

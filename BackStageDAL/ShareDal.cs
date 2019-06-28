@@ -11,10 +11,11 @@ using System.Linq;
 using System.Linq.Expressions;
 using Z.EntityFramework.Extensions;
 using EntityFramework.Extensions;
+using System.Data.Entity.Validation;
 
 namespace BackStageDAL
 {
-   
+
     public class ShareDal<T> : IBaseDal<T>
         where T : class, new()
     {
@@ -27,14 +28,15 @@ namespace BackStageDAL
         /// <returns></returns>
         public int GetCount(Expression<Func<T, bool>> where = null)
         {
-            using (var db = DBContext.CreateContext())
-            {
-                if (where == null)
+           
+                using (var db = DBContext.CreateContext())
                 {
-                    return db.Set<T>().Count();
+                    if (where == null)
+                    {
+                        return db.Set<T>().Count();
+                    }
+                    return db.Set<T>().Count<T>(where);
                 }
-                return db.Set<T>().Count<T>(where);
-            }
         }
         #endregion
 
@@ -70,7 +72,7 @@ namespace BackStageDAL
                 {
                     return db.Set<T>().ToList();
                 }
-                return db.Set<T>().Where<T>(where).ToList();
+                return db.Set<T>().Where(where).ToList();
             }
         }
         #endregion
@@ -90,13 +92,13 @@ namespace BackStageDAL
 
                 if (where != null)
                 {
-                    m_data = m_query.Where<T>(where).AsQueryable();
+                    m_data = m_query.Where(where).AsQueryable();
                 }
                 if (order != null)
                 {
                     if (isAsc)
                     {
-                        m_data = m_data.OrderBy<T, S>(order).AsQueryable();
+                        m_data = m_data.OrderBy(order).AsQueryable();
                     }
                     else
                     {

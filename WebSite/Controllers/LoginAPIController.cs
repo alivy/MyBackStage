@@ -45,7 +45,6 @@ namespace WebSite.Controllers
         /// <summary>
         /// 获取用户菜单
         /// </summary>
-        /// <param name="user"></param>
         /// <returns></returns>
         [TokenAuthorize]
         public ActionResult UserMenu()

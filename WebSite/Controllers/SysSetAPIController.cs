@@ -5,10 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using ViewModel;
-using ViewModel.Enums;
 using WebSite.Controllers.Filter;
 using WebSite.Filter;
 
@@ -73,7 +71,7 @@ namespace WebSite.Controllers
         /// 菜单接口
         /// </summary>
         [Import("Sys_NavMenu")]
-        private new ISys_NavMenuBLL _navMenuBll { get; set; }
+        private ISys_NavMenuBLL _navMenuBll { get; set; }
 
         /// <summary>
         /// 按钮接口
@@ -182,7 +180,6 @@ namespace WebSite.Controllers
             return Json(ResMessage.CreatMessage(result ? ResultTypeEnum.Success : ResultTypeEnum.Exception));
         }
 
-
         /// <summary>
         /// 删除菜单
         /// </summary>
@@ -197,10 +194,6 @@ namespace WebSite.Controllers
             return Json(ResMessage.CreatMessage(ResultTypeEnum.Exception));
         }
 
-
-
-
-
         /// <summary>
         /// 获取菜单按钮
         /// </summary>
@@ -209,12 +202,14 @@ namespace WebSite.Controllers
         [CustomHandleError]
         public ActionResult MenuButtonsByMenuId(string menuId)
         {
+            Func<List<Sys_button>, List<ResButton>> func = (x) =>
+                                                            x.Select(t =>
+                                                            ResButton.CreatesInstance(t.ButtonId, t.ButtonName, t.ButtonSeq ?? 0, t.ButtonIcon)).ToList();
             var allbtns = _buttonShareBll.LoadEntities();
             var menubtns = _buttonBll.GetMenuButtonsByMenuId(menuId);
-            var result = ResdSingleToMultiple<Sys_button>.CreateObject(allbtns, menubtns, menuId);
-            return Json(RequestResult.Success("执行成功", result));
+            var result = ResdSingleToMultiple<ResButton>.CreateObject(func(allbtns), func(menubtns), menuId);
+            return Json(ResMessage.CreatMessage(ResultTypeEnum.Success, "执行成功", result));
         }
-
 
         /// <summary>
         /// 设置菜单对应按钮,没有回滚，
