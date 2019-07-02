@@ -283,7 +283,7 @@ namespace WebSite.Controllers
                 var menuId = btns.MenuId;
                 _buttonMenuShareBll.BulkDelete(x => x.MenuId.Equals(menuId));
                 var btnMenuMaps = new List<Sys_MenuButttonMap>();
-                btns.Btns.ForEach(x => btnMenuMaps.Add(new Sys_MenuButttonMap { ButtonId = x, MenuId = menuId }));
+                btns.BtnIds.Split(',').ToList().ForEach(x => btnMenuMaps.Add(new Sys_MenuButttonMap { ButtonId = x, MenuId = menuId }));
                 if (btnMenuMaps.Any())
                     _buttonMenuShareBll.BulkInsert(btnMenuMaps);
                 return RequestAction(RequestResult.Success("执行成功"));

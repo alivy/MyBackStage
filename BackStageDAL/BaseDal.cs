@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using System.Linq;
@@ -31,7 +32,7 @@ namespace BackStageDAL
                 {
                     return db.Set<T>().Count();
                 }
-                return db.Set<T>().Count<T>(where);
+                return db.Set<T>().Count(where);
             }
         }
         #endregion

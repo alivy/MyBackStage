@@ -155,7 +155,7 @@ namespace WebSite.Controllers
         /// 操作菜单修改 
         /// </summary>
         /// <returns></returns>
-        [CustomHandleError]
+        [CustomHandleError("执行菜单列表修改数据异常", true)]
         public ActionResult UpdateMenuExecutive(ReqNavMenuView navMenu)
         {
             var menuId = navMenu.MenuId;
@@ -165,9 +165,9 @@ namespace WebSite.Controllers
                 string errorMsg = navMenu.GetErrorMessageList().First().ErrorMessage;
                 return Json(ResMessage.CreatMessage(ResultTypeEnum.Exception, errorMsg));
             }
-            //var isBtn = _buttonBll.BtnJurisdiction(menuId, opera);
-            //if (!isBtn)
-            //    return Json(ResMessage.CreatMessage(ResultTypeEnum.ValidateError, "您没有修改按钮权限"));
+            var isBtn = _buttonBll.BtnJurisdiction(menuId, opera);
+            if (!isBtn)
+                return Json(ResMessage.CreatMessage(ResultTypeEnum.ValidateError, "您没有修改按钮权限"));
             var nav = _menuShareBll.FirstOrDefault<Sys_NavMenu>(x => x.MenuId.Equals(menuId));
             if (nav == null)
                 return Json(ResMessage.CreatMessage(ResultTypeEnum.Error, "菜单不存在"));
@@ -184,18 +184,21 @@ namespace WebSite.Controllers
         /// 删除菜单
         /// </summary>
         /// <returns></returns>
-        public ActionResult DelMenuExecutive(string menuId, List<string> delMenuIds)
+        [CustomHandleError("执行菜单列表删除数据异常", true)]
+        public ActionResult DelMenuExecutive(string menuId, string delMenuId)
         {
-            var opera = (int)Operation.Delete;
-            var isBtn = _buttonBll.BtnJurisdiction(menuId, opera);
+            var isBtn = _buttonBll.BtnJurisdiction(menuId, (int)Operation.Delete);
             if (!isBtn)
                 return Json(ResMessage.CreatMessage(ResultTypeEnum.ValidateError, "您没有删除按钮权限"));
+            var delMenuIds = delMenuId.Split(',');
+            if (delMenuIds == null || delMenuIds.Any())
+                return Json(ResMessage.CreatMessage(ResultTypeEnum.ValidateError, "传入delMenuId值不存在元素"));
             var result = _menuShareBll.BulkDelete(x => delMenuIds.Contains(x.MenuId));
-            return Json(ResMessage.CreatMessage(ResultTypeEnum.Exception));
+            return Json(ResMessage.CreatMessage(ResultTypeEnum.Success));
         }
 
         /// <summary>
-        /// 获取菜单按钮
+        /// 获取菜单按钮权限
         /// </summary>
         /// <param name="menuId"></param>
         /// <returns></returns>
@@ -220,7 +223,7 @@ namespace WebSite.Controllers
         {
             try
             {
-                if (btns.GetIsValid())
+                if (!btns.GetIsValid())
                 {
                     string errorMsg = btns.GetErrorMessageList().First().ErrorMessage;
                     return Json(RequestResult.Exception(errorMsg));
@@ -228,9 +231,13 @@ namespace WebSite.Controllers
                 var menuId = btns.MenuId;
                 _buttonMenuShareBll.BulkDelete(x => x.MenuId.Equals(menuId));
                 var btnMenuMaps = new List<Sys_MenuButttonMap>();
-                btns.Btns.ForEach(x => btnMenuMaps.Add(new Sys_MenuButttonMap { ButtonId = x, MenuId = menuId }));
-                if (btnMenuMaps.Any())
-                    _buttonMenuShareBll.BulkInsert(btnMenuMaps);
+                var btnIds = btns.BtnIds.Split(',').ToList();
+                if (btnIds != null || !btnIds.Any())
+                {
+                    btnIds.ForEach(x => btnMenuMaps.Add(new Sys_MenuButttonMap { ButtonId = x, MenuId = menuId }));
+                    if (btnMenuMaps.Any())
+                        _buttonMenuShareBll.BulkInsert(btnMenuMaps);
+                }
                 return Json(RequestResult.Success("执行成功"));
             }
             catch (Exception e)
