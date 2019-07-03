@@ -75,6 +75,15 @@ namespace WebSite.Controllers
             ViewBag.Message = "Your application description page.";
             return View();
         }
+        public ActionResult Log4net()
+        {
+            Log.Write(LogLevel.Info, "Info 日志写入测试");
+            Log.Write(LogLevel.Error, "Error 日志写入测试");
+            Log.Write(LogLevel.Warn, "Warn 日志写入测试");
+            Log.Write(LogLevel.Debug, "Debug 日志写入测试");
+            Log.Write(LogLevel.Fatal, "Fatal 日志写入测试");
 
+            return View();
+        }
     }
 }

@@ -124,7 +124,7 @@ namespace Common
                 StreamWriter sw = new StreamWriter(fs);
                 //开始写入     
                 string time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
-                msg = time + "，" + msg + System.Environment.NewLine;
+                msg = time + "，" + msg + Environment.NewLine;
 
                 sw.Write(msg);
                 //清空缓冲区               
