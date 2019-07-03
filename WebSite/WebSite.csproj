@@ -321,6 +321,8 @@
     <Content Include="Content\bootStrap3.3.7\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\bootStrap3.3.7\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\bootStrap3.3.7\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Config\log.config" />
+    <Content Include="Config\logger.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <EmbeddedResource Include="Scripts\Swagger .js" />
@@ -370,6 +372,7 @@
     <Content Include="Views\BootStrap\LayoutsWidgets.cshtml" />
     <Content Include="Views\Jurisdiction\UserRoleManagement.cshtml" />
     <Content Include="Views\Jurisdiction\NavMenuManagement.cshtml" />
+    <Content Include="Views\Home\Log4net.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\LoginAPI\" />

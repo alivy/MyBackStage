@@ -22,7 +22,7 @@ namespace ViewModel
         /// <summary>
         /// 按钮
         /// </summary>
-        public List<string> Btns { get; set; }
+        public string BtnIds { get; set; }
     }
 
 }

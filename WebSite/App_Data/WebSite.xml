@@ -470,7 +470,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:WebSite.Controllers.SysSetAPIController.DelMenuExecutive(System.String,System.Collections.Generic.List{System.String})">
+        <member name="M:WebSite.Controllers.SysSetAPIController.DelMenuExecutive(System.String,System.String)">
             <summary>
             删除菜单
             </summary>
@@ -478,7 +478,7 @@
         </member>
         <member name="M:WebSite.Controllers.SysSetAPIController.MenuButtonsByMenuId(System.String)">
             <summary>
-            获取菜单按钮
+            获取菜单按钮权限
             </summary>
             <param name="menuId"></param>
             <returns></returns>
