@@ -40,10 +40,7 @@ namespace BackStageDAL
                                     as temp_sum_student 
                                     order by UserId desc ) temp_order
                                     order by UserId asc", page.pageSize, page.pageIndex* page.pageSize, !string.IsNullOrWhiteSpace(userid)? string.Format("  userid='{0}'", userid):"");
-                //string sql = string.Format(@"select  UserId,UserRoleName,UserNickName,PassWord,OrganizeName  from Sys_User");
-                
-                // CurrentContext.Database.Log = (sql1) => Log.Write(LogLevel.Info, sql);
-                Logger.AddLog(sql);
+                CurrentContext.Database.Log = (sql1) => Log.Write(LogLevel.Info, sql);
                 var result = CurrentContext.Database.SqlQuery<ResUserInfoAPI>(sql).Skip(page.pageSize * (page.pageIndex - 1)).Take(page.pageSize).ToList();
                 return result;
             }
