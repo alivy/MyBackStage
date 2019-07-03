@@ -58,6 +58,7 @@
     <Compile Include="ResButton.cs" />
     <Compile Include="Enums\Menu.cs" />
     <Compile Include="ResdSingleToMultiple.cs" />
+    <Compile Include="ResUserInfoAPI.cs" />
     <Compile Include="ResUserMenuAPI.cs" />
     <Compile Include="Enums\LoginEnum.cs" />
     <Compile Include="ResLogin.cs" />

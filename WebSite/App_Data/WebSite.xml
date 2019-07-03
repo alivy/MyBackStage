@@ -490,6 +490,17 @@
             <param name="btns"></param>
             <returns></returns>
         </member>
+        <member name="T:WebSite.Controllers.SysSetUserInfoAPIController">
+            <summary>
+            用户信息外部API接口
+            </summary>
+        </member>
+        <member name="M:WebSite.Controllers.SysSetUserInfoAPIController.GetUserInfo(System.String,ViewModel.ReqBasePage)">
+            <summary>
+            获取用户信息
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:WebSite.Controllers.NavMenuAction.QueryNavMenuList(ViewModel.ReqBasePage,System.String)">
             <summary>
             获取菜单列表

@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="DBContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Result\UserInfoResult.cs" />
     <Compile Include="Result\UserMenuButtonResult.cs" />
     <Compile Include="Sys_button.cs" />
     <Compile Include="Sys_MenuButttonMap.cs" />

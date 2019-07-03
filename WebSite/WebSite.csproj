@@ -188,6 +188,7 @@
     <Compile Include="Controllers\ShowBoardController.cs" />
     <Compile Include="Controllers\JurisdictionController.cs" />
     <Compile Include="Controllers\SysSetAPIController.cs" />
+    <Compile Include="Controllers\SysSetUserInfoAPIController.cs" />
     <Compile Include="Controllers\UserRoleManagement\NavMenuAction.cs" />
     <Compile Include="Controllers\UserRoleManagement\UserRoleManagementAction.cs" />
     <Compile Include="CustomExtension\ModelValidMsg.cs" />
@@ -372,6 +373,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\LoginAPI\" />
+    <Folder Include="Views\SysSetUserInfoAPI\" />
     <Folder Include="Views\SysSet\" />
   </ItemGroup>
   <ItemGroup>

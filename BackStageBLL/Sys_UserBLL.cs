@@ -7,6 +7,8 @@ using BackStageIBLL;
 using backStageIDal;
 using Common;
 using DBModel;
+using DBModel.Result;
+using ViewModel;
 
 namespace BackStageBLL
 {
@@ -26,6 +28,11 @@ namespace BackStageBLL
         {
            // MEFBase.Compose(this);
             var userList = _user.QueryAllUser();
+        }
+
+        public List<ResUserInfoAPI> GetUserInfo(string userid, ReqBasePage page)
+        {
+            return _user.GetUserInfo(userid, page);
         }
     }
 }
