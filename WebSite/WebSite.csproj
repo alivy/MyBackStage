@@ -188,6 +188,7 @@
     <Compile Include="Controllers\ShowBoardController.cs" />
     <Compile Include="Controllers\JurisdictionController.cs" />
     <Compile Include="Controllers\SysSetAPIController.cs" />
+    <Compile Include="Controllers\SysSetRoleAPIRoleController.cs" />
     <Compile Include="Controllers\SysSetUserInfoAPIController.cs" />
     <Compile Include="Controllers\UserRoleManagement\NavMenuAction.cs" />
     <Compile Include="Controllers\UserRoleManagement\UserRoleManagementAction.cs" />
@@ -241,12 +242,15 @@
     <Content Include="Content\css\font-awesome\webfonts\fa-brands-400.svg" />
     <Content Include="Content\css\font-awesome\webfonts\fa-regular-400.svg" />
     <Content Include="Content\css\font-awesome\webfonts\fa-solid-900.svg" />
+    <Content Include="Content\css\HomeService.css" />
     <Content Include="Content\css\RestructureStyle.css" />
     <Content Include="Content\css\simple-line-icons\css\simple-line-icons.css" />
     <Content Include="Content\css\simple-line-icons\fonts\Simple-Line-Icons.svg" />
     <Content Include="Content\css\styles.css" />
+    <Content Include="Content\css\webLogin\default.css" />
     <Content Include="Content\css\webLogin\style.css" />
     <Content Include="Content\imgs\avatar-1.png" />
+    <Content Include="Content\imgs\icon-auth.6998d4.png" />
     <Content Include="Content\imgs\logo.png" />
     <Content Include="Content\js\actionView\NavMenuManagement.js" />
     <Content Include="Content\js\actionView\UserRoleManagement.js" />
@@ -263,11 +267,16 @@
     <Content Include="Content\js\chart.js\chart.js" />
     <Content Include="Content\js\chart.js\chart.min.js" />
     <Content Include="Content\js\demo.js" />
+    <Content Include="Content\js\home\garden.js" />
+    <Content Include="Content\js\home\jquery.js" />
     <Content Include="Content\js\jquery\jquery-2.1.0.min.js" />
     <Content Include="Content\js\jquery\jquery.js" />
     <Content Include="Content\js\jquery\jquery.min.js" />
     <Content Include="Content\js\popper.js\popper.min.js" />
     <Content Include="Content\js\webLogin\vector.js" />
+    <Content Include="DataXML\AuthorizeXML.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -373,9 +382,12 @@
     <Content Include="Views\Jurisdiction\UserRoleManagement.cshtml" />
     <Content Include="Views\Jurisdiction\NavMenuManagement.cshtml" />
     <Content Include="Views\Home\Log4net.cshtml" />
+    <Content Include="Views\Home\GetQQLoginTest.cshtml" />
+    <Content Include="Views\Home\Service.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\LoginAPI\" />
+    <Folder Include="Views\SysSetRoleAPIRole\" />
     <Folder Include="Views\SysSetUserInfoAPI\" />
     <Folder Include="Views\SysSet\" />
   </ItemGroup>
@@ -416,6 +428,10 @@
     <ProjectReference Include="..\DBModel\DBModel.csproj">
       <Project>{f6fe6f02-0f56-4feb-b595-a8f0c8f7b007}</Project>
       <Name>DBModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenPlatform.Tool\OpenPlatform.Tool.csproj">
+      <Project>{0F36C3EA-70A7-4960-B46A-F4200F2C9504}</Project>
+      <Name>OpenPlatform.Tool</Name>
     </ProjectReference>
     <ProjectReference Include="..\ViewModel\ViewModel.csproj">
       <Project>{d2ff35dd-cf55-4f83-aedb-36fdfeedb0b5}</Project>

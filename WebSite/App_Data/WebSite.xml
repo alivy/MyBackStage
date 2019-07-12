@@ -179,8 +179,7 @@
             <summary>
             检查用户登录
             </summary>
-            <param name="userName">用户名</param>
-            <param name="password">密码</param>
+            <param name="userInfo">用户名</param>
             <returns></returns>
         </member>
         <member name="M:WebSite.Controllers.HomeAciton.LogionAction.SetUserCache(DBModel.Sys_User)">
@@ -220,11 +219,39 @@
             API用户过期信息缓存
             </summary>
         </member>
+        <member name="M:WebSite.Controllers.HomeController.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
         <member name="M:WebSite.Controllers.HomeController.WebLogin">
             <summary>
             web登陆
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.HomeController.ServiceCallback">
+            <summary>
+            接受外部回调
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.HomeController.GetQQLoginTest">
+            <summary>
+            QQ授权登陆
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.HomeController.Service">
+            <summary>
+            QQ登陆授权回调
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebSite.Controllers.HomeController.saveUserInfoXml(System.Collections.Generic.List{ViewModel.QQUserInfo})">
+            <summary>
+            保存用户信息到xml
+            </summary>
         </member>
         <member name="T:WebSite.Controllers.LoginAPIController">
             <summary>
@@ -489,6 +516,11 @@
             </summary>
             <param name="btns"></param>
             <returns></returns>
+        </member>
+        <member name="T:WebSite.Controllers.SysSetRoleAPIRoleController">
+            <summary>
+            角色管理
+            </summary>
         </member>
         <member name="T:WebSite.Controllers.SysSetUserInfoAPIController">
             <summary>

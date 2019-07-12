@@ -35,7 +35,7 @@ namespace ViewModel
         /// <summary>
         /// 菜单级别
         /// </summary>
-        [Range(1, 3, ErrorMessage = "传入菜单级别符合规则")]
+        [Range(1, 3, ErrorMessage = "传入菜单级别不符合规则")]
         [Required(ErrorMessage = "请传入菜单级别")]
         public int Level { get; set; }
 

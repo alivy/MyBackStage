@@ -55,6 +55,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="QQUserInfo.cs" />
     <Compile Include="ResButton.cs" />
     <Compile Include="Enums\Menu.cs" />
     <Compile Include="ResdSingleToMultiple.cs" />

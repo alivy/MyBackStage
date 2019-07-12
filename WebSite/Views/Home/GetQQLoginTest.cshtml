@@ -1,0 +1,46 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>QQ第三方登录</title>
+    <style type="text/css">
+        .auth-linktitle {
+            margin-bottom: 50px;
+            width: 256px;
+            margin: auto;
+            line-height: 1em;
+            font-size: 18px;
+            font-weight: 600;
+            color: #8da0aa;
+            background: #fafcfe;
+        }
+
+        .auth-link {
+            margin: 0 5px;
+            text-indent: -99999em;
+            background: url(/Content/imgs/icon-auth.6998d4.png) no-repeat;
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            opacity: .7;
+            -ms-filter: alpha(opacity=70);
+            transition: opacity .3s;
+        }
+
+        .qq {
+            background-position: -40px -60px;
+        }
+    </style>
+</head>
+<body>
+    <div style="width: 700px;margin: auto;text-align: center;margin-top: 100px">
+        <h2 class="auth-linktitle">可使用以下账号直接登录</h2><br />
+        <a class="auth-link qq" href="@ViewData["AuthorizeUrl"]" target="_blank">QQ</a>
+    </div>
+</body>
+</html>

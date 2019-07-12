@@ -51,6 +51,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -91,8 +92,10 @@
     <Compile Include="Share\MailHelper.cs" />
     <Compile Include="Share\MessageSend.cs" />
     <Compile Include="Share\NetworkHelper.cs" />
+    <Compile Include="Share\OAuth2API.cs" />
     <Compile Include="Share\RemarkAttribute.cs" />
     <Compile Include="Share\UrlString.cs" />
+    <Compile Include="Share\XMLSerializeHelper.cs" />
     <Compile Include="TypeConvert\TransExpV2.cs" />
     <Compile Include="TypeConvert\HtmlHelperExtends.cs" />
     <Compile Include="TypeConvert\ImageHelper.cs" />

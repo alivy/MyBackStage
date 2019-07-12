@@ -35,6 +35,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OtherFile", "OtherFile", "{
 		..\..\数据库\导航设计.PDM = ..\..\数据库\导航设计.PDM
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenPlatform.Tool", "OpenPlatform.Tool\OpenPlatform.Tool.csproj", "{0F36C3EA-70A7-4960-B46A-F4200F2C9504}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{D2FF35DD-CF55-4F83-AEDB-36FDFEEDB0B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2FF35DD-CF55-4F83-AEDB-36FDFEEDB0B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2FF35DD-CF55-4F83-AEDB-36FDFEEDB0B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F36C3EA-70A7-4960-B46A-F4200F2C9504}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F36C3EA-70A7-4960-B46A-F4200F2C9504}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F36C3EA-70A7-4960-B46A-F4200F2C9504}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F36C3EA-70A7-4960-B46A-F4200F2C9504}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,6 +92,7 @@ Global
 		{F6FE6F02-0F56-4FEB-B595-A8F0C8F7B007} = {E50C4D0D-8A45-4976-BDF9-EDF48EFA4270}
 		{0C08E018-3115-4108-B0BF-08B2D1056A5D} = {782B0454-F2E9-4E90-B8EC-D844BFF0566C}
 		{D2FF35DD-CF55-4F83-AEDB-36FDFEEDB0B5} = {E50C4D0D-8A45-4976-BDF9-EDF48EFA4270}
+		{0F36C3EA-70A7-4960-B46A-F4200F2C9504} = {782B0454-F2E9-4E90-B8EC-D844BFF0566C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A3CC7739-E56A-4BB7-88EE-0B783BDB6770}

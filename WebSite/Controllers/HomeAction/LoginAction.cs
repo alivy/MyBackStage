@@ -55,13 +55,12 @@ namespace WebSite.Controllers.HomeAciton
             var result = new { Code = 1, Url = resultUrl };
             return RequestAction(RequestResult.Success("", result));
         }
-        
+
 
         /// <summary>
         /// 检查用户登录
         /// </summary>
-        /// <param name="userName">用户名</param>
-        /// <param name="password">密码</param>
+        /// <param name="userInfo">用户名</param>
         /// <returns></returns>
         public bool CheckLogin(ViewUserLogin userInfo)
         {
