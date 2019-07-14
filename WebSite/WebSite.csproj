@@ -383,6 +383,7 @@
     <Content Include="Views\Jurisdiction\NavMenuManagement.cshtml" />
     <Content Include="Views\Home\Log4net.cshtml" />
     <Content Include="Views\Home\GetQQLoginTest.cshtml" />
+    <Content Include="Views\Home\Service_Love.cshtml" />
     <Content Include="Views\Home\Service.cshtml" />
   </ItemGroup>
   <ItemGroup>

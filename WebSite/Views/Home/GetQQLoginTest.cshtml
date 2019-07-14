@@ -35,12 +35,82 @@
         .qq {
             background-position: -40px -60px;
         }
+
+
+        #QQeasy {
+            position: absolute;
+            left: 55%;
+            top: -16%;
+            width: 35rem;
+            height: 25rem;
+            margin-left: -20rem;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+
+        .lay_top {
+            display: none;
+        }
+
+        iframe::-webkit-scrollbar {
+            width: 0px;
+            height: 0px;
+        }
+
+        #QQAuthorize {
+            display: none;
+            border: 2px solid #eee;
+            position: absolute;
+            left: 50%;
+            top: 25%;
+            width: 30rem;
+            height: 20rem;
+            margin-left: -20rem;
+            overflow: hidden;
+        }
+
+        .nav {
+            display: none;
+        }
     </style>
+    <script src="~/Content/js/jquery/jquery-2.1.0.min.js"></script>
 </head>
 <body>
-    <div style="width: 700px;margin: auto;text-align: center;margin-top: 100px">
-        <h2 class="auth-linktitle">可使用以下账号直接登录</h2><br />
-        <a class="auth-link qq" href="@ViewData["AuthorizeUrl"]" target="_blank">QQ</a>
+   
+
+
+    <div style="width: 700px;margin: auto;text-align: center;margin-top: 100px" id="QQLogin">
+        <div id="loginDiv">
+            <h2 class="auth-linktitle">可使用以下账号直接登录</h2><br />
+            <a class="auth-link qq">QQ</a>
+        </div>
+
+        <div class="nav">
+            欢迎您,<img id="HeadPortrait" src="" /> <span id="nickname"></span>
+        </div>
     </div>
+
+    <div id="QQAuthorize">
+        <iframe id="QQeasy" src=""></iframe>
+    </div>
+
+    <script>
+        $(function () {
+            $(".auth-link").click(function () {
+                 $("#QQAuthorize").show();
+                var https ="@ViewData["AuthorizeUrl"]";
+                $("#QQeasy").attr("src", https.replace(new RegExp("amp;", "g"), ""));
+            })
+        })
+
+        function sonsay(Nickname,img) {
+            var name = Nickname;
+            $("#HeadPortrait").attr("src", img);
+            $("#nickname").text(name);
+            $(".nav").show();
+            $("#QQAuthorize").hide();
+            $("#loginDiv").hide();
+        };
+    </script>
 </body>
 </html>
